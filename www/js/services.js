@@ -266,7 +266,7 @@ angular.module('sbess.services',['ionic'])
 			endDate: '08/11/15 9:00 PM',
 			subheader:'Get prepared for the EC140 midterm',
 			location: "P2001, Peters Building",
-			imgSrc: 'banners/Laurier-Economics-Club.png',
+			imgSrc: 'banners/LEC-Banner.png',
 			thumbnail:"thumbnails/LEC-Transparent.gif",
 			facebookEvent:"https://www.facebook.com/events/1443513392633675/",
 			sponsors:[

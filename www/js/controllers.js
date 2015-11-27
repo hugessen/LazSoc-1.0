@@ -12,10 +12,10 @@ angular.module('sbess.controllers', ['sbess.services'])
     $scope.userInfoModal = modal;
   })
   
-  $scope.openUserInfoModal = function() {
+  $scope.openModal = function() {
     $scope.userInfoModal.show();
   }
-  $scope.closeUserInfoModal = function() {
+  $scope.closeModal = function() {
     $scope.userInfoModal.hide();
   }
   $scope.$on('$destroy', function() {

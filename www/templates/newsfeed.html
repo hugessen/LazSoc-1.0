@@ -1,4 +1,7 @@
 <ion-view view-title="Newsfeed">
+	<ion-nav-buttons side="right">
+    	<button class="button button-icon ion-gear-a" ng-click="openModal()"></button>
+  	</ion-nav-buttons>
 	<ion-content>
 		<ion-list>
 			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})">
