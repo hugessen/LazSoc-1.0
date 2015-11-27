@@ -1,0 +1,22 @@
+<ion-view>
+	<ion-nav-title>{{currEvent.title}}</ion-nav-title>
+	<ion-content>
+		<div>
+			<img src="{{currEvent.imgSrc}}" style="width:100%"></img>
+		</div>
+		<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
+		<div class="button-bar"> 
+      		<button class="button"><i class="icon ion-calendar"> Add to Calendar</i></a>
+      		<button class="button" ng-click="viewPage()"><i class="icon ion-social-facebook"> Facebook page</i></a>
+    	</div>
+		<div class="item">
+			<i class="icon ion-clock"> When: {{currEvent.timePublished}}</i>
+		</div>
+		<div class="item">
+			<i class="icon ion-android-pin"> Where: {{currEvent.location}}</i>
+		</div>
+		<div class="item item-text-wrap">
+			{{currEvent.desc}}
+		</div>  
+	</ion-content>
+</ion-view>

@@ -38,7 +38,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
       }
     })
     .state('app.newsfeed', {
-      url: '/newsfeed',
+      url: '/news',
       views: {
         'menuContent': {
           templateUrl: 'templates/newsfeed.html',
@@ -46,16 +46,17 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
         }
       }
     })
+    
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.event', {
+    url: '/news/:eventId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/eventPage.html',
+        controller: 'MainCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/newsfeed');
+  $urlRouterProvider.otherwise('/app/news');
 });

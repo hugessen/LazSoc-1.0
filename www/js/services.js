@@ -374,5 +374,9 @@ angular.module('sbess.services',['ionic'])
 	this.getAllEvents = function(){
 		return events;
 	}
+	this.getEvent = function(id){
+		var allEvents = this.getAllEvents();
+		return allEvents[id];
+	}
 });
 	
