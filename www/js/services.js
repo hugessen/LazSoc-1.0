@@ -231,8 +231,148 @@ angular.module('sbess.services',['ionic'])
 	this.getAllClubs = function(){
 		return clubs;
 	}
-	this.getRichard = function(){
-		return "Richard";
+	
+	var events = [
+		{ 
+			id: 0,
+			title: 'BU111 Workshop',
+			clubSlug: 'sos',
+			timePublished: '11/24/15 4:00 PM',
+			startDate: 'Friday, July 3rd at 4:00 PM',
+			subheader:'Everything you need to know for the final',
+			location: "BA301, Bricker Academic",
+			imgSrc: 'banners/SOS-Laurier.jpg',
+			thumbnail: "thumbnails/SOS-Transparent.gif",
+			facebookEvent: "https://www.facebook.com/events/1443513392633675/",
+			sponsors: [
+			{
+				title: "Bank of Montreal",
+				imgSrc: "sponsors/BMO/BMO.jpg"
+			},
+			{
+				title: "Procter and Gamble",
+				imgSrc: "sponsors/ProcterGamble.png"
+
+			}],
+			tags:["Business","First-year","Exam Review"],
+			desc:"Business can be a real hassle for first year students. That's why we've compiled a group of the smartest business students around to show you the ropes. After you've seen this presentation, you'll be ready for anything they throw at you. Come join if you want to learn everything there is to know about accrued liabilities, financial investments, the Diamond-E model and other useless drivel you'll never use again! Disclaimer: We have not seen the exam, and cannot offer insider hints! " 
+		},
+		{ 
+			id: 1,
+			title: 'EC140 Mock Midterm',
+			clubSlug: 'lec',
+			timePublished: '11/25/15 4:00 PM',
+			startDate:'08/11/15 3:45 PM',
+			endDate: '08/11/15 9:00 PM',
+			subheader:'Get prepared for the EC140 midterm',
+			location: "P2001, Peters Building",
+			imgSrc: 'banners/Laurier-Economics-Club.png',
+			thumbnail:"thumbnails/LEC-Transparent.gif",
+			facebookEvent:"https://www.facebook.com/events/1443513392633675/",
+			sponsors:[
+			{
+				title: "Bank of Montreal",
+				imgSrc: "sponsors/BMO/BMO.jpg"
+			},
+			{
+				title: "Procter and Gamble",
+				imgSrc: "sponsors/ProcterGamble.png"
+
+			}],
+			tags:["Economics","Exam Review"],
+			desc:"This midterm is incredibly important! We promise that we'll provide you with a difficult midterm that replicates anything and everything that could be found on the March EC120 Midterm! The admission cost is $5 for non members, and members get in free. We promise your economics marks will never be higher, so come on out and get your econ on!"
+		},
+		{ 
+			id: 2, 
+			title: 'Sports Management Workshop',
+			clubSlug: 'sml',
+			timePublished: '11/26/15 4:00 PM',
+			startDate:'03/05/15 11:00 AM',
+			endDate: '03/05/15 3:00PM',
+			subheader:'Learn from industry pros',
+			location: "BA202, Bricker Academic",
+			imgSrc: "",
+			thumbnail: "thumbnails/SML-Transparent.gif",
+			facebookEvent:'',
+			sponsors:[
+			{
+				title: "Bank of Montreal",
+				imgSrc: "sponsors/BMO/BMO.jpg"
+			},
+			{
+				title: "Procter and Gamble",
+				imgSrc: "sponsors/ProcterGamble.png"
+
+			},
+			{
+				title: "Ernst and Young",
+				imgSrc: "sponsors/ernstandyoung/ErnstYoung.png"
+
+			}],
+			tags:["Sports","Management"],
+			desc:"" },
+
+			{
+				id: 3,
+				title: 'EB Workshop', 
+				clubSlug: 'eb',
+				timePublished: '11/27/15 4:00 PM',
+				startDate:'06/06/15 3:45 PM', 
+				endDate: '06/06/15 9:00 PM',
+				subheader:'',
+				location: "P2006",
+				imgSrc:"",
+				facebookEvent:'',
+				sponsors:[
+				{
+					title: "Bank of Montreal",
+					imgSrc: "sponsors/BMO/BMO.jpg"
+				},
+				{
+					title: "Procter and Gamble",
+					imgSrc: "sponsors/ernstandyoung/ErnstYoung.png"
+
+				}],
+				thumbnail:"thumbnails/EB-Transparent.gif",
+				tags:["Information Technology"],
+				desc:""
+			},
+			{
+				id: 4,
+				title: 'Marketing Conference', 
+				clubSlug: 'adhawk',
+				timePublished: '11/28/15 4:00 PM',
+				startDate:'06/06/15 3:45 PM', 
+				endDate: '06/06/15 9:00 PM',
+				subheader:'Showcasing the top marketers',
+				location: "P2006",
+				imgSrc:"",
+				facebookEvent:'',
+				sponsors:[
+				],
+				thumbnail:"thumbnails/AdHawk_Logo.jpg",
+				tags:["Marketing","Advertising"],
+				desc:""
+			},
+			{
+				id: 4,
+				title: 'Networking Conference', 
+				clubSlug: 'thelink',
+				timePublished: '11/29/15 4:00 PM',
+				startDate:'06/06/15 3:45 PM', 
+				endDate: '06/06/15 9:00 PM',
+				subheader:'Learn to integrate yourselves as a team!',
+				location: "P2006",
+				imgSrc:"",
+				facebookEvent:'',
+				sponsors:[],
+				thumbnail:"thumbnails/TheLink-Transparent.gif",
+				tags:["Networking","Marketing"],
+				desc:""
+			}
+	];
+	this.getAllEvents = function(){
+		return events;
 	}
 });
 	
