@@ -1,6 +1,6 @@
-angular.module('sbess.controllers', [])
+angular.module('sbess.controllers', ['sbess.services'])
 
-.controller('MainCtrl', ['$scope', '$ionicModal', '$timeout',function($scope, $ionicModal, $timeout) {
+.controller('MainCtrl', ['$scope', 'WebAPI', '$ionicModal', '$timeout',function($scope, WebAPI, $ionicModal, $timeout) {
 
   
   $ionicModal.fromTemplateUrl('templates/userinfo.html', {
@@ -21,7 +21,7 @@ angular.module('sbess.controllers', [])
   $scope.$on('$destroy', function() {
     $scope.userInfoModal.remove();
   });
-  $scope.richard = "Richard";
+  $scope.clubs = WebAPI.getAllClubs();
 }])
 
 .controller('PlaylistsCtrl', function($scope) {

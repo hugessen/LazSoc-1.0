@@ -1,4 +1,4 @@
-angular.module('sbess.services',['ionic','sbess.utils'])
+angular.module('sbess.services',['ionic'])
 .service('WebAPI',function(){
 	var clubs = [
 		{
