@@ -6,7 +6,7 @@ angular.module('sbess.services',['ionic'])
 			name: "LMA",
 			slug: "lma",
 			desc: "LMA Desc",
-			logo: "thumbnails/LMA-Transparent.gif",
+			logo: "LMA-Transparent.gif",
 			tags: [
 			"Sales",
 			"Club"
@@ -17,7 +17,7 @@ angular.module('sbess.services',['ionic'])
 			name: "LCC",
 			slug: "lcc",
 			desc: "LCC Desc",
-			logo: "thumbnails/LCC-Transparent.gif",
+			logo: "LCC-Transparent.gif",
 			tags: [
 			"LCC",
 			"Club"
@@ -27,8 +27,8 @@ angular.module('sbess.services',['ionic'])
 			id: 2,
 			name: "Golden Speakers Club",
 			slug: "golden speakers",
-			desc: "LAA Desc",
-			logo: "thumbnails/GSC.png",
+			desc: "GSC Desc",
+			logo: "GSC.png",
 			tags: [
 			"Public Speaking",
 			"Club"
@@ -39,7 +39,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Enactus",
 			slug: "enactus",
 			desc: "Enactus Desc",
-			logo: "thumbnails/Enactus-Transparent.gif",
+			logo: "Enactus-Transparent.gif",
 			tags: [
 			"Enactus",
 			"Club"
@@ -50,7 +50,7 @@ angular.module('sbess.services',['ionic'])
 			name: "DECA",
 			slug: "deca",
 			desc: "DECA Desc",
-			logo: "thumbnails/DECA-Transparent.gif",
+			logo: "DECA-Transparent.gif",
 			tags: [
 			"DECA",
 			"Club"
@@ -61,7 +61,7 @@ angular.module('sbess.services',['ionic'])
 			name: "AdHawk Laurier",
 			slug: "adhawk",
 			desc: "Adhawk Desc",
-			logo: "thumbnails/AdHawk_logo.jpg",
+			logo: "AdHawk_Logo.jpg",
 			tags: [
 			"Advertising",
 			"Marketing",
@@ -73,7 +73,7 @@ angular.module('sbess.services',['ionic'])
 			name: "AIESEC",
 			slug: "aiesec",
 			desc: "AIESEC Desc",
-			logo: "thumbnails/AIESEC-Transparent.gif",
+			logo: "AIESEC-Transparent.gif",
 			tags: [
 			"AIESEC",
 			"Club"
@@ -84,7 +84,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Atrium Media Group",
 			slug: "atrium",
 			desc: "Atrium Desc",
-			logo: "thumbnails/Atrium-Transparent.gif",
+			logo: "Atrium-Transparent.gif",
 			tags: [
 			"Atrium",
 			"Media",
@@ -97,7 +97,7 @@ angular.module('sbess.services',['ionic'])
 			name: "LEC",
 			slug: "lec",
 			desc: "LEC Desc",
-			logo: "thumbnails/LEC-Transparent.gif",
+			logo: "LEC-Transparent.gif",
 			tags: [
 			"Economics",
 			"Club"
@@ -108,7 +108,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Startup Laurier",
 			slug: "startup",
 			desc: "Startup Laurier Desc",
-			logo: "thumbnails/StartupLaurier-Transparent.gif",
+			logo: "StartupLaurier-Transparent.gif",
 			tags: [
 			"Entrepreneurship",
 			"Startups",
@@ -120,7 +120,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Sports Management Laurier",
 			slug: "sml",
 			desc: "SML Desc",
-			logo: "thumbnails/SML-Transparent.gif",
+			logo: "SML-Transparent.gif",
 			tags: [
 			"SML",
 			"Sports Management",
@@ -132,7 +132,7 @@ angular.module('sbess.services',['ionic'])
 			name: "LIFA",
 			slug: "lifa",
 			desc: "LIFA Desc",
-			logo: "thumbnails/LSA.gif",
+			logo: "LIFA_JPEG.jpg",
 			tags: [
 			"LIFA",
 			"Club"
@@ -143,7 +143,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Laurier Sales Association",
 			slug: "lsa",
 			desc: "LSA Desc",
-			logo: "thumbnails/SML-Transparent.gif",
+			logo: "LSA.gif",
 			tags: [
 			"LSA",
 			"Club"
@@ -154,7 +154,7 @@ angular.module('sbess.services',['ionic'])
 			name: "HRN",
 			slug: "hrn",
 			desc: "HRN Desc",
-			logo: "thumbnails/HRN-Transparent.gif",
+			logo: "HRN-Transparent.gif",
 			tags: [
 			"HRN",
 			"Club"
@@ -165,7 +165,7 @@ angular.module('sbess.services',['ionic'])
 			name: "XLerate",
 			slug: "xlerate",
 			desc: "XLerate Desc",
-			logo: "thumbnails/XLerate-Transparent.gif",
+			logo: "XL.jpg",
 			tags: [
 			"XLerate",
 			"Club"
@@ -176,7 +176,7 @@ angular.module('sbess.services',['ionic'])
 			name: "WLU Debate Society",
 			slug: "wludebate",
 			desc: "WLU Debate Desc",
-			logo: "thumbnails/WLUDebate-Transparent.gif",
+			logo: "WLUDebate-Transparent.gif",
 			tags: [
 			"WLU Debate",
 			"Club"
@@ -187,7 +187,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Women in Leadership Laurier",
 			slug: "will",
 			desc: "WILL Desc",
-			logo: "thumbnails/WILL-Transparent.gif",
+			logo: "WILL-Transparent.gif",
 			tags: [
 			"WILL",
 			"Club"
@@ -198,7 +198,7 @@ angular.module('sbess.services',['ionic'])
 			name: "Students Offering Support",
 			slug: "sos",
 			desc: "SOS Desc",
-			logo: "thumbnails/SOS-Transparent.gif",
+			logo: "SOS-Transparent.gif",
 			tags: [
 			"SOS",
 			"Exam Review",
@@ -210,7 +210,7 @@ angular.module('sbess.services',['ionic'])
 			name: "The Link",
 			slug: "thelink",
 			desc: "The Link Desc",
-			logo: "thumbnails/TheLink-Transparent.gif",
+			logo: "TheLink-Transparent.gif",
 			tags: [
 			"The Link",
 			"Club"
@@ -221,9 +221,20 @@ angular.module('sbess.services',['ionic'])
 			name: "EB Laurier",
 			slug: "eb",
 			desc: "EB Laurier Desc",
-			logo: "thumbnails/EB-Transparent.gif",
+			logo: "EB-Transparent.gif",
 			tags: [
 			"EB Laurier",
+			"Club"
+			]
+		},
+		{
+			id: 20,
+			name: "Laurier Accounting Association",
+			slug: "laa",
+			desc: "LAA Desc",
+			logo: "LAA_Logo.jpg",
+			tags: [
+			"LAA",
 			"Club"
 			]
 		}
