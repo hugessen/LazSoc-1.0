@@ -3,12 +3,36 @@ flexbox{
 	display:flex;
 	flex-direction:row;
 }
+
+body {
+    background: url("NYC-Blurred.jpg") no-repeat top left fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+.pane, .menu{
+	background:transparent
+}
 .selectionbox{
 	width:33.3%;
 	border:1px black solid;
 }
+.itembox{
+	background-color: rgba(255,255,255,0.4);
+}
 .imgbox{
-	border:1px solid black;
 	border-radius:10px;
 	width:10%;
+}
+titleFont{
+	font-family:Calibri;
+	font-weight:bold;
+	font-size:18px;
+}
+subheaderFont{
+	font-size:14px;
+}
+@font-face{
+	font-family:Calibri;
+	src: url(fonts/Calibri.ttf);
 }

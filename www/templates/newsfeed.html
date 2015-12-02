@@ -4,11 +4,12 @@
   	</ion-nav-buttons>
 	<ion-content>
 		<ion-list>
-			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})">
-				<flexbox>				
-					<img src="{{event.thumbnail}}" class="imgbox"></img>
-					<b>{{event.title}}</b>
-				</flexbox>
+			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" class="itembox">
+				<div class="item-thumbnail-left">
+					<img src="{{event.thumbnail}}" class="imgbox">
+					<titleFont>{{event.title}}</titleFont></br>
+					<subheaderFont>{{event.subheader}}</subheaderFont>
+				</div>
 			</ion-item>
 		</ion-list>
 	</ion-content>	
