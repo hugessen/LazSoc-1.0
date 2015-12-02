@@ -3,11 +3,12 @@
     	<button class="button button-icon ion-gear-a" ng-click="openModal()"></button>
   	</ion-nav-buttons>
 	<ion-content>
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
 			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left">
-					<img src="{{event.thumbnail}}" class="imgbox">
-					<titleFont>{{event.title}}</titleFont></br>
-					<subheaderFont>{{event.subheader}}</subheaderFont>
+				<img src="{{event.thumbnail}}" class="imgbox">
+				<titleFont>{{event.title}}</titleFont></br>
+				<subheaderFont>{{event.subheader}}</subheaderFont>
 			</ion-item>
 		</ion-list>
 	</ion-content>	

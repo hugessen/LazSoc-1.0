@@ -1,245 +1,252 @@
 angular.module('sbess.services',['ionic'])
-.service('WebAPI',function(){
-	var clubs = [
-		{
-			id: 0,
-			name: "LMA",
-			slug: "lma",
-			desc: "LMA Desc",
-			logo: "LMA-Transparent.gif",
-			tags: [
-			"Sales",
-			"Club"
-			]
-		},
-		{
-			id: 1,
-			name: "LCC",
-			slug: "lcc",
-			desc: "LCC Desc",
-			logo: "LCC-Transparent.gif",
-			tags: [
-			"LCC",
-			"Club"
-			]
-		},
-		{
-			id: 2,
-			name: "Golden Speakers Club",
-			slug: "golden speakers",
-			desc: "GSC Desc",
-			logo: "GSC.png",
-			tags: [
-			"Public Speaking",
-			"Club"
-			]
-		},
-		{
-			id: 3,
-			name: "Enactus",
-			slug: "enactus",
-			desc: "Enactus Desc",
-			logo: "Enactus-Transparent.gif",
-			tags: [
-			"Enactus",
-			"Club"
-			]
-		},
-		{
-			id: 4,
-			name: "DECA",
-			slug: "deca",
-			desc: "DECA Desc",
-			logo: "DECA-Transparent.gif",
-			tags: [
-			"DECA",
-			"Club"
-			]
-		},
-		{
-			id: 5,
-			name: "AdHawk Laurier",
-			slug: "adhawk",
-			desc: "Adhawk Desc",
-			logo: "AdHawk_Logo.jpg",
-			tags: [
-			"Advertising",
-			"Marketing",
-			"Club"
-			]
-		},
-		{
-			id: 6,
-			name: "AIESEC",
-			slug: "aiesec",
-			desc: "AIESEC Desc",
-			logo: "AIESEC-Transparent.gif",
-			tags: [
-			"AIESEC",
-			"Club"
-			]
-		},
-		{
-			id: 7,
-			name: "Atrium Media Group",
-			slug: "atrium",
-			desc: "Atrium Desc",
-			logo: "Atrium-Transparent.gif",
-			tags: [
-			"Atrium",
-			"Media",
-			"Groups",
-			"Club"
-			]
-		},
-		{
-			id: 8,
-			name: "LEC",
-			slug: "lec",
-			desc: "LEC Desc",
-			logo: "LEC-Transparent.gif",
-			tags: [
-			"Economics",
-			"Club"
-			]
-		},
-		{
-			id: 9,
-			name: "Startup Laurier",
-			slug: "startup",
-			desc: "Startup Laurier Desc",
-			logo: "StartupLaurier-Transparent.gif",
-			tags: [
-			"Entrepreneurship",
-			"Startups",
-			"Club"
-			]
-		},
-		{
-			id: 10,
-			name: "Sports Management Laurier",
-			slug: "sml",
-			desc: "SML Desc",
-			logo: "SML-Transparent.gif",
-			tags: [
-			"SML",
-			"Sports Management",
-			"Club"
-			]
-		},
-		{
-			id: 11,
-			name: "LIFA",
-			slug: "lifa",
-			desc: "LIFA Desc",
-			logo: "LIFA_JPEG.jpg",
-			tags: [
-			"LIFA",
-			"Club"
-			]
-		},
-		{
-			id: 12,
-			name: "Laurier Sales Association",
-			slug: "lsa",
-			desc: "LSA Desc",
-			logo: "LSA.gif",
-			tags: [
-			"LSA",
-			"Club"
-			]
-		},
-		{
-			id: 13,
-			name: "HRN",
-			slug: "hrn",
-			desc: "HRN Desc",
-			logo: "HRN-Transparent.gif",
-			tags: [
-			"HRN",
-			"Club"
-			]
-		},
-		{
-			id: 14,
-			name: "XLerate",
-			slug: "xlerate",
-			desc: "XLerate Desc",
-			logo: "XL.jpg",
-			tags: [
-			"XLerate",
-			"Club"
-			]
-		},
-		{
-			id: 15,
-			name: "WLU Debate Society",
-			slug: "wludebate",
-			desc: "WLU Debate Desc",
-			logo: "WLUDebate-Transparent.gif",
-			tags: [
-			"WLU Debate",
-			"Club"
-			]
-		},
-		{
-			id: 16,
-			name: "Women in Leadership Laurier",
-			slug: "will",
-			desc: "WILL Desc",
-			logo: "WILL-Transparent.gif",
-			tags: [
-			"WILL",
-			"Club"
-			]
-		},
-		{
-			id: 17,
-			name: "Students Offering Support",
-			slug: "sos",
-			desc: "SOS Desc",
-			logo: "SOS-Transparent.gif",
-			tags: [
-			"SOS",
-			"Exam Review",
-			"Club"
-			]
-		},
-		{
-			id: 18,
-			name: "The Link",
-			slug: "thelink",
-			desc: "The Link Desc",
-			logo: "TheLink-Transparent.gif",
-			tags: [
-			"The Link",
-			"Club"
-			]
-		},
-		{
-			id: 19,
-			name: "EB Laurier",
-			slug: "eb",
-			desc: "EB Laurier Desc",
-			logo: "EB-Transparent.gif",
-			tags: [
-			"EB Laurier",
-			"Club"
-			]
-		},
-		{
-			id: 20,
-			name: "Laurier Accounting Association",
-			slug: "laa",
-			desc: "LAA Desc",
-			logo: "LAA_Logo.jpg",
-			tags: [
-			"LAA",
-			"Club"
-			]
-		}
-	]
+.service('WebAPI',[function(){
+	function isEmptyObject(obj){
+		return JSON.stringify(obj) == '{}' || obj == null;
+	}
 	this.getAllClubs = function(){
+		var clubs = [
+			{
+				id: 0,
+				name: "LMA",
+				slug: "lma",
+				desc: "LMA Desc",
+				logo: "LMA-Transparent.gif",
+				tags: [
+				"Sales",
+				"Club"
+				]
+			},
+			{
+				id: 1,
+				name: "LCC",
+				slug: "lcc",
+				desc: "LCC Desc",
+				logo: "LCC-Transparent.gif",
+				tags: [
+				"LCC",
+				"Club"
+				]
+			},
+			{
+				id: 2,
+				name: "Golden Speakers Club",
+				slug: "golden speakers",
+				desc: "GSC Desc",
+				logo: "GSC.png",
+				tags: [
+				"Public Speaking",
+				"Club"
+				]
+			},
+			{
+				id: 3,
+				name: "Enactus",
+				slug: "enactus",
+				desc: "Enactus Desc",
+				logo: "Enactus-Transparent.gif",
+				tags: [
+				"Enactus",
+				"Club"
+				]
+			},
+			{
+				id: 4,
+				name: "DECA",
+				slug: "deca",
+				desc: "DECA Desc",
+				logo: "DECA-Transparent.gif",
+				tags: [
+				"DECA",
+				"Club"
+				]
+			},
+			{
+				id: 5,
+				name: "AdHawk Laurier",
+				slug: "adhawk",
+				desc: "Adhawk Desc",
+				logo: "AdHawk_Logo.jpg",
+				tags: [
+				"Advertising",
+				"Marketing",
+				"Club"
+				]
+			},
+			{
+				id: 6,
+				name: "AIESEC",
+				slug: "aiesec",
+				desc: "AIESEC Desc",
+				logo: "AIESEC-Transparent.gif",
+				tags: [
+				"AIESEC",
+				"Club"
+				]
+			},
+			{
+				id: 7,
+				name: "Atrium Media Group",
+				slug: "atrium",
+				desc: "Atrium Desc",
+				logo: "Atrium-Transparent.gif",
+				tags: [
+				"Atrium",
+				"Media",
+				"Groups",
+				"Club"
+				]
+			},
+			{
+				id: 8,
+				name: "LEC",
+				slug: "lec",
+				desc: "LEC Desc",
+				logo: "LEC-Transparent.gif",
+				tags: [
+				"Economics",
+				"Club"
+				]
+			},
+			{
+				id: 9,
+				name: "Startup Laurier",
+				slug: "startup",
+				desc: "Startup Laurier Desc",
+				logo: "Startup-Transparent.gif",
+				tags: [
+				"Entrepreneurship",
+				"Startups",
+				"Club"
+				]
+			},
+			{
+				id: 10,
+				name: "Sports Management Laurier",
+				slug: "sml",
+				desc: "SML Desc",
+				logo: "SML-Transparent.gif",
+				tags: [
+				"SML",
+				"Sports Management",
+				"Club"
+				]
+			},
+			{
+				id: 11,
+				name: "LIFA",
+				slug: "lifa",
+				desc: "LIFA Desc",
+				logo: "LIFA_JPEG.jpg",
+				tags: [
+				"LIFA",
+				"Club"
+				]
+			},
+			{
+				id: 12,
+				name: "Laurier Sales Association",
+				slug: "lsa",
+				desc: "LSA Desc",
+				logo: "LSA.gif",
+				tags: [
+				"LSA",
+				"Club"
+				]
+			},
+			{
+				id: 13,
+				name: "HRN",
+				slug: "hrn",
+				desc: "HRN Desc",
+				logo: "HRN-Transparent.gif",
+				tags: [
+				"HRN",
+				"Club"
+				]
+			},
+			{
+				id: 14,
+				name: "XLerate",
+				slug: "xlerate",
+				desc: "XLerate Desc",
+				logo: "XL.jpg",
+				tags: [
+				"XLerate",
+				"Club"
+				]
+			},
+			{
+				id: 15,
+				name: "WLU Debate Society",
+				slug: "wludebate",
+				desc: "WLU Debate Desc",
+				logo: "WLUDebate-Transparent.gif",
+				tags: [
+				"WLU Debate",
+				"Club"
+				]
+			},
+			{
+				id: 16,
+				name: "Women in Leadership Laurier",
+				slug: "will",
+				desc: "WILL Desc",
+				logo: "WILL-Transparent.gif",
+				tags: [
+				"WILL",
+				"Club"
+				]
+			},
+			{
+				id: 17,
+				name: "Students Offering Support",
+				slug: "sos",
+				desc: "SOS Desc",
+				logo: "SOS-Transparent.gif",
+				tags: [
+				"SOS",
+				"Exam Review",
+				"Club"
+				]
+			},
+			{
+				id: 18,
+				name: "The Link",
+				slug: "thelink",
+				desc: "The Link Desc",
+				logo: "TheLink-Transparent.gif",
+				tags: [
+				"The Link",
+				"Club"
+				]
+			},
+			{
+				id: 19,
+				name: "EB Laurier",
+				slug: "eb",
+				desc: "EB Laurier Desc",
+				logo: "EB-Transparent.gif",
+				tags: [
+				"EB Laurier",
+				"Club"
+				]
+			},
+			{
+				id: 20,
+				name: "Laurier Accounting Association",
+				slug: "laa",
+				desc: "LAA Desc",
+				logo: "LAA_Logo.jpg",
+				tags: [
+				"LAA",
+				"Club"
+				]
+			}
+			
+		];
+		for(var x = 0; x < clubs.length; x++) {
+			clubs[x]["selected"] = false;
+		}
 		return clubs;
 	}
 	
@@ -366,7 +373,7 @@ angular.module('sbess.services',['ionic'])
 				desc:""
 			},
 			{
-				id: 4,
+				id: 5,
 				title: 'Networking Conference', 
 				clubSlug: 'thelink',
 				timePublished: '11/29/15 4:00 PM',
@@ -380,6 +387,38 @@ angular.module('sbess.services',['ionic'])
 				thumbnail:"thumbnails/TheLink-Transparent.gif",
 				tags:["Networking","Marketing"],
 				desc:""
+			},			
+			{
+				id: 6,
+				title: 'Startup Talk at Communitech', 
+				clubSlug: 'startup',
+				timePublished: '11/29/15 4:00 PM',
+				startDate:'06/06/15 3:45 PM', 
+				endDate: '06/06/15 9:00 PM',
+				subheader:'Learn from a true entrepreneurial veteran!',
+				location: "P2006",
+				imgSrc:"",
+				facebookEvent:'',
+				sponsors:[],
+				thumbnail:"thumbnails/Startup-Transparent.gif",
+				tags:["Networking","Marketing"],
+				desc:""
+			},			
+			{
+				id: 7,
+				title: 'Accounting Seminar', 
+				clubSlug: 'thelink',
+				timePublished: '11/29/15 4:00 PM',
+				startDate:'06/06/15 3:45 PM', 
+				endDate: '06/06/15 9:00 PM',
+				subheader:'Recruiters from the big four will be attending!',
+				location: "P2006",
+				imgSrc:"",
+				facebookEvent:'',
+				sponsors:[],
+				thumbnail:"thumbnails/LAA-Transparent.gif",
+				tags:["Networking","Marketing"],
+				desc:""
 			}
 	];
 	this.getAllEvents = function(){
@@ -389,5 +428,5 @@ angular.module('sbess.services',['ionic'])
 		var allEvents = this.getAllEvents();
 		return allEvents[id];
 	}
-});
+}]);
 	
