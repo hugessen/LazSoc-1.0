@@ -28,9 +28,11 @@ titleFont{
 	font-family:Calibri;
 	font-weight:bold;
 	font-size:18px;
+	color:black;
 }
 subheaderFont{
 	font-size:14px;
+	color:black;
 }
 @font-face{
 	font-family:Calibri;
