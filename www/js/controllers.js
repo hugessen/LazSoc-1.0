@@ -3,7 +3,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout) {
 
   //Setting up the Modal
-  $ionicModal.fromTemplateUrl('templates/userinfo.html', {
+  $ionicModal.fromTemplateUrl('templates/clubselector.html', {
     scope:$scope,
     animation: 'slide-in-up'   
     
@@ -21,7 +21,25 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
   $scope.$on('$destroy', function() {
     $scope.userInfoModal.remove();
   });
-  $scope.richard = "Richard";
+  
+  //Login Modal: May not get used
+  $ionicModal.fromTemplateUrl("templates/login.html", {
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+  .then(function(modal){
+    $scope.loginModal = modal;
+  })
+  
+  $scope.openLogin = function(){
+    $scope.loginModal.show();
+  }
+  $scope.closeLogin = function(){
+    $scope.loginModal.close();
+  }
+    $scope.$on('$destroy', function() {
+    $scope.loginModal.remove();
+  });
   
   //Clubs
   $scope.clubs = WebAPI.getAllClubs();

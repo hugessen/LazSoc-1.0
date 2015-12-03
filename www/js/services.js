@@ -32,7 +32,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Golden Speakers Club",
 				slug: "golden speakers",
 				desc: "GSC Desc",
-				logo: "GSC.png",
+				logo: "GSC-Transparent.gif",
 				tags: [
 				"Public Speaking",
 				"Club"
@@ -406,17 +406,17 @@ angular.module('sbess.services',['ionic'])
 			},			
 			{
 				id: 7,
-				title: 'Accounting Seminar', 
+				title: 'Pitch Competition', 
 				clubSlug: 'thelink',
 				timePublished: '11/29/15 4:00 PM',
 				startDate:'06/06/15 3:45 PM', 
 				endDate: '06/06/15 9:00 PM',
-				subheader:'Recruiters from the big four will be attending!',
+				subheader:'Learn to give a killer pitch!',
 				location: "P2006",
 				imgSrc:"",
 				facebookEvent:'',
 				sponsors:[],
-				thumbnail:"thumbnails/LAA-Transparent.gif",
+				thumbnail:"thumbnails/GSC-Transparent.gif",
 				tags:["Networking","Marketing"],
 				desc:""
 			}
