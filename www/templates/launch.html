@@ -1,21 +1,23 @@
-<ion-view hide-nav-bar="true">
-  <ion-content>
-  	<img src="banners/sbe_logo.png" style="position:absolute; left:12%; top:50px; width:75%" ></img>
-	<div class="login">
-		<table>
-			<tr>
-				<td><i class="icon ion-android-person placeholder-icon" style="color: white;"></i></td>
-				<td><input type="text" placeholder="Laurier ID" name="user" class="whitePlaceholder" required></input></td>
-			</tr>
-			<tr>
-				<td><i class="icon ion-ios-locked placeholder-icon" style="color: white;"></i></td>
-				<td><input type="password" placeholder="Password" name="password" class="whitePlaceholder" required></td>
-			</tr>
-
-			<tr>
-				<td colspan="2"><input class="login-page-button" type="button" value="Login"></td>
-			</td>
-		</table>
-	</div>
-  </ion-content>
-</ion-view>
+<div class="modal">
+	<ion-view>
+		<ion-header-bar class="bar-balanced"><h1 class="title">Launch Pad</h1>
+		<div class="buttons"><button class="button button-icon ion-android-checkbox-outline" ng-click="closeLogin()">Save</button></div>
+		</ion-header-bar>
+		<ion-content>
+			<label class="item item-input">
+				<span class="input-label">First Name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Last Name</span>
+				<input type="text">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Laurier ID:</span>
+				<input type="text">
+			</label>
+			<button class="button button-bar button-royal">Open Selection Modal</button>
+		</ion-content>
+		
+	</ion-view>
+</div>

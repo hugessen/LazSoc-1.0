@@ -16,7 +16,16 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
       url: '/userinfo',
       views: {
         'menuContent': {
-          templateUrl: 'templates/userinfo.html',
+          templateUrl: 'templates/clubselector.html',
+          controller:'MainCtrl'
+        }
+      }
+    })
+    .state('app.launch', {
+      url: '/launch',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/launch.html',
           controller:'MainCtrl'
         }
       }

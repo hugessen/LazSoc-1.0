@@ -23,7 +23,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
   });
   
   //Login Modal: May not get used
-  $ionicModal.fromTemplateUrl("templates/login.html", {
+  $ionicModal.fromTemplateUrl("templates/launch.html", {
     scope: $scope,
     animation: 'slide-in-up'
   })
@@ -35,7 +35,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
     $scope.loginModal.show();
   }
   $scope.closeLogin = function(){
-    $scope.loginModal.close();
+    $scope.loginModal.hide();
   }
     $scope.$on('$destroy', function() {
     $scope.loginModal.remove();
