@@ -1,5 +1,58 @@
 angular.module('sbess.services',['ionic'])
 .service('WebAPI',[function(){
+	this.getPrefOptions = function(){
+		var prefOptions = [
+			{
+				id:0,
+				name:"Accounting"
+			},
+			{
+				id:1,
+				name:"Economics"
+			},
+			{
+				id:2,
+				name:"Finance"
+			},
+			{
+				id:3,
+				name:"SBESS"
+			},
+			{
+				id:4,
+				name:"Management"
+			},
+			{
+				id:5,
+				name:"Exam Review"
+			},
+			{
+				id:6,
+				name:"Information Technology"
+			},
+			{
+				id:7,
+				name:"Networking"
+			},
+			{
+				id:8,
+				name:"First-year"
+			},
+			{
+				id:9,
+				name:"International Business"
+			},
+			{
+				id:10,
+				name:"Advertising"
+			},
+			{
+				id: 11,
+				name: "Human Resources"
+			}];
+			return prefOptions;
+	}
+	
 	function isEmptyObject(obj){
 		return JSON.stringify(obj) == '{}' || obj == null;
 	}
@@ -11,6 +64,8 @@ angular.module('sbess.services',['ionic'])
 				slug: "lma",
 				desc: "LMA Desc",
 				logo: "LMA-Transparent.gif",
+				email: "president@lauriermarketing.com",
+				website: "http://www.lauriermarketing.com",
 				tags: [
 				"Sales",
 				"Club"
@@ -248,6 +303,10 @@ angular.module('sbess.services',['ionic'])
 			clubs[x]["selected"] = false;
 		}
 		return clubs;
+	}
+	this.getClub = function(id){
+		var allClubs = this.getAllClubs();
+		return allClubs[id];
 	}
 	
 	var events = [

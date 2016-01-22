@@ -1,6 +1,11 @@
-angular.module('sbess.controllers', ['ionic','sbess.services'])
+angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar) {
+
+  //Miscellaneous
+  $scope.navigateToClub = function(){
+    $location.path("/app/clubs");
+  }
 
   //Setting up the Modal
   $ionicModal.fromTemplateUrl('templates/clubselector.html', {
@@ -51,6 +56,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
     }
   }
   
+  $scope.currClub = WebAPI.getClub(9);
+  
+  
   //Creating the newsfeed
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
@@ -59,12 +67,33 @@ angular.module('sbess.controllers', ['ionic','sbess.services'])
     }, 1000);
   };
   
-  //Opening an event
+  //Events
   $scope.loadEvent = function(id){
     $location.path("/app/news/" + id);
   }
   $scope.currEvent = WebAPI.getEvent($stateParams.eventId);
   
+  $scope.addToCalendar = function() {
+    var notes = $scope.currEvent.desc;
+    
+    //Calendar
+    $cordovaCalendar.createEventInteractively({
+      title: $scope.currEvent.title,
+      location: $scope.currEvent.location,
+      notes: notes,
+      startDate: $scope.currEvent.startDate,
+      endDate: $scope.currEvent.endDate
+    }).then(function(result) {
+
+    }, function(err) {
+      alert("There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!");
+      // error
+    });
+
+  }
+  
+  //Interest Selector
+  $scope.prefOptions = WebAPI.getPrefOptions();
   
 }])
 .controller('cssCtrl', ['$scope',function($scope){

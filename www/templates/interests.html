@@ -1,0 +1,12 @@
+<div class="modal">
+	<ion-view>
+		<ion-header-bar class="bar-assertive"><h1 class="title"><b>Choose Interests</b></h1>
+			<button class="button button-icon" ng-click="closeLogin()">Close</button>
+		</ion-header-bar>
+		<ion-content>
+			<ion-list>
+				<ion-item ng-repeat="pref in prefOptions">{{pref.name}}</ion-item>
+			</ion-list>
+		</ion-content>
+	</ion-view>
+</div>

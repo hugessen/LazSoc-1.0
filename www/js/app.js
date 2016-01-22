@@ -1,4 +1,3 @@
-
 angular.module('sbess', ['ionic', 'sbess.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -10,10 +9,26 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     templateUrl: 'templates/menu.html',
     controller: 'MainCtrl'
   })
-
-
-  .state('app.userinfo', {
-      url: '/userinfo',
+  .state('app.interests', {
+    url: '/interests',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/interests.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.clubpage', {
+    url: '/clubs',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/clubpage.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.clubselector', {
+      url: '/clubselector',
       views: {
         'menuContent': {
           templateUrl: 'templates/clubselector.html',
@@ -39,8 +54,6 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
         }
       }
     })
-    
-
   .state('app.event', {
     url: '/news/:eventId',
     views: {
