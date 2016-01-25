@@ -9,7 +9,8 @@
 			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left">
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
-				<subheaderFont>{{event.subheader}}</subheaderFont>
+				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+				
 			</ion-item>
 		</ion-list>
 		<button class="button button-positive" ng-click="navigateToClub()">Navigate to:</button>

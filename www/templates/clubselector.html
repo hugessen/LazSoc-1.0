@@ -7,7 +7,7 @@
 			<flexbox> 
 				<div class="selectionbox" ng-repeat="club in clubs">
 					<div ng-click="toggle(club.id)">	
-						<img src="thumbnails/{{club.logo}}" style="width:100%" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
+						<img src="thumbnails/{{club.logo}}" style="width:100%" ng-click="navigateToClub(club.id); closeModal()" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
 					</div>
 				</div>
 			</flexbox>

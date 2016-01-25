@@ -19,7 +19,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     }
   })
   .state('app.clubpage', {
-    url: '/clubs',
+    url: '/clubs/:clubId',
     views: {
       'menuContent': {
         templateUrl: 'templates/clubpage.html',

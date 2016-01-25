@@ -3,28 +3,28 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar) {
 
   //Miscellaneous
-  $scope.navigateToClub = function(){
-    $location.path("/app/clubs");
+  $scope.navigateToClub = function(clubID){
+    $location.path("/app/clubs/"+clubID);
   }
 
-  //Setting up the Modal
+  //Setting up the Club Modal
   $ionicModal.fromTemplateUrl('templates/clubselector.html', {
     scope:$scope,
     animation: 'slide-in-up'   
     
   }) 
   .then(function(modal) {
-    $scope.userInfoModal = modal;
+    $scope.clubModal = modal;
   })
   
   $scope.openModal = function() {
-    $scope.userInfoModal.show();
+    $scope.clubModal.show();
   }
   $scope.closeModal = function() {
-    $scope.userInfoModal.hide();
+    $scope.clubModal.hide();
   }
   $scope.$on('$destroy', function() {
-    $scope.userInfoModal.remove();
+    $scope.clubModal.remove();
   });
   
   //Login Modal: May not get used
@@ -45,6 +45,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
     $scope.$on('$destroy', function() {
     $scope.loginModal.remove();
   });
+ 
   
   //Clubs
   $scope.clubs = WebAPI.getAllClubs();
@@ -56,7 +57,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
     }
   }
   
-  $scope.currClub = WebAPI.getClub(9);
+  $scope.currClub = WebAPI.getClub($stateParams.clubId);
   
   
   //Creating the newsfeed

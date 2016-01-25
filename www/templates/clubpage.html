@@ -1,26 +1,27 @@
-<ion-view>
-	<ion-nav-title>{{currClub.name}}</ion-nav-title>
-	<ion-content>
-		<flexbox>
-			<img src="thumbnails/{{currClub.logo}}" class="clubDisplayBox">
-			<div style="width:3%"></div>
-			<div><br/>	
-				<titleFont>{{currClub.name}} <br/></titleFont>
-				contact@startup.ca {{currClub.email}} <br/>
-				startuplaurier.ca {{currClub.website}} <br/>
-				<button class="button button-bar button-positive">Subscribe</button>
-			</div>
-		</flexbox>
-		<div>
-			Sea cu novum deleniti inimicus, vide altera te mei, dolore ancillae accusamus his et. Munere equidem senserit no cum, quo tollit inciderint et, graece minimum ea vix. Deleniti consequuntur interpretaris vel ne, id discere corpora erroribus sea. Pro ne elit scripta atomorum, mea oporteat facilisi te. Duo recusabo pericula tractatos te, cu pri recusabo suavitate, vis idque inani ne. Perfecto legendos vel id, saepe fabellas per an.
-		</div><br/>
-		<ion-list>
-			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.clubSlug == currClub.slug" class="itembox item-thumbnail-left">
-					<img ng-src="{{event.thumbnail}}" class="imgbox">
-					<titleFont>{{event.title}}</titleFont></br>
-					<subheaderFont>{{event.subheader}}</subheaderFont>
-			</ion-item>
-		</ion-list>
-	</ion-content>
-</ion-view>
-
+<div class="modal">
+	<ion-view>
+		<ion-nav-title>{{currClub.name}}</ion-nav-title>
+		<ion-content>
+			<flexbox>
+				<img ng-src="thumbnails/{{currClub.logo}}" class="clubDisplayBox">
+				<div style="width:3%"></div>
+				<div><br/>	
+					<titleFont>{{currClub.name}} <br/></titleFont>
+					contact@startup.ca {{currClub.email}} <br/>
+					startuplaurier.ca {{currClub.website}} <br/>
+					<button class="button button-bar button-positive">Subscribe</button>
+				</div>
+			</flexbox><br/>
+			<div style="border-top: 1px solid lightgray">
+				Sea cu novum deleniti inimicus, vide altera te mei, dolore ancillae accusamus his et. Munere equidem senserit no cum, quo tollit inciderint et, graece minimum ea vix. Deleniti consequuntur interpretaris vel ne, id discere corpora erroribus sea. Pro ne elit scripta atomorum, mea oporteat facilisi te. Duo recusabo pericula tractatos te, cu pri recusabo suavitate, vis idque inani ne. Perfecto legendos vel id, saepe fabellas per an.
+			</div><br/>
+			<ion-list>
+				<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.clubSlug == currClub.slug" class="itembox item-thumbnail-left">
+						<img ng-src="{{event.thumbnail}}" class="imgbox">
+						<titleFont>{{event.title}}</titleFont></br>
+						<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+				</ion-item>
+			</ion-list>
+		</ion-content>
+	</ion-view>
+</div>

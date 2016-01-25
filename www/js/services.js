@@ -315,7 +315,7 @@ angular.module('sbess.services',['ionic'])
 			title: 'BU111 Workshop',
 			clubSlug: 'sos',
 			timePublished: '11/24/15 4:00 PM',
-			startDate: 'Friday, July 3rd at 4:00 PM',
+			startDate: '03/07/15 4:00 PM',
 			subheader:'Everything you need to know for the final',
 			location: "BA301, Bricker Academic",
 			imgSrc: 'banners/SOS-Laurier.jpg',
