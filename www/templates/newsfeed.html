@@ -1,8 +1,4 @@
 <ion-view view-title="Newsfeed">
-	<ion-nav-buttons side="right">
-    	<button class="button button-icon ion-gear-a" ng-click="openModal()"></button>
-  	</ion-nav-buttons>
-	<ion-nav-buttons side="left"><button class="button button-icon" ng-click="openLogin()">Launch</button></ion-nav-buttons>
 	<ion-content>
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
@@ -13,6 +9,5 @@
 				
 			</ion-item>
 		</ion-list>
-		<button class="button button-positive" ng-click="navigateToClub()">Navigate to:</button>
 	</ion-content>	
 </ion-view>

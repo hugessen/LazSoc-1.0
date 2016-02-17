@@ -3,7 +3,10 @@
     <ion-nav-bar class="bar-royal">
       <ion-nav-back-button>
       </ion-nav-back-button>
-
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -18,7 +21,12 @@
         <ion-item menu-close href="#/app">
           Newsfeed
         </ion-item>
-        <ion-item></ion-item>
+        <ion-item ng-click="openLogin()">
+          Launch Pad
+        </ion-item>
+        <ion-item menu-close ng-href="#/app/clubselector">
+          Club Selector
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

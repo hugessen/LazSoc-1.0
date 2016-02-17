@@ -5,14 +5,21 @@ flexbox{
 }
 
 .selectionbox{
+	position:relative;
 	width:33.3%;
 	padding:2px 4px;
-	border:1px solid black;
 }
-.selectionbox i {
+infobox{
 	position:absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	transform: translateY(20%) translateX(25%);
+	width:20%;
+	height:20%;
+	border:1px solid gray;
+	background-color:rgba(255,255,255,.5);
+	border-radius:75%;
+}
+infobox i{	
+	width:100%;
 }
 .itembox{
 	background-color: rgba(255,255,255,1);

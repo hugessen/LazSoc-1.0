@@ -87,7 +87,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Golden Speakers Club",
 				slug: "golden speakers",
 				desc: "GSC Desc",
-				logo: "GSC-Transparent.gif",
+				logo: "GSC-vectored.png",
 				tags: [
 				"Public Speaking",
 				"Club"
@@ -98,7 +98,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Enactus",
 				slug: "enactus",
 				desc: "Enactus Desc",
-				logo: "Enactus-Transparent.gif",
+				logo: "Enactus_JPEG.jpg",
 				tags: [
 				"Enactus",
 				"Club"
@@ -120,7 +120,7 @@ angular.module('sbess.services',['ionic'])
 				name: "AdHawk Laurier",
 				slug: "adhawk",
 				desc: "Adhawk Desc",
-				logo: "AdHawk_Logo.jpg",
+				logo: "TheAdProject-vectored.png",
 				tags: [
 				"Advertising",
 				"Marketing",
@@ -132,7 +132,7 @@ angular.module('sbess.services',['ionic'])
 				name: "AIESEC",
 				slug: "aiesec",
 				desc: "AIESEC Desc",
-				logo: "AIESEC-Transparent.gif",
+				logo: "AIESEC-vectored.png",
 				tags: [
 				"AIESEC",
 				"Club"
@@ -179,7 +179,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Sports Management Laurier",
 				slug: "sml",
 				desc: "SML Desc",
-				logo: "SML-Transparent.gif",
+				logo: "SML-vectored.png",
 				tags: [
 				"SML",
 				"Sports Management",
@@ -202,7 +202,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Laurier Sales Association",
 				slug: "lsa",
 				desc: "LSA Desc",
-				logo: "LSA.gif",
+				logo: "LSA-vectored.jpg",
 				tags: [
 				"LSA",
 				"Club"
@@ -235,7 +235,7 @@ angular.module('sbess.services',['ionic'])
 				name: "WLU Debate Society",
 				slug: "wludebate",
 				desc: "WLU Debate Desc",
-				logo: "WLUDebate-Transparent.gif",
+				logo: "WLUDebate-vectored.png",
 				tags: [
 				"WLU Debate",
 				"Club"
@@ -277,12 +277,13 @@ angular.module('sbess.services',['ionic'])
 			},
 			{
 				id: 19,
-				name: "EB Laurier",
-				slug: "eb",
-				desc: "EB Laurier Desc",
-				logo: "EB-Transparent.gif",
+				name: "Technology Management Laurier",
+				slug: "tml",
+				desc: "TML Desc",
+				logo: "TML-vectored.png",
 				tags: [
-				"EB Laurier",
+				"Technology",
+				"E-Business",
 				"Club"
 				]
 			},
@@ -291,7 +292,7 @@ angular.module('sbess.services',['ionic'])
 				name: "Laurier Accounting Association",
 				slug: "laa",
 				desc: "LAA Desc",
-				logo: "LAA_Logo.jpg",
+				logo: "LAA-vectored.png",
 				tags: [
 				"LAA",
 				"Club"
@@ -369,7 +370,7 @@ angular.module('sbess.services',['ionic'])
 			subheader:'Learn from industry pros',
 			location: "BA202, Bricker Academic",
 			imgSrc: "",
-			thumbnail: "thumbnails/SML-Transparent.gif",
+			thumbnail: "thumbnails/SML-vectored.png",
 			facebookEvent:'',
 			sponsors:[
 			{
@@ -410,7 +411,7 @@ angular.module('sbess.services',['ionic'])
 					imgSrc: "sponsors/ernstandyoung/ErnstYoung.png"
 
 				}],
-				thumbnail:"thumbnails/EB-Transparent.gif",
+				thumbnail:"thumbnails/TML-vectored.png",
 				tags:["Information Technology"],
 				desc:""
 			},
@@ -427,7 +428,7 @@ angular.module('sbess.services',['ionic'])
 				facebookEvent:'',
 				sponsors:[
 				],
-				thumbnail:"thumbnails/AdHawk_Logo.jpg",
+				thumbnail:"thumbnails/TheAdProject-vectored.png",
 				tags:["Marketing","Advertising"],
 				desc:""
 			},
@@ -466,7 +467,7 @@ angular.module('sbess.services',['ionic'])
 			{
 				id: 7,
 				title: 'Pitch Competition', 
-				clubSlug: 'thelink',
+				clubSlug: 'gsc',
 				timePublished: '11/29/15 4:00 PM',
 				startDate:'06/06/15 3:45 PM', 
 				endDate: '06/06/15 9:00 PM',
@@ -475,7 +476,7 @@ angular.module('sbess.services',['ionic'])
 				imgSrc:"",
 				facebookEvent:'',
 				sponsors:[],
-				thumbnail:"thumbnails/GSC-Transparent.gif",
+				thumbnail:"thumbnails/GSC-vectored.png",
 				tags:["Networking","Marketing"],
 				desc:""
 			}

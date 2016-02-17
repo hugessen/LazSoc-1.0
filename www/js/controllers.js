@@ -5,28 +5,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
   //Miscellaneous
   $scope.navigateToClub = function(clubID){
     $location.path("/app/clubs/"+clubID);
-  }
-
-  //Setting up the Club Modal
-  $ionicModal.fromTemplateUrl('templates/clubselector.html', {
-    scope:$scope,
-    animation: 'slide-in-up'   
-    
-  }) 
-  .then(function(modal) {
-    $scope.clubModal = modal;
-  })
-  
-  $scope.openModal = function() {
-    $scope.clubModal.show();
-  }
-  $scope.closeModal = function() {
-    $scope.clubModal.hide();
-  }
-  $scope.$on('$destroy', function() {
-    $scope.clubModal.remove();
-  });
-  
+  }  
   //Login Modal: May not get used
   $ionicModal.fromTemplateUrl("templates/launch.html", {
     scope: $scope,

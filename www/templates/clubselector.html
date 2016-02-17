@@ -1,16 +1,13 @@
-<div class="modal" style="background-color:#ffd633">
-	<ion-view>
-		<ion-header-bar style="background-color:#F2A900"><h1 class="title"><b class="whitefont">Choose Clubs</b></h1>
-			<div class="buttons"><button class="button button-icon ion-android-checkbox-outline whitefont" ng-click="closeModal()">Save</button></div>
-		</ion-header-bar>
-		<ion-content>
-			<flexbox> 
-				<div class="selectionbox" ng-repeat="club in clubs">
-					<div ng-click="toggle(club.id)">	
-						<img src="thumbnails/{{club.logo}}" style="width:100%" ng-click="navigateToClub(club.id); closeModal()" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
-					</div>
+<ion-view>
+	<ion-nav-title>Select Clubs</ion-nav-title>
+	<ion-content>
+		<flexbox> 
+			<div class="selectionbox" ng-repeat="club in clubs">
+				<infobox ng-click="navigateToClub(club.id); closeModal()"><i class="icon ion-help"></i></infobox>
+				<div ng-click="toggle(club.id)">	
+					<img src="thumbnails/{{club.logo}}" style="width:100%" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
 				</div>
-			</flexbox>
-		</ion-content>
-	</ion-view>
-</div>
+			</div>
+		</flexbox>
+	</ion-content>
+</ion-view>
