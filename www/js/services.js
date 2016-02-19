@@ -86,7 +86,7 @@ angular.module('sbess.services',['ionic'])
 				id: 2,
 				name: "Golden Speakers Club",
 				slug: "golden speakers",
-				desc: "GSC Desc",
+				desc: "It’s easy. Changing the way young people do Public Speaking. Trust us, you’ll have a good time.",
 				logo: "GSC-vectored.png",
 				tags: [
 				"Public Speaking",
@@ -117,7 +117,7 @@ angular.module('sbess.services',['ionic'])
 			},
 			{
 				id: 5,
-				name: "AdHawk Laurier",
+				name: "The Advertising Project",
 				slug: "adhawk",
 				desc: "Adhawk Desc",
 				logo: "TheAdProject-vectored.png",
@@ -153,7 +153,7 @@ angular.module('sbess.services',['ionic'])
 			},
 			{
 				id: 8,
-				name: "LEC",
+				name: "Laurier Economics Club",
 				slug: "lec",
 				desc: "LEC Desc",
 				logo: "LEC-Transparent.gif",
@@ -392,12 +392,12 @@ angular.module('sbess.services',['ionic'])
 
 			{
 				id: 3,
-				title: 'EB Workshop', 
-				clubSlug: 'eb',
+				title: 'Tech Analysis Workshop', 
+				clubSlug: 'tml',
 				timePublished: '11/27/15 4:00 PM',
 				startDate:'06/06/15 3:45 PM', 
 				endDate: '06/06/15 9:00 PM',
-				subheader:'',
+				subheader:'Listen to our guest speaker!',
 				location: "P2006",
 				imgSrc:"",
 				facebookEvent:'',

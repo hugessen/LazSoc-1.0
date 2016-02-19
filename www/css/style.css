@@ -14,12 +14,9 @@ infobox{
 	transform: translateY(20%) translateX(25%);
 	width:20%;
 	height:20%;
-	border:1px solid gray;
-	background-color:rgba(255,255,255,.5);
-	border-radius:75%;
 }
-infobox i{	
-	width:100%;
+infobox img{	
+	width:75%;
 }
 .itembox{
 	background-color: rgba(255,255,255,1);

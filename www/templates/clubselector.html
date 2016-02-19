@@ -3,7 +3,7 @@
 	<ion-content>
 		<flexbox> 
 			<div class="selectionbox" ng-repeat="club in clubs">
-				<infobox ng-click="navigateToClub(club.id); closeModal()"><i class="icon ion-help"></i></infobox>
+				<infobox ng-click="navigateToClub(club.id); closeModal()"><img src="thumbnails/info-icon.png"></img></infobox>
 				<div ng-click="toggle(club.id)">	
 					<img src="thumbnails/{{club.logo}}" style="width:100%" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
 				</div>
