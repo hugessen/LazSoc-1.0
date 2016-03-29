@@ -1,5 +1,10 @@
 <ion-view>
 	<ion-nav-title>Select Clubs</ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear" ng-click="savePrefs('clubs')">
+            Save!
+        </button>
+      </ion-nav-buttons>
 	<ion-content>
 		<flexbox> 
 			<div class="selectionbox" ng-repeat="club in clubs">

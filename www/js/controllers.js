@@ -1,12 +1,11 @@
-angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
+angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar) {
-
-  //Miscellaneous
-  $scope.navigateToClub = function(clubID){
-    $location.path("/app/clubs/"+clubID);
-  }  
-  //Login Modal: May not get used
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage) {
+ 
+/*
+* Login Modal
+* Checks if the user has registered. If not, prompts them for their name and student ID.
+*/
   $ionicModal.fromTemplateUrl("templates/launch.html", {
     scope: $scope,
     animation: 'slide-in-up'
@@ -26,7 +25,10 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
   });
  
   
-  //Clubs
+/*
+* Clubs
+* This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
+*/
   $scope.clubs = WebAPI.getAllClubs();
   $scope.toggle = function(id){
     for(var x = 0; x < $scope.clubs.length; x++) {
@@ -38,25 +40,38 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
   
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
   
+  //The app accesses the club description pages through URL routing. We do that here
+  $scope.navigateToClub = function(clubID){
+    $location.path("/app/clubs/"+clubID);
+  }  
+ 
   
-  //Creating the newsfeed
+  
+/*
+* Newsfeed
+* Here we determine which events will populate our newsfeed based on the user's interests. 
+* Allows the user to refresh by pulling down
+*/
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
     setTimeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
     }, 1000);
   };
+
   
-  //Events
+/*
+* Events
+* App accesses events through URL routing. Gives functionality to add events and their info to calendar through Cordova
+*/
   $scope.loadEvent = function(id){
     $location.path("/app/news/" + id);
   }
   $scope.currEvent = WebAPI.getEvent($stateParams.eventId);
   
+  //Adding events to the calendar
   $scope.addToCalendar = function() {
     var notes = $scope.currEvent.desc;
-    
-    //Calendar
     $cordovaCalendar.createEventInteractively({
       title: $scope.currEvent.title,
       location: $scope.currEvent.location,
@@ -69,13 +84,31 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
       alert("There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!");
       // error
     });
-
   }
   
-  //Interest Selector
-  $scope.prefOptions = WebAPI.getPrefOptions();
+/*
+* Preferences and Interest Selector
+* Here we manage all the user's club and categorical preferences, save them in JSON, and use them to customize their feed
+*/
+  $scope.prefOptions = WebAPI.getPrefOptions(); //Returns an array of categorical preferences
+  $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+  
+  //Activated when user presses Save. Commits all preferences and stores them in JSON
+  $scope.savePrefs = function(prefType){
+    if (prefType == "clubs"){ // If we're on the club selector
+      $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
+      console.log("Saving clubs")}
+    else if (prefType =="categories"){ //If we're on the category selector
+      $localstorage.setObject('sbess-app-prefs', $scope.userPrefs);
+      console.log("Saving preferences")}
+    $ionicPopup.alert({
+     title: 'Preferences Updated',
+   });
+  }
   
 }])
+
+
 .controller('cssCtrl', ['$scope',function($scope){
   $scope.customCss.push(
     { href : 'css/ionic.app.css', type: 'text/css' },
@@ -83,4 +116,4 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova'])
     if(ionic.Platform.isAndroid()) {
       $scope.customCss.push({ href : 'css/android.css', type : 'text/css' });
     }
-}]);
+}])

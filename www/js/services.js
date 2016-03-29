@@ -1,63 +1,94 @@
-angular.module('sbess.services',['ionic'])
-.service('WebAPI',[function(){
+angular.module('sbess.services',['ionic','sbess.utils'])
+.service('WebAPI',['$localstorage',function($localstorage){
 	this.getPrefOptions = function(){
-		var prefOptions = [
-			{
-				id:0,
-				name:"Accounting"
-			},
-			{
-				id:1,
-				name:"Economics"
-			},
-			{
-				id:2,
-				name:"Finance"
-			},
-			{
-				id:3,
-				name:"SBESS"
-			},
-			{
-				id:4,
-				name:"Management"
-			},
-			{
-				id:5,
-				name:"Exam Review"
-			},
-			{
-				id:6,
-				name:"Information Technology"
-			},
-			{
-				id:7,
-				name:"Networking"
-			},
-			{
-				id:8,
-				name:"First-year"
-			},
-			{
-				id:9,
-				name:"International Business"
-			},
-			{
-				id:10,
-				name:"Advertising"
-			},
-			{
-				id: 11,
-				name: "Human Resources"
-			}];
-			return prefOptions;
+		var userPrefs = $localstorage.getObject('sbess-app-prefs');
+		var apiResult = [
+		{
+			id:0,
+			name:"Accounting"
+		},
+		{
+			id:1,
+			name:"Economics"
+		},
+		{
+			id:2,
+			name:"Finance"
+		},
+		{
+			id:3,
+			name:"LazSoc"
+		},
+		{
+			id:4,
+			name:"Management"
+		},
+		{
+			id:5,
+			name:"Exam Review"
+		},
+		{
+			id:6,
+			name:"Information Technology"
+		},
+		{
+			id:7,
+			name:"Networking"
+		},
+		{
+			id:8,
+			name:"First-year"
+		},
+		{
+			id:9,
+			name:"International Business"
+		},
+		{
+			id:10,
+			name:"Advertising"
+		},
+		{
+			id: 11,
+			name: "eerqqrwwqrqwr"
+		}];
+
+		if (!isEmptyObject(userPrefs) && !isEmptyObject(apiResult)){ //If we have saved data and the API is responsive
+			for(var x = 0; x < apiResult.length; x++) { //Parse through the API generated list
+				var found = false; //Check if we have a match
+				for(var y = 0; y < userPrefs.length; y++) { //Parse the saved data
+					if(apiResult[x]["id"] == userPrefs[y]["id"] && apiResult[x]["name"] == userPrefs[y]["name"]) { //Check if it matches the API data
+						found = true; //If so, we're done
+                        break;
+					} else if (apiResult[x]["id"] == userPrefs[y]["id"]) { //If the ids match, but names don't
+						userPrefs[y]["name"] = apiResult[x]["name"]; //Put the name in
+						found = true;
+                        break;
+					}
+				}
+				if(! found) {
+					userPrefs.push( { id: apiResult[x]["id"], name : apiResult[x]["name"] } );
+				}
+			}
+			return userPrefs;
+		} else if (isEmptyObject(apiResult)) {
+			alert("Could not get API Response");
+		} else {
+			for(var x = 0; x < apiResult.length; x++) {
+				apiResult[x]["selected"] = false;
+			}
+			return apiResult;
+		}
 	}
 	
 	function isEmptyObject(obj){
 		return JSON.stringify(obj) == '{}' || obj == null;
 	}
 	this.getAllClubs = function(){
-		var clubs = [
+        var clubs = $localstorage.getObject('sbess-app-clubPrefs');
+		if (!isEmptyObject(clubs)){
+			return clubs;
+		}
+		clubs = [
 			{
 				id: 0,
 				name: "LMA",
@@ -119,7 +150,7 @@ angular.module('sbess.services',['ionic'])
 				id: 5,
 				name: "The Advertising Project",
 				slug: "adhawk",
-				desc: "Adhawk Desc",
+				desc: "The Ad Project Desc",
 				logo: "TheAdProject-vectored.png",
 				tags: [
 				"Advertising",
@@ -308,6 +339,57 @@ angular.module('sbess.services',['ionic'])
 	this.getClub = function(id){
 		var allClubs = this.getAllClubs();
 		return allClubs[id];
+	}
+	
+	//This returns an array of the user's club preferences
+	this.getClubPrefs = function(){
+		var allClubs = this.getAllClubs();
+		var clubPrefs = [];
+		for (var x = 0; x < allClubs.length; x++){
+			if (allClubs[x].selected){
+				clubPrefs.push(allClubs[x]);
+			}
+		}
+		return clubPrefs;
+	}
+	
+	//This returns an array of the user's categorical preferences
+	this.getUserPrefs = function(){
+		var prefOptions = this.getPrefOptions();
+			var chosenPrefs = []
+			for (var x = 0; x < prefOptions.length; x++){
+				if (prefOptions[x].selected){
+					chosenPrefs.push(prefOptions[x]);
+				}
+			}
+			return chosenPrefs;
+	}
+	
+	this.getCustomFeed = function(){
+		var allEvents = this.getAllEvents();
+		var customFeed = []; // The array to return
+		var inClubs = false;
+		var clubPrefs = this.getClubPrefs(); //Get all clubs where selected = true
+		var userPrefs = this.getUserPrefs();
+		for(var x = 0; x < allEvents.length; x++){ // Loop through all events
+			for(var y = 0; y < clubPrefs.length; y++){ // Loop through all clubs
+				if (allEvents[x].clubSlug == clubPrefs[y].slug){ // Checking if the event is hosted by a club the user follows
+					customFeed.push(allEvents[x]); // Adding that event to the custom feed
+					inClubs = true; // we're finished with this event, we don't need to do anything else
+					break; // exiting loop
+				} 
+			}
+			if (!inClubs){ // Checking whether the event's "tags" match preferences
+				for (var i = 0; i< allEvents[x].tags.length; i++) { //Events have multiple "tags", must go through all of them
+    				for (var j = 0; j < userPrefs.length; j++) { //All the user's prefs
+    					if (allEvents[x].tags[i] == userPrefs[j].name) { 
+    						customFeed.push(allEvents[x]); // Push it into the array
+    						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event
+							} // if they match, add the event
+						}
+					}
+			} inClubs = false; // Have to reset this upon each iteration
+		} return customFeed;
 	}
 	
 	var events = [
