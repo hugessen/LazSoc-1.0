@@ -90,18 +90,32 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Preferences and Interest Selector
 * Here we manage all the user's club and categorical preferences, save them in JSON, and use them to customize their feed
 */
-  //$localstorage.set('sbess-app-prefs',''); //Just in case I put undefined data in my JSON again... fml
+  $localstorage.set('sbess-app-prefs',''); //Just in case I put undefined data in my JSON again... fml
   $scope.prefOptions = WebAPI.getPrefOptions(); //Returns an array of categorical preferences
   $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
   
+  $scope.togglePrefs = function(id){
+      for(var x = 0; x < $scope.prefOptions.length; x++) {
+      if($scope.prefOptions[x].id == id) {
+        $scope.prefOptions[x].selected = ! $scope.prefOptions[x].selected; 
+      }
+    }
+  }
+  $scope.debug = function(){
+      $ionicPopup.alert({
+          title:"Debugging!",
+      });
+  }
   //Activated when user presses Save. Commits all preferences and stores them in JSON
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
       console.log("Saving clubs")}
     else if (prefType =="categories"){ //If we're on the category selector
-      $localstorage.setObject('sbess-app-prefs', $scope.userPrefs);
-      console.log("Saving preferences")}
+      $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
+      console.log("Saving preferences");
+      console.log($scope.prefOptions);
+    }
     $ionicPopup.alert({
      title: 'Preferences Updated',
    });

@@ -1,20 +1,26 @@
 <ion-view>
 	<ion-nav-title>My Interests</ion-nav-title>
     <ion-nav-buttons side="right">
-    <button class="button button-icon button-clear" ng-click="">
+    <button class="button button-icon button-clear" ng-click="savePrefs('categories')">
         Save!
     </button></ion-nav-buttons>
 	<ion-content>
+  
 		<ul class="list">
 			<li class="item item-toggle" ng-repeat="pref in prefOptions">
 				{{pref.name}}
-				<label class="toggle toggle-relaxed"><input type="checkbox">
+				<label class="toggle toggle-relaxed"><input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected">
 				<div class="track">
 					<div class="handle"></div>
 				</div>
 				</label>
 			</li>
-		</ul>		
+		</ul>	
+    <!--<ul class="list">
+      <ion-checkbox class="item item-checkbox" ng-repeat="pref in prefOptions" ng-checked="pref.selected" ng-model="pref.selected" style="background-color:rgba(255,255,255,0.4)">
+        {{pref.name}}
+      </ion-checkbox>
+    </ul>	-->
 
 	</ion-content>
 </ion-view>

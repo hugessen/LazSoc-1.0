@@ -2,6 +2,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 .service('WebAPI',['$localstorage',function($localstorage){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
+        console.log(userPrefs);
 		var apiResult = [
 		{
 			id:0,
@@ -385,6 +386,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
     					if (allEvents[x].tags[i] == userPrefs[j].name) { 
     						customFeed.push(allEvents[x]); // Push it into the array
     						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event
+                            console.log("We are, in fact, performing this");    
 							} // if they match, add the event
 						}
 					}
