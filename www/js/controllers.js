@@ -90,7 +90,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Preferences and Interest Selector
 * Here we manage all the user's club and categorical preferences, save them in JSON, and use them to customize their feed
 */
-  $localstorage.set('sbess-app-prefs',''); //Just in case I put undefined data in my JSON again... fml
+ //$localstorage.set('sbess-app-prefs',''); //Just in case I put undefined data in my JSON again... fml
   $scope.prefOptions = WebAPI.getPrefOptions(); //Returns an array of categorical preferences
   $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
   

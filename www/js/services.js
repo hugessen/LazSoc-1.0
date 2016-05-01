@@ -2,7 +2,6 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 .service('WebAPI',['$localstorage',function($localstorage){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
-        console.log(userPrefs);
 		var apiResult = [
 		{
 			id:0,
@@ -59,11 +58,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				for(var y = 0; y < userPrefs.length; y++) { //Parse the saved data
 					if(apiResult[x]["id"] == userPrefs[y]["id"] && apiResult[x]["name"] == userPrefs[y]["name"]) { //Check if it matches the API data
 						found = true; //If so, we're done
-                        break;
 					} else if (apiResult[x]["id"] == userPrefs[y]["id"]) { //If the ids match, but names don't
 						userPrefs[y]["name"] = apiResult[x]["name"]; //Put the name in
 						found = true;
-                        break;
 					}
 				}
 				if(! found) {
@@ -370,23 +367,23 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		var allEvents = this.getAllEvents();
 		var customFeed = []; // The array to return
 		var inClubs = false;
+        var inPrefs = false;
 		var clubPrefs = this.getClubPrefs(); //Get all clubs where selected = true
 		var userPrefs = this.getUserPrefs();
 		for(var x = 0; x < allEvents.length; x++){ // Loop through all events
-			for(var y = 0; y < clubPrefs.length; y++){ // Loop through all clubs
+			for(var y = 0; y < clubPrefs.length && !inClubs; y++){ // Loop through all clubs
 				if (allEvents[x].clubSlug == clubPrefs[y].slug){ // Checking if the event is hosted by a club the user follows
 					customFeed.push(allEvents[x]); // Adding that event to the custom feed
 					inClubs = true; // we're finished with this event, we don't need to do anything else
-					break; // exiting loop
 				} 
 			}
 			if (!inClubs){ // Checking whether the event's "tags" match preferences
-				for (var i = 0; i< allEvents[x].tags.length; i++) { //Events have multiple "tags", must go through all of them
-    				for (var j = 0; j < userPrefs.length; j++) { //All the user's prefs
+				for (var i = 0; i< allEvents[x].tags.length && !inPrefs; i++) { //Events have multiple "tags", must go through all of them
+    		        for (var j = 0; j < userPrefs.length && !inPrefs; j++) { //All the user's prefs
     					if (allEvents[x].tags[i] == userPrefs[j].name) { 
     						customFeed.push(allEvents[x]); // Push it into the array
-    						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event
-                            console.log("We are, in fact, performing this");    
+    						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event   
+                            inPrefs = true;
 							} // if they match, add the event
 						}
 					}
@@ -565,6 +562,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				desc:""
 			}
 	];
+    for(var x = 0; x < events.length; x++) {
+        events[x]["notes"] = "";
+	}
 	this.getAllEvents = function(){
 		return events;
 	}
