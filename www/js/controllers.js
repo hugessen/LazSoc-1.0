@@ -61,7 +61,6 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
      if (data.stateId == 'app.newsfeed') {
         $scope.reloadFeed();
      }
-     console.log("State Params: ", data);
   });  
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
@@ -122,12 +121,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
-      console.log("Saving clubs");
     }
     else if (prefType =="categories"){ //If we're on the category selector
       $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
-      console.log("Saving preferences");
-      console.log($scope.prefOptions);
     }
     $ionicPopup.alert({
      title: 'Preferences Updated',
