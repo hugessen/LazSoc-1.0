@@ -52,9 +52,20 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-  $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+  $scope.reloadFeed = function() {
+    $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+  }
+  $scope.reloadFeed();
+  $scope.$on("$ionicView.beforeEnter", function(event, data){
+     // handle event
+     if (data.stateId == 'app.newsfeed') {
+        $scope.reloadFeed();
+     }
+     console.log("State Params: ", data);
+  });  
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
+    $scope.reloadFeed();
     setTimeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
     }, 1000);
