@@ -52,10 +52,20 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-   //A big, long function that determines which events to show
-  $scope.customFeed = WebAPI.getCustomFeed();
+
+  $scope.reloadFeed = function() {
+    $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+  }
+  $scope.reloadFeed();
+  $scope.$on("$ionicView.beforeEnter", function(event, data){
+     // handle event
+     if (data.stateId == 'app.newsfeed') {
+        $scope.reloadFeed();
+     }
+  });  
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
+    $scope.reloadFeed();
     setTimeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
         $scope.customFeed = WebAPI.getCustomFeed();
@@ -114,6 +124,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
+<<<<<<< HEAD
       $scope.customFeed = WebAPI.getCustomFeed();
       console.log("Saving clubs");
     }
@@ -121,6 +132,11 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
       console.log("Saving preferences");
       //console.log($scope.prefOptions);
+=======
+    }
+    else if (prefType =="categories"){ //If we're on the category selector
+      $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
+>>>>>>> origin/master
     }
     $ionicPopup.alert({
      title: 'Preferences Updated',
