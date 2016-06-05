@@ -1,5 +1,5 @@
 angular.module('sbess.services',['ionic','sbess.utils'])
-.service('WebAPI',['$localstorage',function($localstorage){
+.service('WebAPI',['$localstorage','httpFactory','$http',function($localstorage,httpFactory,$http){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
 		var apiResult = [
@@ -391,7 +391,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		} return customFeed;
 	}
 	
-	var events = [
+	var events = 
+    [
 		{ 
 			id: 0,
 			title: 'BU111 Workshop',

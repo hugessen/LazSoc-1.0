@@ -16,4 +16,12 @@ angular.module('sbess.utils', [])
         return JSON.parse($window.localStorage[key] || '{}');
     }
   }
-}]);
+}])
+
+.factory('httpFactory', function($http) {
+	return {
+        get: function () {
+            return $http.get('http://http://lazsoc.ca/app_info.json');
+        }
+    }
+});

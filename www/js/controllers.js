@@ -1,6 +1,6 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http) {
  
 /*
 * Login Modal
@@ -24,7 +24,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     $scope.loginModal.remove();
   });
  
-  
+ $scope.httpData = $http.get('http://lazsoc.ca/app_info.json');
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
@@ -52,11 +52,14 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-  $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+   //A big, long function that determines which events to show
+  $scope.customFeed = WebAPI.getCustomFeed();
   $scope.events = WebAPI.getAllEvents();
   $scope.doRefresh = function() {
     setTimeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
+        $scope.customFeed = WebAPI.getCustomFeed();
+      
     }, 1000);
   };
 
@@ -111,12 +114,13 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
+      $scope.customFeed = WebAPI.getCustomFeed();
       console.log("Saving clubs");
     }
     else if (prefType =="categories"){ //If we're on the category selector
       $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
       console.log("Saving preferences");
-      console.log($scope.prefOptions);
+      //console.log($scope.prefOptions);
     }
     $ionicPopup.alert({
      title: 'Preferences Updated',
