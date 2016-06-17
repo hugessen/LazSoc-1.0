@@ -2,8 +2,8 @@
 	<ion-nav-title>{{currEvent.title}}</ion-nav-title>
 	<ion-content>
 		<div>
-			<img ng-src="{{currEvent.imgSrc}}" style="width:100%; padding:0px" ng-hide="currEvent.imgSrc == ''">
-			<img src="banners/header-laurier.jpg" style="width:100%; padding:0px" ng-show="currEvent.imgSrc == ''">
+			<img ng-src="{{currEvent.club.banner}}" style="width:100%; padding:0px" ng-hide="currEvent.club.banner == ''">
+			<img src="banners/header-laurier.jpg" style="width:100%; padding:0px" ng-show="currEvent.club.banner == ''">
 		</div>
 		<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
 		<div class="button-bar"> 
@@ -19,6 +19,7 @@
 		</div>
 		<div class="item item-text-wrap">
 			{{currEvent.desc}}
+            {{currEvent.club.banner}}
 		</div>  
 	</ion-content>
 </ion-view>

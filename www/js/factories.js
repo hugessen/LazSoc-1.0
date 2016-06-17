@@ -21,7 +21,7 @@ angular.module('sbess.utils', [])
 .factory('httpFactory', function($http) {
 	return {
         get: function () {
-            return $http.get('http://http://lazsoc.ca/app_info.json');
+            return $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events');
         }
     }
 });

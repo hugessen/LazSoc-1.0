@@ -24,7 +24,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     $scope.loginModal.remove();
   });
  
- $scope.httpData = $http.get('http://lazsoc.ca/app_info.json');
+ $scope.httpData = $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events/');
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
@@ -104,7 +104,6 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Preferences and Interest Selector
 * Here we manage all the user's club and categorical preferences, save them in JSON, and use them to customize their feed
 */
- //$localstorage.set('sbess-app-prefs',''); //Just in case I put undefined data in my JSON again... fml
   $scope.prefOptions = WebAPI.getPrefOptions(); //Returns an array of categorical preferences
   
   
@@ -124,7 +123,6 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
-<<<<<<< HEAD
       $scope.customFeed = WebAPI.getCustomFeed();
       console.log("Saving clubs");
     }
@@ -132,11 +130,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
       console.log("Saving preferences");
       //console.log($scope.prefOptions);
-=======
     }
     else if (prefType =="categories"){ //If we're on the category selector
       $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
->>>>>>> origin/master
     }
     $ionicPopup.alert({
      title: 'Preferences Updated',

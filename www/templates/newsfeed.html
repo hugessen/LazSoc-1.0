@@ -1,15 +1,15 @@
 <ion-view view-title="Newsfeed">
 	<ion-content>
-		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
-		<!--<ion-list>
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
+		<ion-list>
 			<ion-item ng-repeat="event in customFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left">
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
 				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
 				<subheaderFont ng-show="event.notes != ''">Based on your interest in: <b/>{{event.notes}}</subheaderFont>
 			</ion-item>
-		</ion-list>-->
-        {{httpData}}
+		</ion-list>
+
 		
 	</ion-content>	
 </ion-view>
