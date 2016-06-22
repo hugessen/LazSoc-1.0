@@ -24,7 +24,21 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     $scope.loginModal.remove();
   });
  
- $scope.httpData = $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events/');
+ //API Result
+ $scope.APIresult = "";
+  $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events/')
+    .success(function(data, status, headers,config){
+      console.log('data success');
+      console.log(data); // for browser console
+      $scope.APIresult = data; // for UI
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+    .then(function(result){
+      things = APIresult.data;
+    });
+ 
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club

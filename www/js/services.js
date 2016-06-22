@@ -116,7 +116,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			{
 				id: 2,
 				name: "Golden Speakers Club",
-				slug: "golden speakers",
+				slug: "gsc",
 				desc: "It’s easy. Changing the way young people do Public Speaking. Trust us, you'll have a good time",
 				logo: "GoldenSpeakers.png",
                 banner:"banners/GSBanner.png",
@@ -152,7 +152,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			{
 				id: 5,
 				name: "The Advertising Project",
-				slug: "adhawk",
+				slug: "theAdProject",
 				desc: "The Advertising Project is a student-run club organized out of Wilfrid Laurier University, created by students with a passion for advertising and design. TAP is dedicated to providing eye-catching, dynamic advertising for local enterprises and non-for-profits through digital and print media to help businesses soar above the competition. All advertising provided by the Advertising Project is created and designed by students looking to gain experience in the industry as graphic designers, copywriters, and account executives, and is completely free of charge!",
 				logo: "TAP.png",
                 banner:"banners/TAPBanner.png",

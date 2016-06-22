@@ -12,11 +12,16 @@
 				<button class="button button-bar button-positive">Subscribe</button>
 			</div> 
 		</flexbox><br/>  -->
+        <div class="button-bar" style="padding-bottom:10px">
+            <a class="button button-positive">Subscribe!</a>
+            <a class="button button-calm"><i class="icon ion-social-facebook"></i> @{{currClub.slug}}</a>
+            <a class="button"><i class="icon ion-social-instagram-outline"></i> @{{currClub.slug}}</a>
+        </div>
 		<div style="border-top: 1px solid lightgray">
 			{{currClub.desc}}        
 		</div><br/>
 		<ion-list>
-			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.clubSlug == currClub.slug" class="itembox item-thumbnail-left">
+			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.club.slug == currClub.slug" class="itembox item-thumbnail-left">
 					<img ng-src="{{event.thumbnail}}" class="imgbox">
 					<titleFont>{{event.title}}</titleFont></br>
 					<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>

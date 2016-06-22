@@ -71,10 +71,15 @@ clubNameFont{
 	color:black;
 }
 subheaderFont{
+    font-family:Calibri;
 	font-size:14px;
 	color:black;
 }
 @font-face{
 	font-family:Calibri;
 	src: url(fonts/Calibri.ttf);
+}
+@font-face{
+	font-family:Calluna;
+	src: url(fonts/CallunaSansRegular.otf);
 }
