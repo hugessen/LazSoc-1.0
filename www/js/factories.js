@@ -12,7 +12,7 @@ angular.module('sbess.utils', [])
       $window.localStorage[key] = JSON.stringify(value);
     },
     getObject: function(key) {
-        console.log($window.localStorage[key]);
+        //console.log($window.localStorage[key]);
         return JSON.parse($window.localStorage[key] || '{}');
     }
   }

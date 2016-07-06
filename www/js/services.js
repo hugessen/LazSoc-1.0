@@ -97,8 +97,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				email: "president@lauriermarketing.com",
 				website: "http://www.lauriermarketing.com",
 				tags: [
-				"Sales",
-				"Club"
+                "Marketing",
+                "Networking",
+                "Case Competitions"
 				]
 			},
 			{
@@ -109,8 +110,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "LCC.png",
                 banner:"banners/LCCBanner.png",
 				tags: [
-				"LCC",
-				"Club"
+                "Consulting",
+                "Networking"
 				]
 			},
 			{
@@ -121,8 +122,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "GoldenSpeakers.png",
                 banner:"banners/GSBanner.png",
 				tags: [
-				"Public Speaking",
-				"Club"
+                    "Public Speaking",
+                    "First Year",
+                    "Networking"
 				]
 			},
 			{
@@ -133,8 +135,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "Enactus.png",
                 banner:"banners/EnactusBanner.png",
 				tags: [
-				"Enactus",
-				"Club"
+                    "Entrepreneurship",
+                    "Social Change"
 				]
 			},
 			{
@@ -145,8 +147,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "Deca.png",
                 banner:"banners/DECABanner.png",
 				tags: [
-				"DECA",
-				"Club"
+                    "Public Speaking",
+                    "Case Competitions",
+                    "Networking"
 				]
 			},
 			{
@@ -159,7 +162,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				tags: [
 				"Advertising",
 				"Marketing",
-				"Club"
+				"Case Competitions"
 				]
 			},
 			{
@@ -170,8 +173,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "Aiesec.png",
                 banner:"banners/AIESECBanner.png",
 				tags: [
-				"AIESEC",
-				"Club"
+                    "International"
 				]
 			},
 			{
@@ -182,10 +184,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "AMG.png",
                 banner:"banners/AMGBanner.png",
 				tags: [
-				"Atrium",
+				"Marketing",
 				"Media",
-				"Groups",
-				"Club"
+				"Journalism",
 				]
 			},
 			{
@@ -197,7 +198,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 banner:"banners/LECBanner.png",
 				tags: [
 				"Economics",
-				"Club"
+				"Mock Midterm",
+                "Networking"
 				]
 			},
 			{
@@ -210,7 +212,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				tags: [
 				"Entrepreneurship",
 				"Startups",
-				"Club"
+				"Technology",
+                "Networking"
 				]
 			},
 			{
@@ -221,9 +224,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "SML.png",
                 banner:"banners/SMLBanner.png",
 				tags: [
-				"SML",
+				"Marketing",
 				"Sports Management",
-				"Club"
+				"Networking"
 				]
 			},
 			{
@@ -234,8 +237,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "LIFA.png",
                 banner:"banners/LIFABanner.png",
 				tags: [
-				"LIFA",
-				"Club"
+				"Finance",
+				"Networking",
+                "Capital Markets",
+                "Investing",
+                "Economics"
 				]
 			},
 			{
@@ -246,8 +252,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "LSA.png",
                 banner:"banners/LSABanner.png",
 				tags: [
-				"LSA",
-				"Club"
+				"Sales",
+				"Public Speaking",
+                "Marketing"
 				]
 			},
 			{
@@ -257,8 +264,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				desc: "JDCC Desc",
 				logo: "JDCC.png",
 				tags: [
-				"JDCC",
-				"Club"
+				"Public Speaking",
+				"Case Competitions"
 				]
 			},
 			{
@@ -269,8 +276,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "XL.png",
                 banner:"banners/XLBanner.png",
 				tags: [
-				"XLerate",
-				"Club"
+				"1st Year",
+				"Exam Review",
+                "Case Competitions",
+                "Public Speaking",
+                "Networking"
 				]
 			},
 			{
@@ -281,8 +291,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "Debate.png",
                 banner:"banners/DebateBanner.png",
 				tags: [
-				"WLU Debate",
-				"Club"
+				"Public Speaking",
+				"Debate"
 				]
 			},
 			{
@@ -293,8 +303,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "WILL.png",
                 banner:"banners/WILLBanner.png",
 				tags: [
-				"WILL",
-				"Club"
+				"Women in Business",
+				"Networking",
+                "Leadership"
 				]
 			},
 			{
@@ -305,9 +316,10 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "SOS.png",
                 banner:"banners/SOSBanner.png",
 				tags: [
-				"SOS",
+				"International",
 				"Exam Review",
-				"Club"
+				"Tutoring",
+                "Social Enterprise"
 				]
 			},
 			{
@@ -318,8 +330,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "Link.png",
                 banner:"banners/LinkBanner.png",
 				tags: [
-				"The Link",
-				"Club"
+				"Networking",
+				"International",
+                "Leadership"
 				]
 			},
 			{
@@ -331,8 +344,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 banner:"banners/TMLBanner.png",
 				tags: [
 				"Technology",
-				"E-Business",
-				"Club"
+				"Networking",
 				]
 			},
 			{
@@ -343,18 +355,19 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				logo: "LAA.png",
                 banner:"banners/LAABanner.png",
 				tags: [
-				"LAA",
-				"Club"
+				"Accounting",
+				"Finance",
+                "Networking"
 				]
 			},
-            			{
+            {
 				id: 21,
 				name: "5 Days for the Homeless",
 				slug: "5days",
 				desc: "5 Days Desc",
 				logo: "5Days.png",
 				tags: [
-				"Non-Profit"
+				"Social Change"
 				]
 			},
             {
@@ -362,7 +375,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				name: "Lazaridis Students' Society",
 				slug: "lazsoc",
 				desc: "Lazsoc Desc",
-				logo: "icon2.png",
+				logo: "icon.png",
 				tags: [
                     "Leadership"
 				]

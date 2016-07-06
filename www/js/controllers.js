@@ -1,11 +1,17 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','$cordovaNetwork', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,$cordovaNetwork) {
  
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
 */
+    $scope.loginData = {
+        isRegistered: false,
+        firstName: '',
+        lastName: '',
+        laurierID: ''
+  };
   $ionicModal.fromTemplateUrl("templates/launch.html", {
     scope: $scope,
     animation: 'slide-in-up'
@@ -18,7 +24,15 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     $scope.loginModal.show();
   }
   $scope.closeLogin = function(){
-    $scope.loginModal.hide();
+    if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
+        $ionicPopup.alert({title: 'Please enter all fields to continue',});
+    }
+    else {
+        $localstorage.setObject('sbess-app-loginData', $scope.loginData);
+        $scope.loginData.isRegistered = true;
+        //console.log($scope.loginData);
+        $scope.loginModal.hide();
+    }
   }
     $scope.$on('$destroy', function() {
     $scope.loginModal.remove();
@@ -28,15 +42,15 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
  $scope.APIresult = "";
   $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events/')
     .success(function(data, status, headers,config){
-      console.log('data success');
-      console.log(data); // for browser console
+      //console.log('data success');
+      console.log(data);
       $scope.APIresult = data; // for UI
     })
     .error(function(data, status, headers,config){
       console.log('data error');
     })
     .then(function(result){
-      things = APIresult.data;
+      things = $scope.APIresult.data;
     });
  
 /*
@@ -66,8 +80,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-
-  $scope.reloadFeed = function() {
+    $scope.filterBy = "custom";
+    $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
+    $scope.reloadFeed = function() {
     $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
   }
   $scope.reloadFeed();
@@ -78,14 +93,37 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
      }
   });  
   $scope.events = WebAPI.getAllEvents();
+  
   $scope.doRefresh = function() {
-    $scope.reloadFeed();
-    setTimeout(function() {
-      $scope.$broadcast('scroll.refreshComplete');
+    if($cordovaNetwork.isOnline()){    
+        $scope.reloadFeed();
+        setTimeout(function() {
         $scope.customFeed = WebAPI.getCustomFeed();
-      
-    }, 1000);
+    }, 1000);}
+    else{
+        $ionicPopup.alert({
+          title:"Oh snap!",
+          template: "You're not connected. \n Try again later though!"
+        });
+    }
   };
+  if ($scope.connectionNotifier = false){
+    $scope.$on('$cordovaNetwork:offline', function(event, networkState){
+        $ionicPopup.alert({
+            title:"Oh snap!",
+            template: "You're not connected. \n Try again later though!"
+            });
+    })
+    $scope.connectionNotifier = true;
+  }
+  
+  $scope.setTab = function(tabData) {
+    if (tabData == "all") {
+      $scope.filterBy = "all";
+    } else if (tabData == "custom") {
+      $scope.filterBy = "custom";
+    } 
+  }
 
   
 /*
