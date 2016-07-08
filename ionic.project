@@ -1,5 +1,5 @@
 {
-  "name": "SBESS",
+  "name": "LazSoc",
   "app_id": "cc0a40af",
   "gulpStartupTasks": [
     "sass",
