@@ -523,7 +523,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 
 			}],
 			tags:["Sports","Management"],
-			desc:"" },
+			desc:"Come out and learn from the best of sports management! We'll have lots of food and you'll learn a hell of a lot." },
 
 			{
 				id: 3,
