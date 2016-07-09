@@ -1,5 +1,13 @@
 angular.module('sbess', ['ionic', 'sbess.controllers'])
-
+.run(function($ionicPlatform, $cordovaStatusbar) {
+  $ionicPlatform.ready(function() {
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      // StatusBar.styleDefault();
+      StatusBar.style(1)
+    }
+  });
+})
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
