@@ -137,19 +137,31 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   
   //Adding events to the calendar
   $scope.addToCalendar = function() {
-    var notes = $scope.currEvent.desc;
-    $cordovaCalendar.createEventInteractively({
-      title: $scope.currEvent.title,
-      location: $scope.currEvent.location,
-      notes: notes,
-      startDate: $scope.currEvent.startDate,
-      endDate: $scope.currEvent.endDate
-    }).then(function(result) {
+    try {
+      var notes = $scope.currEvent.desc;
+      $cordovaCalendar.createEventInteractively({
+        title: $scope.currEvent.title,
+        location: $scope.currEvent.location,
+        notes: notes,
+        startDate: $scope.currEvent.startDate,
+        endDate: $scope.currEvent.endDate
+      }).then(function(result) {
 
-    }, function(err) {
-      alert("There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!");
-      // error
-    });
+      }, function(err) {
+        console.log(err);
+        $ionicPopup.alert({
+          title:"Oh snap!",
+          template: "There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
+        });
+        // error
+      });
+    } catch (err) {
+      console.log(err);
+      $ionicPopup.alert({
+        title:"Oh snap!",
+        template: "There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
+      });
+    }
   }
   
 /*
