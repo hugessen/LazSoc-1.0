@@ -39,8 +39,8 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   });
  
  //API Result
- $scope.APIresult = "";
-  $http.get('http://hari.sbess.ca/api/eventsapi/get_lazsoc_events/')
+ /*$scope.APIresult = "";
+  $http.get('http://lazsoc.ca/app_info.php')
     .success(function(data, status, headers,config){
       //console.log('data success');
       console.log(data);
@@ -51,7 +51,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     })
     .then(function(result){
       things = $scope.APIresult.data;
-    });
+    });*/
  
 /*
 * Clubs
@@ -107,7 +107,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
         });
     }
   };
-  if ($scope.connectionNotifier = false){
+  if ($scope.connectionNotifier == false){
     $scope.$on('$cordovaNetwork:offline', function(event, networkState){
         $ionicPopup.alert({
             title:"Oh snap!",
@@ -124,6 +124,8 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       $scope.filterBy = "custom";
     } 
   }
+  
+  
 
   
 /*
@@ -146,12 +148,12 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
         startDate: $scope.currEvent.startDate,
         endDate: $scope.currEvent.endDate
       }).then(function(result) {
-
+          
       }, function(err) {
         console.log(err);
         $ionicPopup.alert({
           title:"Oh snap!",
-          template: "There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
+          template: ""+err//"There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
         });
         // error
       });
@@ -159,7 +161,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       console.log(err);
       $ionicPopup.alert({
         title:"Oh snap!",
-        template: "There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
+        template: ""+err//"There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
       });
     }
   }

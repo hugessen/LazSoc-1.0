@@ -443,9 +443,21 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			} inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
-	
-	var events = 
-    [
+	APIresult = "";
+        $http.get('http://lazsoc.ca/app_info.php')
+        .success(function(data, status, headers,config){
+            console.log('data success');
+            console.log(data);
+            APIresult = data; // for UI
+        })
+        .error(function(data, status, headers,config){
+            console.log('data error');
+        })
+        .then(function(result){
+            things = APIresult.data;
+        });
+	var events = APIresult.data;
+   /* [
 		{ 
 			id: 0,
 			title: 'BU111 Workshop',
@@ -615,10 +627,10 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				tags:["Networking","Marketing"],
 				desc:""
 			}
-	];
-    for(var x = 0; x < events.length; x++) {
-        events[x]["notes"] = "";
-	}
+	];*/
+    //for(var x = 0; x < events.length; x++) {
+      //  events[x]["notes"] = "";
+	//}
 	this.getAllEvents = function(){
 		return events;
 	}
