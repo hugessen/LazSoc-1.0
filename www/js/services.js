@@ -1,5 +1,5 @@
 angular.module('sbess.services',['ionic','sbess.utils'])
-.service('WebAPI',['$localstorage','httpFactory','$http',function($localstorage,httpFactory,$http){
+.service('WebAPI',['$localstorage','$http',function($localstorage,$http){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
 		var apiResult = [
@@ -454,7 +454,6 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 	        }
             APIresult = data; // for UI
             console.log(APIresult);
-            events = APIresult;
         })
         .error(function(data, status, headers,config){
             console.log('data error');

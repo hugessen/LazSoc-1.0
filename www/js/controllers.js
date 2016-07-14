@@ -1,6 +1,6 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','$cordovaNetwork', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,$cordovaNetwork) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor) {
  
 /*
 * Login Modal
@@ -80,11 +80,11 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-    $scope.filterBy = "custom";
-    $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
-    $scope.reloadFeed = function() {
+$scope.filterBy = "custom";
+$scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
+$scope.reloadFeed = function() {
     $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
-  }
+}
   $scope.reloadFeed();
   $scope.$on("$ionicView.beforeEnter", function(event, data){
      // handle event
@@ -95,27 +95,23 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.events = WebAPI.getAllEvents();
   
   $scope.doRefresh = function() {
-    if($cordovaNetwork.isOnline()){    
+    if(ConnectivityMonitor.isOnline()){    
         $scope.reloadFeed();
-        setTimeout(function() {
-        $scope.customFeed = WebAPI.getCustomFeed();
-    }, 1000);}
+        $http.get('http://lazsoc.ca/app_info.php')
+            .success(function(data, status, headers,config){
+                console.log(data);
+                $scope.events = data;
+            })
+    }
     else{
         $ionicPopup.alert({
           title:"Oh snap!",
           template: "You're not connected. \n Try again later though!"
         });
     }
+    $scope.$broadcast('scroll.refreshComplete');
   };
-  if ($scope.connectionNotifier == false){
-    $scope.$on('$cordovaNetwork:offline', function(event, networkState){
-        $ionicPopup.alert({
-            title:"Oh snap!",
-            template: "You're not connected. \n Try again later though!"
-            });
-    })
-    $scope.connectionNotifier = true;
-  }
+  ConnectivityMonitor.startWatching();
   
   $scope.setTab = function(tabData) {
     if (tabData == "all") {
