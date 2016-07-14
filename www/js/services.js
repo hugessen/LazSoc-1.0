@@ -443,20 +443,25 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			} inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
-	APIresult = "";
-        $http.get('http://lazsoc.ca/app_info.php')
+    var events = {};
+	var APIresult = {};
+    $http.get('http://lazsoc.ca/app_info.php')
         .success(function(data, status, headers,config){
             console.log('data success');
-            console.log(data);
+            //console.log(data);
+            for(var x = 0; x < data.length; x++) {
+                data[x]["notes"] = "";
+	        }
             APIresult = data; // for UI
+            console.log(APIresult);
+            events = APIresult;
         })
         .error(function(data, status, headers,config){
             console.log('data error');
         })
         .then(function(result){
             things = APIresult.data;
-        });
-	var events = APIresult.data;
+        })
    /* [
 		{ 
 			id: 0,
@@ -628,9 +633,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				desc:""
 			}
 	];*/
-    //for(var x = 0; x < events.length; x++) {
-      //  events[x]["notes"] = "";
-	//}
+    console.log("events:")
+    console.log(events);
 	this.getAllEvents = function(){
 		return events;
 	}
