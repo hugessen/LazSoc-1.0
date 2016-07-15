@@ -415,21 +415,22 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			}
 			return chosenPrefs;
 	}
-	
-	this.getCustomFeed = function(){
-		var allEvents = this.getAllEvents();
+	this.getAllEvents = function(){
+		return $http.get('http://lazsoc.ca/app_info.php');
+	}
+	this.getCustomFeed = function(allEvents){
 		var customFeed = []; // The array to return
 		var inClubs = false;
         var inPrefs = false;
 		var clubPrefs = this.getClubPrefs(); //Get all clubs where selected = true
 		var userPrefs = this.getUserPrefs();
 		for(var x = 0; x < allEvents.length; x++){ // Loop through all events
-			for(var y = 0; y < clubPrefs.length && !inClubs; y++){ // Loop through all clubs
+			/*for(var y = 0; y < clubPrefs.length && !inClubs; y++){ // Loop through all clubs
 				if (allEvents[x].club.slug == clubPrefs[y].slug){ // Checking if the event is hosted by a club the user follows
 					customFeed.push(allEvents[x]); // Adding that event to the custom feed
 					inClubs = true; // we're finished with this event, we don't need to do anything else
 				} 
-			}
+			}*/
 			if (!inClubs){ // Checking whether the event's "tags" match preferences
 				for (var i = 0; i< allEvents[x].tags.length && !inPrefs; i++) { //Events have multiple "tags", must go through all of them
     		        for (var j = 0; j < userPrefs.length && !inPrefs; j++) { //All the user's prefs
@@ -443,24 +444,6 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			} inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
-    var events = {};
-	var APIresult = {};
-    $http.get('http://lazsoc.ca/app_info.php')
-        .success(function(data, status, headers,config){
-            console.log('data success');
-            //console.log(data);
-            for(var x = 0; x < data.length; x++) {
-                data[x]["notes"] = "";
-	        }
-            APIresult = data; // for UI
-            console.log(APIresult);
-        })
-        .error(function(data, status, headers,config){
-            console.log('data error');
-        })
-        .then(function(result){
-            things = APIresult.data;
-        })
    /* [
 		{ 
 			id: 0,
@@ -632,11 +615,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				desc:""
 			}
 	];*/
-    console.log("events:")
-    console.log(events);
-	this.getAllEvents = function(){
-		return events;
-	}
+
 	this.getEvent = function(id){
 		var allEvents = this.getAllEvents();
 		return allEvents[id];

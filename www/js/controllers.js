@@ -83,7 +83,11 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 $scope.filterBy = "custom";
 $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
 $scope.reloadFeed = function() {
-    $scope.customFeed = WebAPI.getCustomFeed(); //A big, long function that determines which events to show
+    WebAPI.getAllEvents().then(function(APIresult){
+        $scope.events = APIresult.data;
+        $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
+    })
+    
 }
   $scope.reloadFeed();
   $scope.$on("$ionicView.beforeEnter", function(event, data){
@@ -92,16 +96,11 @@ $scope.reloadFeed = function() {
         $scope.reloadFeed();
      }
   });  
-  $scope.events = WebAPI.getAllEvents();
+  //$scope.events = WebAPI.getAllEvents();
   
   $scope.doRefresh = function() {
     if(ConnectivityMonitor.isOnline()){    
         $scope.reloadFeed();
-        $http.get('http://lazsoc.ca/app_info.php')
-            .success(function(data, status, headers,config){
-                console.log(data);
-                $scope.events = data;
-            })
     }
     else{
         $ionicPopup.alert({
@@ -185,7 +184,9 @@ $scope.reloadFeed = function() {
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
-      $scope.customFeed = WebAPI.getCustomFeed();
+      WebAPI.getAllEvents().success(function(APIresult){
+          $scope.customFeed = WebAPI.getCustomFeed(APIresult.data);
+      });
       console.log("Saving clubs");
     }
     else if (prefType =="categories"){ //If we're on the category selector
