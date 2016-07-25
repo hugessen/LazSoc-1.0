@@ -47,10 +47,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			id:10,
 			name:"Advertising"
 		},
-		{
-			id: 11,
-			name: "eerqqrwwqrqwr"
-		}];
+        ];
 
 		if (!isEmptyObject(userPrefs) && !isEmptyObject(apiResult)){ //If we have saved data and the API is responsive
 			for(var x = 0; x < apiResult.length; x++) { //Parse through the API generated list
@@ -415,9 +412,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			}
 			return chosenPrefs;
 	}
-	this.getAllEvents = function(){
-		return $http.get('http://lazsoc.ca/app_info.php');
-	}
+	
 	this.getCustomFeed = function(allEvents){
 		var customFeed = []; // The array to return
 		var inClubs = false;
@@ -444,17 +439,21 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			} inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
-   /* [
+    this.getAllEvents = function(){
+		return $http.get('http://lazsoc.ca/app_info.php');
+	}
+   /*this.dummyEvents = 
+   [
 		{ 
 			id: 0,
 			title: 'BU111 Workshop',
-            club: this.getClub(17),
 			timePublished: '11/24/15 4:00 PM',
 			startDate: '03/07/15 4:00 PM',
 			subheader:'Everything you need to know for the final',
 			location: "BA301, Bricker Academic",
 			imgSrc: "",
 			thumbnail: "thumbnails/SOS.png",
+            clubRef:17,
 			facebookEvent: "https://www.facebook.com/events/1443513392633675/",
 			sponsors: [
 			{
@@ -472,7 +471,6 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{ 
 			id: 1,
 			title: 'EC140 Mock Midterm',
-            club:this.getClub(8),
 			timePublished: '11/25/15 4:00 PM',
 			startDate:'08/11/15 3:45 PM',
 			endDate: '08/11/15 9:00 PM',
@@ -480,6 +478,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			location: "P2001, Peters Building",
 			imgSrc: '',
 			thumbnail:"thumbnails/LEC.png",
+            clubRef:8,
 			facebookEvent:"https://www.facebook.com/events/1443513392633675/",
 			sponsors:[
 			{
@@ -617,8 +616,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 	];*/
 
 	this.getEvent = function(id){
-		var allEvents = this.getAllEvents();
-		return allEvents[id];
+        var allEvents;
+		this.getAllEvents().then(function(APIresult){
+             allEvents = APIresult.data;
+             return allEvents[id];
+        });  
 	}
 }]);
 	

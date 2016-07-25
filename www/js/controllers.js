@@ -37,22 +37,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     $scope.$on('$destroy', function() {
     $scope.loginModal.remove();
   });
- 
- //API Result
- /*$scope.APIresult = "";
-  $http.get('http://lazsoc.ca/app_info.php')
-    .success(function(data, status, headers,config){
-      //console.log('data success');
-      console.log(data);
-      $scope.APIresult = data; // for UI
-    })
-    .error(function(data, status, headers,config){
-      console.log('data error');
-    })
-    .then(function(result){
-      things = $scope.APIresult.data;
-    });*/
- 
+   
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
@@ -89,6 +74,7 @@ $scope.reloadFeed = function() {
     })
     
 }
+$scope.dummyEvents = WebAPI.dummyEvents;
   $scope.reloadFeed();
   $scope.$on("$ionicView.beforeEnter", function(event, data){
      // handle event
@@ -96,7 +82,6 @@ $scope.reloadFeed = function() {
         $scope.reloadFeed();
      }
   });  
-  //$scope.events = WebAPI.getAllEvents();
   
   $scope.doRefresh = function() {
     if(ConnectivityMonitor.isOnline()){    
@@ -130,8 +115,9 @@ $scope.reloadFeed = function() {
   $scope.loadEvent = function(id){
     $location.path("/app/news/" + id);
   }
-  $scope.currEvent = WebAPI.getEvent($stateParams.eventId);
-  
+  WebAPI.getAllEvents().then(function(APIresult){
+       $scope.currEvent = APIresult.data[$stateParams.eventId];
+  })
   //Adding events to the calendar
   $scope.addToCalendar = function() {
     try {
@@ -147,7 +133,7 @@ $scope.reloadFeed = function() {
       }, function(err) {
         console.log(err);
         $ionicPopup.alert({
-          title:"Oh snap!",
+          title:"First one!",
           template: ""+err//"There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
         });
         // error
@@ -155,7 +141,7 @@ $scope.reloadFeed = function() {
     } catch (err) {
       console.log(err);
       $ionicPopup.alert({
-        title:"Oh snap!",
+        title:"Second one!",
         template: ""+err//"There was an error while trying to add " + $scope.currEvent.title + " to your calendar. Please try again!"
       });
     }
