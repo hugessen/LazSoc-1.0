@@ -1,8 +1,8 @@
 ngCordova Plugins:
 
-	- [cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
-	- [cordovaCalendar](http://ngcordova.com/docs/plugins/calendar/)
-	- [cordovaWhiteList](http://docs.ionic.io/docs/cordova-whitelist)
+- [cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
+- [cordovaCalendar](http://ngcordova.com/docs/plugins/calendar/)
+- [cordovaWhiteList](http://docs.ionic.io/docs/cordova-whitelist)
 
 So run:
 
