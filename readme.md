@@ -6,6 +6,7 @@ So run:
 
     cordova plugin add cordova-plugin-calendar
     cordova plugin add cordova-plugin-network-information
+    cordova plugin add cordova-plugin-whitelist
 
 
 Keystore Password: np}&zz'h5a5[HcT-
