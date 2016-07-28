@@ -6,23 +6,14 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
 */
-    $scope.loginData = {
-        isRegistered: false,
-        firstName: '',
-        lastName: '',
-        laurierID: ''
+
+  $scope.loginData = {
+    isRegistered: false,
+    firstName: '',
+    lastName: '',
+    laurierID: ''
   };
-  $ionicModal.fromTemplateUrl("templates/launch.html", {
-    scope: $scope,
-    animation: 'slide-in-up'
-  })
-  .then(function(modal){
-    $scope.loginModal = modal;
-  })
   
-  $scope.openLogin = function(){
-    $scope.loginModal.show();
-  }
   $scope.closeLogin = function(){
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
@@ -30,14 +21,26 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     else {
         $localstorage.setObject('sbess-app-loginData', $scope.loginData);
         $scope.loginData.isRegistered = true;
-        //console.log($scope.loginData);
+        console.log($scope.loginData);
         $scope.loginModal.hide();
     }
   }
     $scope.$on('$destroy', function() {
     $scope.loginModal.remove();
   });
-   
+  if ($localstorage.getObject('sbess-app-loginData') == "{}"){ 
+    $ionicModal.fromTemplateUrl("templates/launch.html", {
+        scope: $scope,
+        animation: 'slide-in-up'
+    })
+    .then(function(modal){
+        $scope.loginModal = modal;
+        $scope.loginModal.show();
+    })
+  }
+  else{
+      $scope.loginData = $localstorage.getObject('sbess-app-loginData');
+  }
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
@@ -71,10 +74,16 @@ $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
-    })
+         
+    }), function(error){
+        $ionicPopup.alert({
+          title:"Oh snap!",
+          template: "For some reason the promise didn't return" + error
+        });
+    }
     
 }
-$scope.dummyEvents = WebAPI.dummyEvents;
+//$scope.dummyEvents = WebAPI.dummyEvents;
   $scope.reloadFeed();
   $scope.$on("$ionicView.beforeEnter", function(event, data){
      // handle event
@@ -84,7 +93,7 @@ $scope.dummyEvents = WebAPI.dummyEvents;
   });  
   
   $scope.doRefresh = function() {
-    if(ConnectivityMonitor.isOnline()){    
+    if(ConnectivityMonitor.isOnline()){  
         $scope.reloadFeed();
     }
     else{
