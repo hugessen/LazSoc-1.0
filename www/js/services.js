@@ -108,9 +108,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				// Existing club in both API and local result, so load its new stuff
 				var selected = localClubs[x]["selected"];
 				Object.keys(APIresult[x]).forEach(function(key,index) {
-					if (localClubs[x].hasOwnProperty(key)) {
-						localClubs[x][key] = APIresult[x][key];
-					}
+					localClubs[x][key] = APIresult[x][key];
 				});
 				localClubs[x]["selected"] = selected;
 			}
