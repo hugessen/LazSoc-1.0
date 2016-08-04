@@ -75,12 +75,12 @@ $scope.reloadFeed = function() {
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
          
-    }), function(error){
+    }, function(error){
         $ionicPopup.alert({
           title:"Oh snap!",
-          template: "For some reason the promise didn't return" + error
+          template: "For some reason we couldn't get your custom newsfeed, please check your internet connection and try again."
         });
-    }
+    });
     
 }
 //$scope.dummyEvents = WebAPI.dummyEvents;
