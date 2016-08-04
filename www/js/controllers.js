@@ -84,7 +84,6 @@ $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
-         
     }, function(error){
         $ionicPopup.alert({
           title:"Oh snap!",
@@ -188,7 +187,11 @@ $scope.reloadFeed = function() {
   //Activated when user presses Save. Commits all preferences and stores them in JSON
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
-      $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
+      var to_save = $scope.clubs;
+      for(var x = 0; x < to_save.length; x++) {
+        delete to_save[x]['$$hashKey'];
+      }
+      $localstorage.setObject('sbess-app-clubPrefs', to_save);
       WebAPI.getAllEvents().then(function(APIresult){
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show    
@@ -199,14 +202,15 @@ $scope.reloadFeed = function() {
         });
       });
       console.log("Saving clubs");
-    }
-    else if (prefType =="categories"){ //If we're on the category selector
-      $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
+    } else if (prefType =="categories"){ //If we're on the category selector
+      var to_save = $scope.prefOptions;
+      for(var x = 0; x < to_save.length; x++) {
+        if(to_save[x].hasOwnProperty('$$hashKey')) {
+          delete to_save[x]['$$hashKey'];
+        }
+      }
+      $localstorage.setObject('sbess-app-prefs', to_save);
       console.log("Saving preferences");
-      //console.log($scope.prefOptions);
-    }
-    else if (prefType =="categories"){ //If we're on the category selector
-      $localstorage.setObject('sbess-app-prefs', $scope.prefOptions);
     }
     $ionicPopup.alert({
      title: 'Preferences Updated',
