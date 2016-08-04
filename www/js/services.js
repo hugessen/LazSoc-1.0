@@ -46,6 +46,21 @@ angular.module('sbess.services',['ionic','sbess.utils'])
         ];
 
 		if (!isEmptyObject(userPrefs) && !isEmptyObject(apiResult)){ //If we have saved data and the API is responsive
+			while (userPrefs.length > apiResult.length) { // Do not remove in the for loop
+				for(var x = 0; x < userPrefs.length; x++) { // Remove locally saved preferences that's removed from the API
+					var found = false;
+					for(var y = 0; y < apiResult.length; y++ ) {
+						if(apiResult[y]["id"] == userPrefs[x]["id"] && apiResult[y]["name"] == userPrefs[x]["name"]) {
+							found = true;
+						}
+					}
+					if (!found) {
+						delete userPrefs.splice(x, 1);
+						break;
+					}
+				}
+			}
+
 			for(var x = 0; x < apiResult.length; x++) { //Parse through the API generated list
 				var found = false; //Check if we have a match
 				for(var y = 0; y < userPrefs.length; y++) { //Parse the saved data
