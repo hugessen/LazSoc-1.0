@@ -189,8 +189,14 @@ $scope.reloadFeed = function() {
   $scope.savePrefs = function(prefType){
     if (prefType == "clubs"){ // If we're on the club selector
       $localstorage.setObject('sbess-app-clubPrefs', $scope.clubs);
-      WebAPI.getAllEvents().success(function(APIresult){
-          $scope.customFeed = WebAPI.getCustomFeed(APIresult.data);
+      WebAPI.getAllEvents().then(function(APIresult){
+        $scope.events = APIresult.data;
+        $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show    
+      }, function(error){
+        $ionicPopup.alert({
+          title:"Oh snap!",
+          template: "For some reason we couldn't get your custom newsfeed, please check your internet connection and try again."
+        });
       });
       console.log("Saving clubs");
     }
