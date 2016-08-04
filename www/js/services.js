@@ -486,16 +486,18 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				} 
 			}
 			if (!inClubs){ // Checking whether the event's "tags" match preferences
-				for (var i = 0; i< allEvents[x].tags.length && !inPrefs; i++) { //Events have multiple "tags", must go through all of them
+				for (var i = 0; i< allEvents[x].tags.length; i++) { //Events have multiple "tags", must go through all of them
     		        for (var j = 0; j < userPrefs.length && !inPrefs; j++) { //All the user's prefs
     					if (allEvents[x].tags[i] == userPrefs[j].name) { 
-    						customFeed.push(allEvents[x]); // Push it into the array
-    						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event   
-                            inPrefs = true;
-							} // if they match, add the event
-						}
+	    						customFeed.push(allEvents[x]); // Push it into the array
+	    						allEvents[x].notes = userPrefs[j].name; //To tell the user why they're seeing this event   
+	                            inPrefs = true;
+						} // if they match, add the event
 					}
-			} inClubs = false; // Have to reset this upon each iteration
+					inPrefs = false;
+				}
+			} 
+			inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
 
