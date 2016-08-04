@@ -399,7 +399,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				name: "5 Days for the Homeless",
 				slug: "5days",
 				desc: "5 Days Desc",
-				logo: "5Days.png",
+				logo: "5days.png",
+				banner: "banners/5DaysBanner.png",
 				tags: [
 				"Social Change"
 				]
@@ -410,6 +411,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				slug: "lazsoc",
 				desc: "Lazsoc Desc",
 				logo: "LazSoc.png",
+				banner: "banners/LazSocBanner.png",
 				tags: [
                     "Leadership"
 				]
