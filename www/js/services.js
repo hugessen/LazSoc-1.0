@@ -17,36 +17,32 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		},
 		{
 			id:3,
-			name:"LazSoc"
-		},
-		{
-			id:4,
 			name:"Management"
 		},
 		{
-			id:5,
+			id:4,
 			name:"Exam Review"
 		},
 		{
-			id:6,
+			id:5,
 			name:"Information Technology"
 		},
 		{
-			id:7,
+			id:6,
 			name:"Networking"
 		},
 		{
-			id:8,
+			id:7,
 			name:"First-year"
 		},
 		{
-			id:9,
+			id:8,
 			name:"International Business"
 		},
 		{
-			id:10,
+			id:9,
 			name:"Advertising"
-		},
+		}
         ];
 
 		if (!isEmptyObject(userPrefs) && !isEmptyObject(apiResult)){ //If we have saved data and the API is responsive
