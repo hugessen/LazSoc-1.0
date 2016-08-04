@@ -89,12 +89,38 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 	function isEmptyObject(obj){
 		return JSON.stringify(obj) == '{}' || obj == null;
 	}
+
+	function reconcileClubs(APIresult, localClubs) {
+		// Clubs API has a garantee that it will not decerase in length, if a club is removed, it's ID will not be reused and 
+		// it's index in the clubs array will be replaced by removed: true, i.e. if club with the id 10 is removed then the
+		// API response will contain the following at index 10:
+		// APIresponse[10] = { removed: true }
+		// The reasoning behind this is that at this time clubs are removed so rarely that it does not justify a re-write of the
+		// logic to deal with clubs
+		for(var x = 0; x < APIresult.length; x++) {
+			if(APIresult[x].hasOwnProperty("removed") && APIresult[x]["removed"]) {
+				// Club is removed
+				localClubs[x] = APIresult[x];
+			} else if (x > localClubs.length - 1) {
+				// New club
+				localClubs.push(APIresult[x]);
+			} else {
+				// Existing club in both API and local result, so load its new stuff
+				var selected = localClubs[x]["selected"];
+				Object.keys(APIresult[x]).forEach(function(key,index) {
+					if (localClubs[x].hasOwnProperty(key)) {
+						localClubs[x][key] = APIresult[x][key];
+					}
+				});
+				localClubs[x]["selected"] = selected;
+			}
+		}
+		return localClubs;
+	}
+
 	this.getAllClubs = function(){
         var clubs = $localstorage.getObject('sbess-app-clubPrefs');
-		if (!isEmptyObject(clubs)){
-		    return clubs;
-		}
-		clubs = [
+		var APIresult = [
 			{
 				id: 0,
 				name: "LMA",
@@ -383,18 +409,39 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				name: "Lazaridis Students' Society",
 				slug: "lazsoc",
 				desc: "Lazsoc Desc",
-				logo: "icon.png",
+				logo: "LazSoc.png",
 				tags: [
                     "Leadership"
 				]
 			}
 			
 		];
-		for(var x = 0; x < clubs.length; x++) {
-			clubs[x]["selected"] = false;
+
+		if (!isEmptyObject(clubs) && !isEmptyObject(reconcileClubs)) { // Has local preferences saved, reconcile club data and API returned
+			var reconciled = reconcileClubs(APIresult, clubs);
+			$localstorage.setObject('sbess-app-clubPrefs', reconciled);
+		    return reconciled;
+		} else if ( !isEmptyObject(reconcileClubs) ) { // No local storage but API returned
+			for(var x = 0; x < APIresult.length; x++) {
+				APIresult[x]["selected"] = false;
+			}
+			$localstorage.setObject('sbess-app-clubPrefs', APIresult);
+			return APIresult;
+		} else if ( !isEmptyObject(clubs) ) { // No API result but has local preferneces saved
+			$ionicPopup.alert({
+				title:"Oh snap!",
+				template: "For some reason we couldn't get the latest list of clubs, please verify your internet connection and try again. We've loaded a previously saved list of clubs for now."
+			});
+			return clubs;
+		} else { // No API result and no local preferences
+			$ionicPopup.alert({
+				title:"Oh snap!",
+				template: "For some reason we couldn't get the latest list of clubs, please verify your internet connection and try again."
+			});
+			return [];
 		}
-		return clubs;
 	}
+
 	this.getClub = function(id){
 		var allClubs = this.getAllClubs();
 		return allClubs[id];
