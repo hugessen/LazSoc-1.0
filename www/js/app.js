@@ -11,11 +11,11 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'MainCtrl'
+    controller: 'NavCtrl'
   })
   .state('app.interests', {
     url: '/interests',

@@ -1,46 +1,56 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
+.controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor) {
- 
+}])
+
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
 */
-
   $scope.loginData = {
     isRegistered: false,
     firstName: '',
     lastName: '',
     laurierID: ''
   };
-  
+
+  function isEmptyObject(obj){
+    return JSON.stringify(obj) == '{}' || obj == null;
+  }
+
+  $scope.checkLoginData = function() {
+    if (isEmptyObject($localstorage.getObject('sbess-app-loginData'))) { 
+      $ionicModal.fromTemplateUrl("templates/launch.html", {
+          scope: $scope,
+          animation: 'slide-in-up'
+      })
+      .then(function(modal){
+          $scope.loginModal = modal;
+          $scope.loginModal.show();
+      })
+    } else {
+        $scope.loginData = $localstorage.getObject('sbess-app-loginData');
+    }
+  }
+
+  $scope.checkLoginData();
+
   $scope.closeLogin = function(){
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
-    }
-    else {
-        $localstorage.setObject('sbess-app-loginData', $scope.loginData);
+    } else {
         $scope.loginData.isRegistered = true;
-        console.log($scope.loginData);
+        $localstorage.setObject('sbess-app-loginData', $scope.loginData);
         $scope.loginModal.hide();
     }
   }
-    $scope.$on('$destroy', function() {
-    $scope.loginModal.remove();
+
+  $scope.$on('$destroy', function() {
+    if($scope.loginModal) {
+      $scope.loginModal.remove();
+    }
   });
-  if ($localstorage.getObject('sbess-app-loginData') == "{}"){ 
-    $ionicModal.fromTemplateUrl("templates/launch.html", {
-        scope: $scope,
-        animation: 'slide-in-up'
-    })
-    .then(function(modal){
-        $scope.loginModal = modal;
-        $scope.loginModal.show();
-    })
-  }
-  else{
-      $scope.loginData = $localstorage.getObject('sbess-app-loginData');
-  }
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club

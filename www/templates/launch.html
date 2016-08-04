@@ -1,21 +1,21 @@
-<div class="modal">
+<ion-modal-view>
 	<ion-view>
 		<ion-header-bar class="bar-royal"><h1 class="title">Sign Up</h1>
 		</ion-header-bar>
 		<ion-content>
 			<label class="item item-input item-floating-label">
-				<span class="input-label">First Name</span>
-				<input type="text" placeholder="First Name" ng-model="loginData.firstName">
+				<span class="input-label">First Name (required)</span>
+				<input type="text" placeholder="First Name (required)" ng-model="loginData.firstName">
 			</label> 
 			<label class="item item-input item-floating-label">
-				<span class="input-label">Last Name</span>
-				<input type="text" placeholder="Last Name" ng-model="loginData.lastName">
+				<span class="input-label">Last Name (required)</span>
+				<input type="text" placeholder="Last Name (required)" ng-model="loginData.lastName">
 			</label>
 			<label class="item item-input item-floating-label">
-                <span class="input-label">MyLaurier ID</span>
-				<input type="text" placeholder="MyLaurier ID" ng-model="loginData.laurierID">
+                <span class="input-label">MyLaurier Email (required)</span>
+				<input type="text" placeholder="MyLaurier Email (required)" ng-model="loginData.laurierID">
 			</label>
 			<button class="button button-block button-balanced" ng-click="closeLogin()">Submit</button>
 		</ion-content>
 	</ion-view>
-</div>
+</ion-modal-view>
