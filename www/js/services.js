@@ -1,5 +1,5 @@
 angular.module('sbess.services',['ionic','sbess.utils'])
-.service('WebAPI',['$localstorage','$http',function($localstorage,$http){
+.service('WebAPI',['$localstorage','$http', '$ionicPopup',function($localstorage,$http, $ionicPopup){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
 		var apiResult = [
@@ -420,12 +420,13 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		var clubPrefs = this.getClubPrefs(); //Get all clubs where selected = true
 		var userPrefs = this.getUserPrefs();
 		for(var x = 0; x < allEvents.length; x++){ // Loop through all events
-			/*for(var y = 0; y < clubPrefs.length && !inClubs; y++){ // Loop through all clubs
+			for(var y = 0; y < clubPrefs.length && !inClubs; y++){ // Loop through all clubs
 				if (allEvents[x].club.slug == clubPrefs[y].slug){ // Checking if the event is hosted by a club the user follows
 					customFeed.push(allEvents[x]); // Adding that event to the custom feed
+					allEvents[x].notes = allEvents[x].club.name;
 					inClubs = true; // we're finished with this event, we don't need to do anything else
 				} 
-			}*/
+			}
 			if (!inClubs){ // Checking whether the event's "tags" match preferences
 				for (var i = 0; i< allEvents[x].tags.length && !inPrefs; i++) { //Events have multiple "tags", must go through all of them
     		        for (var j = 0; j < userPrefs.length && !inPrefs; j++) { //All the user's prefs
@@ -439,11 +440,23 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			} inClubs = false; // Have to reset this upon each iteration
 		} return customFeed;
 	}
+
     this.getAllEvents = function(){
-		return $http.get('http://lazsoc.ca/app_info.php');
+    	that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
+		return $http.get('http://lazsoc.ca/app_info.php').then(function(APIresult) {
+			// After the API call returns, then loop through the result and load in each club
+			for(var i = 0; i < APIresult.data.length; i++) {
+				APIresult.data[i].club = that.getClub(APIresult.data[i].clubRef);
+			}
+			return APIresult;
+    	}, function (APIresult) {
+	        $ionicPopup.alert({
+	          title:"Oh snap!",
+	          template: "For some reason we couldn't get the latest list of events, please verify your internet connection and try again."
+	        });
+    	});
 	}
 
-			}
 	this.getEvent = function(id){
         var allEvents;
 		this.getAllEvents().then(function(APIresult){
