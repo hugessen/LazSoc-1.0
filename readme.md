@@ -1,3 +1,12 @@
+* TODO:
+- Implement validation on the email within the initial launch modal to make sure it's a @mylaurier.ca email
+- Pull clubs & interests from an API
+- Minimize the number of calls made to the API
+- Add in clubs & interest selector into the initial launch modal
+- Add in end date to events
+
+
+
 ngCordova Plugins:
 
 - [cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
