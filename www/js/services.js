@@ -509,7 +509,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			// If nothing is stored in local storage OR the stored data is stale, then re-load from the api
 			console.log("API Call Made");
 			that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
-			return $http.get('http://lazsoc.ca/app_info.php').then(function(APIresult) {
+			return $http.get('https://lazsoc.ca/app_info.php').then(function(APIresult) {
 				// After the API call returns, then loop through the result and load in each club
 				for(var i = 0; i < APIresult.data.length; i++) {
 					APIresult.data[i].club = that.getClub(APIresult.data[i].clubRef);
