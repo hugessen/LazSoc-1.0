@@ -12,6 +12,7 @@
 - Ensure if no banner specified for event then no banner is displayed
 - Swipe to go back a page
 - "Select all" for club and interest selector pages
+- Discount card page
 
 
 # Suggestions to consider
