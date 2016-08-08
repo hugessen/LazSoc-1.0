@@ -1,18 +1,18 @@
 # TODO:
 
-- Implement validation on the email within the initial launch modal to make sure it's a @mylaurier.ca email
-- Pull clubs & interests from an API
-- Minimize the number of calls made to the API
-- Add in clubs & interest selector into the initial launch modal
-- Add in end date to events
-- Fix spacing on the newsfeed so that the last event is not hidden by the tabs
-- Fix social media buttons on event pages
-- Fix social media follow buttons on club pages
-- Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
-- Ensure if no banner specified for event then no banner is displayed
-- Swipe to go back a page
-- "Select all" for club and interest selector pages
-- Discount card page
+[ ] Implement validation on the email within the initial launch modal to make sure it's a @mylaurier.ca email
+[ ] Pull clubs & interests from an API
+[ ] Minimize the number of calls made to the API
+[ ] Add in clubs & interest selector into the initial launch modal
+[ ] Add in end date to events
+[ ] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
+[ ] Fix social media buttons on event pages
+[ ] Fix social media follow buttons on club pages
+[ ] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
+[ ] Ensure if no banner specified for event then no banner is displayed
+[ ] Swipe to go back a page
+[ ] "Select all" for club and interest selector pages
+[ ] Discount card page
 
 
 # Suggestions to consider
