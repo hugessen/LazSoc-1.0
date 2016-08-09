@@ -27,8 +27,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   }
 
   $scope.checkLoginData();
+  
+  //The initial login modal
   $scope.openLogin = function(){
-      console.log("Opening login");
       $ionicModal.fromTemplateUrl("templates/launch.html", {
           scope: $scope,
           animation: 'slide-in-up'
@@ -48,6 +49,10 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
             $scope.loginData.isRegistered = true;
             $localstorage.setObject('sbess-app-loginData', $scope.loginData);
             $scope.loginModal.hide();
+            if(isEmptyObject('sbess-app-clubPrefs')){            
+                $location.path("/app/clubselector");
+            }
+
         }
         else{
             $ionicPopup.alert({title: 'Please enter a valid MyLaurier ID,'});
@@ -72,7 +77,6 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       }
     }
   }
-  
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
   
   //The app accesses the club description pages through URL routing. We do that here
