@@ -42,7 +42,8 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
     } else {
-        isValidID = $scope.loginData.laurierID.length == 21 && $scope.loginData.laurierID.substring(8) === '@mylaurier.ca';
+        var laurierID = $scope.loginData.laurierID;
+        isValidID = laurierID.length == 21 && laurierID.substring(8) === '@mylaurier.ca' && !isNaN(laurierID.substring(4,8));
         if (isValidID){
             $scope.loginData.isRegistered = true;
             $localstorage.setObject('sbess-app-loginData', $scope.loginData);
