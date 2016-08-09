@@ -1,6 +1,5 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
-
 }])
 
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform) {
@@ -21,6 +20,15 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 
   $scope.checkLoginData = function() {
     if (isEmptyObject($localstorage.getObject('sbess-app-loginData'))) { 
+      $scope.openLogin();
+    } else {
+        $scope.loginData = $localstorage.getObject('sbess-app-loginData');
+    }
+  }
+
+  $scope.checkLoginData();
+  $scope.openLogin = function(){
+      console.log("Opening login");
       $ionicModal.fromTemplateUrl("templates/launch.html", {
           scope: $scope,
           animation: 'slide-in-up'
@@ -29,20 +37,20 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
           $scope.loginModal = modal;
           $scope.loginModal.show();
       })
-    } else {
-        $scope.loginData = $localstorage.getObject('sbess-app-loginData');
-    }
   }
-
-  $scope.checkLoginData();
-
   $scope.closeLogin = function(){
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
     } else {
-        $scope.loginData.isRegistered = true;
-        $localstorage.setObject('sbess-app-loginData', $scope.loginData);
-        $scope.loginModal.hide();
+        isValidID = $scope.loginData.laurierID.length == 21 && $scope.loginData.laurierID.substring(8) === '@mylaurier.ca';
+        if (isValidID){
+            $scope.loginData.isRegistered = true;
+            $localstorage.setObject('sbess-app-loginData', $scope.loginData);
+            $scope.loginModal.hide();
+        }
+        else{
+            $ionicPopup.alert({title: 'Please enter a valid MyLaurier ID,'});
+        }
     }
   }
 
