@@ -1,7 +1,7 @@
 # TODO:
 
 - [x] Implement validation on the email within the initial launch modal to make sure it's a @mylaurier.ca email
-- [ ] Fix 'Subscribe' button on club page to actually work
+- [x] Fix 'Subscribe' button on club page to actually work
 - [ ] Pull clubs & interests from an API
 - [ ] Minimize the number of calls made to the API
 - [ ] Add in clubs & interest selector into the initial launch modal
