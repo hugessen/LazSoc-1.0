@@ -2,7 +2,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 }])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
@@ -78,6 +78,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
         $scope.clubs[x].selected = ! $scope.clubs[x].selected; 
       }
     }
+    $ionicHistory.clearCache();
   }
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
   
@@ -193,6 +194,7 @@ $scope.reloadFeed = function() {
         $scope.prefOptions[x].selected = ! $scope.prefOptions[x].selected; 
       }
     }
+    $ionicHistory.clearCache();
   }
   $scope.debug = function(){
       $ionicPopup.alert({
