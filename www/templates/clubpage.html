@@ -3,8 +3,8 @@
 	<ion-content>
         <img ng-src="{{currClub.banner}}" style="width:100%"></img>
         <div class="button-bar" style="padding-bottom:1px">
-            <button class="button button-positive" ng-click="toggle(currClub.id);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
-            <button class="button button-balanced" ng-click="toggle(currClub.id);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
+            <button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
+            <button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
 		</div>
         <div class="button-bar" style="padding-bottom:10px">
             <a class="button button-calm"><i class="icon ion-social-facebook"></i> @{{currClub.slug}}</a>

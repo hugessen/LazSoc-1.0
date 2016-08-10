@@ -202,7 +202,7 @@ $scope.reloadFeed = function() {
       });
   }
   //Activated when user presses Save. Commits all preferences and stores them in JSON
-  $scope.savePrefs = function(prefType){
+  $scope.savePrefs = function(prefType, silently = false){
     if (prefType == "clubs"){ // If we're on the club selector
       var to_save = $scope.clubs;
       for(var x = 0; x < to_save.length; x++) {
@@ -213,10 +213,12 @@ $scope.reloadFeed = function() {
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show    
       }, function(error){
-        $ionicPopup.alert({
-          title:"Oh snap!",
-          template: "For some reason we couldn't get your custom newsfeed, please check your internet connection and try again."
-        });
+        if(!silently) {
+          $ionicPopup.alert({
+            title:"Oh snap!",
+            template: "For some reason we couldn't get your new custom newsfeed after saving your preferences, please check your internet connection and try again."
+          });
+        }
       });
       console.log("Saving clubs");
     } else if (prefType =="categories"){ //If we're on the category selector
@@ -229,9 +231,11 @@ $scope.reloadFeed = function() {
       $localstorage.setObject('sbess-app-prefs', to_save);
       console.log("Saving preferences");
     }
-    $ionicPopup.alert({
-     title: 'Preferences Updated',
-   });
+    if (!silently) {
+      $ionicPopup.alert({
+       title: 'Preferences Updated',
+      });      
+    }
   }
   
 }])
