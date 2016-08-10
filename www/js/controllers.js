@@ -18,6 +18,17 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
     return JSON.stringify(obj) == '{}' || obj == null;
   }
 
+  $scope.openLogin = function(){
+      $ionicModal.fromTemplateUrl("templates/launch.html", {
+          scope: $scope,
+          animation: 'slide-in-up'
+      })
+      .then(function(modal){
+          $scope.loginModal = modal;
+          $scope.loginModal.show();
+      })
+  }
+
   $scope.checkLoginData = function() {
     if (isEmptyObject($localstorage.getObject('sbess-app-loginData'))) { 
       $scope.openLogin();
@@ -29,16 +40,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.checkLoginData();
   
   //The initial login modal
-  $scope.openLogin = function(){
-      $ionicModal.fromTemplateUrl("templates/launch.html", {
-          scope: $scope,
-          animation: 'slide-in-up'
-      })
-      .then(function(modal){
-          $scope.loginModal = modal;
-          $scope.loginModal.show();
-      })
-  }
+
   $scope.closeLogin = function(){
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
@@ -55,7 +57,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 
         }
         else{
-            $ionicPopup.alert({title: 'Please enter a valid MyLaurier ID,'});
+            $ionicPopup.alert({title: 'Please enter a valid MyLaurier E-Mail.'});
         }
     }
   }
