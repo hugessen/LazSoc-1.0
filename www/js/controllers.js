@@ -2,7 +2,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 }])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
@@ -52,7 +52,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
             $localstorage.setObject('sbess-app-loginData', $scope.loginData);
             $scope.loginModal.hide();
             if(isEmptyObject('sbess-app-clubPrefs')){            
-                $location.path("/app/clubselector");
+                $state.go('app.clubselector');
             }
 
         }
@@ -84,7 +84,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   
   //The app accesses the club description pages through URL routing. We do that here
   $scope.navigateToClub = function(clubID){
-    $location.path("/app/clubs/"+clubID);
+    $state.go('app.clubpage', { clubId: clubID });
   }  
  
   
@@ -147,7 +147,7 @@ $scope.reloadFeed = function() {
 * App accesses events through URL routing. Gives functionality to add events and their info to calendar through Cordova
 */
   $scope.loadEvent = function(id){
-    $location.path("/app/news/" + id);
+    $state.go('app.event', { eventId: id });
   }
   WebAPI.getAllEvents().then(function(APIresult){
        $scope.currEvent = APIresult.data[$stateParams.eventId];
