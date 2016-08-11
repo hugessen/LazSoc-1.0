@@ -4,7 +4,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       // StatusBar.styleDefault();
-      StatusBar.style(1)
+      $cordovaStatusbar.style(1);
     }
   });
 })
