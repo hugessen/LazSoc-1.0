@@ -54,7 +54,6 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
             if(isEmptyObject('sbess-app-clubPrefs')){            
                 $state.go('app.clubselector');
             }
-
         }
         else{
             $ionicPopup.alert({title: 'Please enter a valid MyLaurier E-Mail.'});
@@ -202,7 +201,10 @@ $scope.reloadFeed = function() {
       });
   }
   //Activated when user presses Save. Commits all preferences and stores them in JSON
-  $scope.savePrefs = function(prefType, silently = false){
+  $scope.savePrefs = function(prefType, silently){
+    if(silently == null) {
+      silently = false;
+    }
     if (prefType == "clubs"){ // If we're on the club selector
       var to_save = $scope.clubs;
       for(var x = 0; x < to_save.length; x++) {
