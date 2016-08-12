@@ -138,8 +138,44 @@ $scope.reloadFeed = function() {
     } 
   }
   
-  
+/*
+* Social Media
+* The app utilizies social media to share events, clubs, etc as well as linking to partner social media handles. This gives the functionality to share items through various social media platforms. 
+*/ 
 
+/*
+* Sample usage:
+* openSocialLink('https://www.facebook.com/events/1090875194312444/', 'fb://events/1090875194312444', 'fb://', 'com.facebook.katana');
+* This function is not used because applinks are undocumented and can be changed by the developer without any notice or update
+*/
+$scope.openSocialLink = function(httplink, applink, iOSScheme, androidScheme) {
+  var scheme = null;
+  if (ionic.Platform.isAndroid()) {
+    scheme = androidScheme;
+  } else if (ionic.Platform.isIOS()) {
+    scheme = iOSScheme;
+  }
+  if(scheme) {
+    appAvailability.check(
+      scheme,
+      function() {
+        // They have the app
+        window.open(applink, '_system');
+        console.log("Opening app link");
+      },
+      function() {
+        // They don't have the app
+        window.open(httplink, '_system');
+        console.log(httplink);
+        console.log("Opening http link, with scheme");
+      }
+    );
+  } else {
+    // If platform not Android or iOS or scheme is not inputted, open the httplink in browser
+    window.open(httplink, '_system');
+    console.log("Opening http link, no scheme");
+  }
+}
   
 /*
 * Events
@@ -155,12 +191,13 @@ $scope.reloadFeed = function() {
   $scope.addToCalendar = function() {
     try {
       var notes = $scope.currEvent.desc;
+      var endDate = $scope.currEvent.endDate;
       $cordovaCalendar.createEventInteractively({
         title: $scope.currEvent.title,
         location: $scope.currEvent.location,
         notes: notes,
-        startDate: $scope.currEvent.startDate,
-        endDate: $scope.currEvent.endDate
+        startDate: new Date($scope.currEvent.startDate),
+        endDate: new Date($scope.currEvent.endDate)
       }).then(function(result) {
           
       }, function(err) {

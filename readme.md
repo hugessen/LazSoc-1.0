@@ -7,7 +7,7 @@
 - [ ] Add in clubs & interest selector into the initial launch modal
 - [ ] Add in end date to events
 - [ ] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
-- [ ] Fix social media buttons on event pages
+- [x] Fix social media buttons on event pages
 - [ ] Fix social media follow buttons on club pages
 - [ ] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
 - [ ] Ensure if no banner specified for event then no banner is displayed
@@ -19,17 +19,32 @@
 
 - Calendar view of upcoming events
 
+# Notes
+Currently, iOS will only be allowed to open twitter/facebook app. To allow more, *platforms/ios/LazSoc/LazSoc-Info.plist* needs to be updated to include the new URLs. More info [here](http://stackoverflow.com/questions/30987986/ios-9-not-opening-instagram-app-with-url-scheme) and [here](https://github.com/ohh2ahh/AppAvailability/issues/22). Current entry is:
+
+    <key>LSApplicationQueriesSchemes</key>
+	<array>
+	    <string>fb</string>
+	    <string>twitter</string>
+	</array>
+
+
 ngCordova Plugins:
 
 - [cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
 - [cordovaCalendar](http://ngcordova.com/docs/plugins/calendar/)
 - [cordovaWhiteList](http://docs.ionic.io/docs/cordova-whitelist)
+- [cordovaInAppBrowser](http://ngcordova.com/docs/plugins/inAppBrowser/)
+- [cordovaAppAvailability](https://github.com/ohh2ahh/AppAvailability)
 
 So run:
 
     cordova plugin add cordova-plugin-calendar
     cordova plugin add cordova-plugin-network-information
     cordova plugin add cordova-plugin-whitelist
+    cordova plugin add cordova-plugin-inappbrowser
+    cordova plugin add cordova-plugin-appavailability
+    cordova prepare
 
 
 Keystore Password: np}&zz'h5a5[HcT-

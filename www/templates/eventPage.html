@@ -9,11 +9,14 @@
 		<div class="button-bar"> 
 			<div></div>
       		<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar"> Add to Calendar</i></button>
-      		<button class="button" ng-click="viewPage()" onclick="window.open('fb://facebook.com/inbox', '_system');"><i class="icon ion-social-facebook"> Facebook page</i></button>
+      		<button class="button" onclick="window.open('https://twitter.com/pokevisiongo', '_system');"><i class="icon ion-social-facebook"></i></button>
     	</div>
 		<div class="item">
-			<i class="icon ion-clock"> When: {{currEvent.timePublished}}</i>
+			<i class="icon ion-clock"> When: {{currEvent.startDate}}</i>
 		</div>
+		<div class="item">
+			<i class="icon ion-clock"> End: {{currEvent.endDate}}</i>
+		</div>		
 		<div class="item">
 			<i class="icon ion-android-pin"> Where: {{currEvent.location}}</i>
 		</div>
