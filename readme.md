@@ -5,7 +5,7 @@
 - [ ] Pull clubs & interests from an API
 - [ ] Minimize the number of calls made to the API
 - [ ] Add in clubs & interest selector into the initial launch modal
-- [ ] Add in end date to events
+- [x] Add in end date to events
 - [ ] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
 - [x] Fix social media buttons on event pages
 - [ ] Fix social media follow buttons on club pages
