@@ -6,7 +6,7 @@
 - [ ] Minimize the number of calls made to the API
 - [ ] Add in clubs & interest selector into the initial launch modal
 - [x] Add in end date to events
-- [ ] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
+- [x] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
 - [x] Fix social media buttons on event pages
 - [ ] Fix social media follow buttons on club pages
 - [ ] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event

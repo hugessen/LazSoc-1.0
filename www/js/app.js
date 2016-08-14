@@ -17,6 +17,15 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     templateUrl: 'templates/menu.html',
     controller: 'NavCtrl'
   })
+  .state('app.viewpreferences', {
+    url: '/viewpreferences',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/viewpreferences.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
   .state('app.interests', {
     url: '/interests',
     views: {

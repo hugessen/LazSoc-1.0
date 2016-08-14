@@ -2,7 +2,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 }])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
@@ -21,6 +21,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.openLogin = function(){
       $ionicModal.fromTemplateUrl("templates/launch.html", {
           scope: $scope,
+          backdropClickToClose: false,
           animation: 'slide-in-up'
       })
       .then(function(modal){
@@ -64,8 +65,30 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.$on('$destroy', function() {
     if($scope.loginModal) {
       $scope.loginModal.remove();
+    } else if ($scope.selectpreferences) {
+      $scope.selectpreferences.remove();
     }
   });
+
+$scope.openPreferenceModal = function() {
+  $ionicModal.fromTemplateUrl("templates/selectpreferences.html", {
+    scope: $scope,
+    animation: 'slide-in-up'
+  })
+  .then(function(modal){
+    $scope.selectpreferences = modal;
+    $scope.selectpreferences.show();
+  })
+}
+
+$scope.openPreferenceSelector = function(type) {
+  if(type == 'clubs') {
+    $state.go('app.clubselector');
+  } else if (type == 'interests') {
+
+  }
+}
+
 /*
 * Clubs
 * This section pulls all the clubs from the API, and provides functionality to add it as a preferred club
@@ -94,11 +117,13 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 * Allows the user to refresh by pulling down
 */
 $scope.filterBy = "custom";
+$scope.filterByTime = "thisweek";
 $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
 $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
+        $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
     }, function(error){
         $ionicPopup.alert({
           title:"Oh snap!",
@@ -114,7 +139,7 @@ $scope.reloadFeed = function() {
      if (data.stateId == 'app.newsfeed') {
         $scope.reloadFeed();
      }
-  });  
+  }); 
   
   $scope.doRefresh = function() {
     if(ConnectivityMonitor.isOnline()){  
@@ -130,25 +155,33 @@ $scope.reloadFeed = function() {
   };
   ConnectivityMonitor.startWatching();
   
-  $scope.setTab = function(tabData) {
-    if (tabData == "all") {
-      $scope.filterBy = "all";
-    } else if (tabData == "custom") {
-      $scope.filterBy = "custom";
-    } 
+  $scope.setNewsfeedType = function(tabData) {
+    $ionicScrollDelegate.scrollTop();
+    $scope.filterBy = tabData;
+    $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
+  }
+  $scope.setNewsfeedTimeperiod = function (timeperiod) {
+    $ionicScrollDelegate.scrollTop();
+    $scope.filterByTime = timeperiod;
+    $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
   }
   
 /*
 * Social Media
 * The app utilizies social media to share events, clubs, etc as well as linking to partner social media handles. This gives the functionality to share items through various social media platforms. 
 */ 
+$scope.openSocialLink = function(type) {
+  if (type == 'fb') {
+    window.open($scope.currEvent.facebookEvent, '_system');
+  }
+}
 
 /*
 * Sample usage:
-* openSocialLink('https://www.facebook.com/events/1090875194312444/', 'fb://events/1090875194312444', 'fb://', 'com.facebook.katana');
+* oldOpenSocialLink('https://www.facebook.com/events/1090875194312444/', 'fb://events/1090875194312444', 'fb://', 'com.facebook.katana');
 * This function is not used because applinks are undocumented and can be changed by the developer without any notice or update
 */
-$scope.openSocialLink = function(httplink, applink, iOSScheme, androidScheme) {
+$scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme) {
   var scheme = null;
   if (ionic.Platform.isAndroid()) {
     scheme = androidScheme;
@@ -237,6 +270,63 @@ $scope.openSocialLink = function(httplink, applink, iOSScheme, androidScheme) {
           title:"Debugging!",
       });
   }
+
+  /*
+  * Applying filters for newsfeed
+  * Here the newsfeed is generated based upon the filters the user selected. This applies both time and interest/club filters at once.
+  */
+  $scope.applyFilters = function(newsfeed) {
+    var source = [];
+    var result = [];
+    if($scope.filterBy == 'custom') {
+      source = $scope.customFeed;
+    } else { // All
+      source = $scope.events;
+    }
+    var curr = new Date();
+    if ($scope.filterByTime == 'thisweek') {
+      var today = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+      var one_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
+      for(var x = 0; x < source.length; x++) {
+        var event_start_time = new Date(source[x].startDate);
+        if(event_start_time >= today && event_start_time <= one_week) {
+          result.push(source[x]);
+        }
+      }
+    } else if ($scope.filterByTime == 'nextweek') {
+      var one_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
+      var two_weeks = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
+      for(var x = 0; x < source.length; x++) {
+        var event_start_time = new Date(source[x].startDate);
+        if(event_start_time >= one_week && event_start_time <= two_weeks) {
+          result.push(source[x]);
+        }
+      }
+    } else if ($scope.filterByTime == 'past') {
+      var today = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+      console.log(today);
+      for(var x = 0; x < source.length; x++) {
+        var event_start_time = new Date(source[x].startDate);
+        if(event_start_time < today) {
+          result.push(source[x]);
+        }
+      }
+    } else { // Upcoming
+      var two_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 14));
+      for(var x = 0; x < source.length; x++) {
+        var event_start_time = new Date(source[x].startDate);
+        if(event_start_time > two_weeks ) {
+          result.push(source[x]);
+        }
+      }
+    }
+    return result;
+  }
+
+  $scope.goToPrefPage = function() {
+    $state.go('app.viewpreferences');
+  }
+
   //Activated when user presses Save. Commits all preferences and stores them in JSON
   $scope.savePrefs = function(prefType, silently){
     if(silently == null) {
@@ -250,7 +340,8 @@ $scope.openSocialLink = function(httplink, applink, iOSScheme, androidScheme) {
       $localstorage.setObject('sbess-app-clubPrefs', to_save);
       WebAPI.getAllEvents().then(function(APIresult){
         $scope.events = APIresult.data;
-        $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show    
+        $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
+        $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
       }, function(error){
         if(!silently) {
           $ionicPopup.alert({
