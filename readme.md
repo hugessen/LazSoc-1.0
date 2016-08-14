@@ -18,6 +18,11 @@
 # Suggestions to consider
 
 - Calendar view of upcoming events
+- Photo gallary for events
+- My tickets area 
+- My clubs area for the clubs you've bought premium membership for
+- A way to show which events require a ticket vs which ones dont
+- Include links to buy event tickets
 
 # Notes
 Currently, iOS will only be allowed to open twitter/facebook app. To allow more, *platforms/ios/LazSoc/LazSoc-Info.plist* needs to be updated to include the new URLs. More info [here](http://stackoverflow.com/questions/30987986/ios-9-not-opening-instagram-app-with-url-scheme) and [here](https://github.com/ohh2ahh/AppAvailability/issues/22). Current entry is:
