@@ -14,6 +14,8 @@
 - [ ] Swipe to go back a page
 - [ ] "Select all" for club and interest selector pages
 - [ ] Discount card page
+- [ ] Make LazSoc subscription mandatory
+- [ ] Cut off date for 'past' tab, i.e. show only the past 2 weeks (Do this on the API side)
 
 # Suggestions to consider
 
