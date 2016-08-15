@@ -2,7 +2,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 }])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
@@ -165,7 +165,40 @@ $scope.reloadFeed = function() {
     $scope.filterByTime = timeperiod;
     $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
   }
-  
+
+$scope.rightNewsfeedSwipe = function() {
+  if($scope.filterByTime == 'past') {
+
+  } else if ($scope.filterByTime == 'thisweek') {
+    $scope.setNewsfeedTimeperiod('past');
+    $ionicSideMenuDelegate.canDragContent(true);
+  } else if ($scope.filterByTime == 'nextweek') {
+    $scope.setNewsfeedTimeperiod('thisweek');
+    $ionicSideMenuDelegate.canDragContent(false);
+  } else if ($scope.filterByTime == 'upcoming') {
+    $scope.setNewsfeedTimeperiod('nextweek');
+    $ionicSideMenuDelegate.canDragContent(false);
+  }
+  console.log("right swipe");
+}
+
+$scope.leftNewsfeedSwipe = function() {
+  if($scope.filterByTime == 'past') {
+    $scope.setNewsfeedTimeperiod('thisweek');
+    $ionicSideMenuDelegate.canDragContent(false);
+  } else if ($scope.filterByTime == 'thisweek') {
+    $scope.setNewsfeedTimeperiod('nextweek');
+    $ionicSideMenuDelegate.canDragContent(false);
+  } else if ($scope.filterByTime == 'nextweek') {
+    $scope.setNewsfeedTimeperiod('upcoming');
+    $ionicSideMenuDelegate.canDragContent(false);
+  } else if ($scope.filterByTime == 'upcoming') {
+
+  }
+
+  console.log("left swipe");
+}
+
 /*
 * Social Media
 * The app utilizies social media to share events, clubs, etc as well as linking to partner social media handles. This gives the functionality to share items through various social media platforms. 

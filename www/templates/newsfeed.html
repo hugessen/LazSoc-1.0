@@ -27,9 +27,10 @@
 		</div>
 	</div>
 	<ion-content class="has-header has-subheader has-footer">
+	<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
 		<ion-list>
-			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left">
+			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left slide-in-both-ways">
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
 				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
