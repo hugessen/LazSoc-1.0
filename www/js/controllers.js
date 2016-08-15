@@ -1,8 +1,8 @@
-angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils'])
+angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils', 'IonicModalNav'])
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
 }])
 
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
 /*
 * Login Modal
 * Checks if the user has registered. If not, prompts them for their name and student ID.
@@ -84,22 +84,17 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   });
 
 $scope.openPreferenceModal = function() {
-  $ionicModal.fromTemplateUrl("templates/selectpreferences.html", {
-    scope: $scope,
-    animation: 'slide-in-up'
-  })
-  .then(function(modal){
-    $scope.selectpreferences = modal;
-    $scope.selectpreferences.show();
-  })
+  IonicModalNavService.show('app.selectpref');
 }
-
-$scope.openPreferenceSelector = function(type) {
-  if(type == 'clubs') {
-    $state.go('app.clubselector');
-  } else if (type == 'interests') {
-
-  }
+$scope.preferencesClose = function() {
+  IonicModalNavService.hide();
+  //IonicModalNavService.destroy();
+}
+$scope.preferencesGoBack = function(data) {
+  IonicModalNavService.goBack(data);
+}
+$scope.preferencesChangePage = function(type) {
+  IonicModalNavService.go(type);
 }
 
 /*
@@ -379,13 +374,41 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
       silently = false;
     }
     if (prefType == "clubs"){ // If we're on the club selector
-      var to_save = $scope.clubs;
-      for(var x = 0; x < to_save.length; x++) {
+      $scope.saveClubPreferences();
+      console.log("Saving clubs");
+    } else if (prefType =="categories"){ //If we're on the category selector
+      $scope.saveInterests();
+      console.log("Saving preferences");
+    } else if (prefType == 'all') { // If we're on the preference page selector
+      $scope.saveClubPreferences();
+      $scope.saveInterests();
+      console.log("Saving preferences and clubs");
+    }
+    if (!silently) {
+      $ionicPopup.alert({
+       title: 'Preferences Updated',
+      });      
+    }
+  }
+
+  $scope.saveInterests = function () { 
+    var to_save = $scope.prefOptions;
+    for(var x = 0; x < to_save.length; x++) {
+      if(to_save[x].hasOwnProperty('$$hashKey')) {
         delete to_save[x]['$$hashKey'];
       }
-      $localstorage.setObject('sbess-app-clubPrefs', to_save);
-      WebAPI.getAllEvents().then(function(APIresult){
-        $scope.events = APIresult.data;
+    }
+    $localstorage.setObject('sbess-app-prefs', to_save);
+  }
+
+  $scope.saveClubPreferences = function() {
+    var to_save = $scope.clubs;
+    for(var x = 0; x < to_save.length; x++) {
+      delete to_save[x]['$$hashKey'];
+    }
+    $localstorage.setObject('sbess-app-clubPrefs', to_save);
+    WebAPI.getAllEvents().then(function(APIresult){
+      $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
         $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
       }, function(error){
@@ -396,24 +419,8 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
           });
         }
       });
-      console.log("Saving clubs");
-    } else if (prefType =="categories"){ //If we're on the category selector
-      var to_save = $scope.prefOptions;
-      for(var x = 0; x < to_save.length; x++) {
-        if(to_save[x].hasOwnProperty('$$hashKey')) {
-          delete to_save[x]['$$hashKey'];
-        }
-      }
-      $localstorage.setObject('sbess-app-prefs', to_save);
-      console.log("Saving preferences");
-    }
-    if (!silently) {
-      $ionicPopup.alert({
-       title: 'Preferences Updated',
-      });      
-    }
   }
-  
+
 }])
 
 

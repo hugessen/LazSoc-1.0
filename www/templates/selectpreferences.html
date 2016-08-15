@@ -1,20 +1,26 @@
-<ion-modal-view>
-	<ion-view>
-		<ion-header-bar class="bar-royal"><h1 class="title">Preference Type</h1>
-		</ion-header-bar>
-		<ion-content>
-			<div class="list">
-				<a class="item item-icon-left item-icon-right" ng-click="openPreferenceSelector('clubs')">
-					<i class="icon ion-university"></i>
-					Clubs
-					<i class="icon ion-chevron-right"></i>
-				</a>
-				<a class="item item-icon-left item-icon-right" ng-click="openPreferenceSelector('interests')">
-					<i class="icon ion-lightbulb"></i>
-					Interests
-					<i class="icon ion-chevron-right"></i>
-				</a>
-			</div>
-		</ion-content>
-	</ion-view>
-</ion-modal-view>
+<!-- DO NOT wrap in anything, i.e. NO ion-view, or ion-modal-view. ionic-modal-nav automatically wraps this in a modal-view adding in another wrapper like that will cause CSS issues. -->
+<!-- Use ion-header-bar NOT ion-nav-bar, header-bar will work with ionic-modal-nav but nav-bar will not.-->
+<ion-header-bar class="bar-royal">
+	<div class="buttons">
+		<button class="button button-clear" ng-click="preferencesClose()">Close</button>
+	</div>
+	<h1 class="title">Preference Type</h1>
+	<div class="buttons">
+		<button class="button button-clear" ng-click="savePrefs('all')">Save</button>
+	</div>
+</ion-header-bar>
+
+<ion-content>
+	<div class="list">
+		<a class="item item-icon-left item-icon-right" ng-click="preferencesChangePage('app.clubselector')">
+			<i class="icon ion-university"></i>
+			Clubs
+			<i class="icon ion-chevron-right"></i>
+		</a>
+		<a class="item item-icon-left item-icon-right" ng-click="preferencesChangePage('app.interests')">
+			<i class="icon ion-lightbulb"></i>
+			Interests
+			<i class="icon ion-chevron-right"></i>
+		</a>
+	</div>
+</ion-content>

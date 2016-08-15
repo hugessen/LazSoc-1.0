@@ -27,9 +27,8 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     }
   })
   .state('app.interests', {
-    url: '/interests',
     views: {
-      'menuContent': {
+      'ionic-modal-nav@': {
         templateUrl: 'templates/interests.html',
         controller: 'MainCtrl'
       }
@@ -44,10 +43,17 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
       }
     }
   })
+  .state('app.selectpref', {
+    views: {
+        'ionic-modal-nav@': {
+          templateUrl: 'templates/selectpreferences.html',
+          controller:'MainCtrl'
+        }
+    }
+  })
   .state('app.clubselector', {
-      url: '/clubselector',
       views: {
-        'menuContent': {
+        'ionic-modal-nav@': {
           templateUrl: 'templates/clubselector.html',
           controller:'MainCtrl'
         }
