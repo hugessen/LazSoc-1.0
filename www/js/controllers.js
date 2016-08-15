@@ -39,6 +39,20 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
           $scope.loginModal.show();
       })
   }
+  $scope.clubModal = function(){
+      $ionicModal.fromTemplateUrl("templates/clubselector_modal.html", {
+          scope: $scope,
+          animation: 'slide-in-up'
+      })
+      .then(function(modal){
+          $scope.clubModal = modal;
+          $scope.clubModal.show();
+      })
+  }
+  $scope.closeClubModal = function(){
+      $scope.clubModal.hide();
+  }
+  
   $scope.closeLogin = function(){
     if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
         $ionicPopup.alert({title: 'Please enter all fields to continue',});
@@ -49,9 +63,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
             $scope.loginData.isRegistered = true;
             $localstorage.setObject('sbess-app-loginData', $scope.loginData);
             $scope.loginModal.hide();
-            if(isEmptyObject('sbess-app-clubPrefs')){            
-                $location.path("/app/clubselector");
-            }
+            //if(isEmptyObject('sbess-app-clubPrefs')){            
+                $scope.clubModal();
+            //}
 
         }
         else{
@@ -63,6 +77,9 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.$on('$destroy', function() {
     if($scope.loginModal) {
       $scope.loginModal.remove();
+    }
+    if($scope.clubModal){
+        $scope.clubModal.remove();
     }
   });
 /*

@@ -1,0 +1,16 @@
+<ion-modal-view ng-controller="MainCtrl">
+	<ion-header-bar class="bar-royal"><h1 class="title">Select Clubs</h1>
+	<ion-content>
+		<flexbox> 
+			<div class="selectionbox" ng-repeat="club in clubs track by $index" ng-if="!club.removed"> <!-- Do not show clubs that are removed -->
+				<infobox ng-click="navigateToClub(club.id)"><img src="thumbnails/info-icon.png"></img></infobox>
+				<div ng-click="toggle(club.id)">	
+					<img src="thumbnails/{{club.logo}}" style="width:100%" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
+				</div>
+			</div>
+		</flexbox>
+         <button class="button button-icon button-clear" ng-click="savePrefs('clubs'); ">
+            Save!
+        </button>
+	</ion-content>
+</ion-modal-view>
