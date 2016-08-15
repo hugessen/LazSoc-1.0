@@ -121,7 +121,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		var APIresult = [
 			{
 				id: 0,
-				name: "LMA",
+				name: "Laurier Marketing Association",
 				slug: "lma",
 				desc: "The Laurier Marketing Association is a student organization dedicated to undergraduates interested in marketing. We’ve teamed up with the best resources Wilfrid Laurier has to offer: world-renowned faculty, successful alumni, industry leaders, and recruiters from the world’s top companies. You may want to know if marketing is right for you, or you may already be on your way into the real marketing world. Either way, we’ll help you get your head start. Ultimately, our mission is to help our members attain the level of marketing experience they desire by providing comprehensive resources that span the academic, professional, and social faces of marketing.",
 				logo: "LMA.png",
@@ -132,11 +132,18 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Marketing",
                 "Networking",
                 "Case Competitions"
-				]
+				],
+                social: {
+                    facebook:"https://www.facebook.com/lauriermarketing",
+                    linkedin:"https://www.linkedin.com/company/laurier-marketing-association",
+                    twitter:"https://www.twitter.com/wlumarketing",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 1,
-				name: "LCC",
+				name: "Laurier Consulting Club",
 				slug: "lcc",
 				desc: "Since 2009, the Laurier Consulting Club has continued to grow both in membership numbers as well as in quality – here’s how:We operate with the intentions of improving the knowledge and technical skills of the students of SBE at Wilfrid Laurier University. Through our two portfolios – engagement and the Laurier Consulting Program (LCP) we aim to provide unique and tangible opportunities that can help students grow on a professional level making them able to compete in the consulting landscape. Through ‘Engagement’, we offer workshops, networking events, info sessions and a large-scale case competition to allow for learning about the industry, learning techniques that can be used to get hired, and finally, case practice – an industry essential. The ‘Laurier Consulting Program’ is unique to LCC and seamlessly complements our engagement portfolio by allowing students to deploy what they have learned at our events in real consulting engagements setup and managed by our executive team.",
 				logo: "LCC.png",
@@ -144,7 +151,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				tags: [
                 "Consulting",
                 "Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 2,
@@ -157,7 +171,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "Public Speaking",
                     "First Year",
                     "Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 3,
@@ -169,7 +190,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				tags: [
                     "Entrepreneurship",
                     "Social Change"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 4,
@@ -182,7 +210,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "Public Speaking",
                     "Case Competitions",
                     "Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 5,
@@ -195,7 +230,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Advertising",
 				"Marketing",
 				"Case Competitions"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 6,
@@ -206,7 +248,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 banner:"banners/AIESECBanner.png",
 				tags: [
                     "International"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 7,
@@ -219,7 +268,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Marketing",
 				"Media",
 				"Journalism",
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 8,
@@ -232,7 +288,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Economics",
 				"Mock Midterm",
                 "Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 9,
@@ -246,7 +309,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Startups",
 				"Technology",
                 "Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 10,
@@ -259,7 +329,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Marketing",
 				"Sports Management",
 				"Networking"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 11,
@@ -274,7 +351,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Capital Markets",
                 "Investing",
                 "Economics"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 12,
@@ -287,7 +371,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Sales",
 				"Public Speaking",
                 "Marketing"
-				]
+				],
+                social: {
+                    facebook:"facebook.com/lma",
+                    linkedin:"",
+                    twitter:"",
+                    youtube:"",
+                    snapchat:"LMA"
+                }
 			},
 			{
 				id: 13,

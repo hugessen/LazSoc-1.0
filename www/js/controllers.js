@@ -211,12 +211,23 @@ $scope.leftNewsfeedSwipe = function() {
 * Social Media
 * The app utilizies social media to share events, clubs, etc as well as linking to partner social media handles. This gives the functionality to share items through various social media platforms. 
 */ 
-$scope.openSocialLink = function(type) {
+$scope.openSocialLink = function(type, link) {
   if (type == 'fb') {
-    window.open($scope.currEvent.facebookEvent, '_system');
+      window.open($scope.currClub.social.facebook, '_system');
+  }
+  if (type == 'linkedin'){
+      window.open($scope.currClub.social.linkedin, '_system');
+  }
+  if (type == 'twitter'){
+      window.open($scope.currClub.social.twitter, '_system');
+  }
+  if (type == 'youtube'){
+      window.open($scope.currClub.social.youtube, '_system');
   }
 }
-
+$scope.openFbEvent = function(){
+    window.open($scope.currEvent.facebookEvent, '_system');
+}
 /*
 * Sample usage:
 * oldOpenSocialLink('https://www.facebook.com/events/1090875194312444/', 'fb://events/1090875194312444', 'fb://', 'com.facebook.katana');
