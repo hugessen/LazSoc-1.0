@@ -1,18 +1,36 @@
 <ion-view view-title="Newsfeed">
-    <div class="tabs-striped tabs-bottom tabs-background-royal">
-    <div class="tabs">
-      <a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'custom' }" ng-click="setTab('custom')">
-       My Interests
-      </a>
-      <a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'all' }" ng-click="setTab('all')">
-        All Events
-      </a>
-    </div>
-  </div>
-	<ion-content>
+	<div class="tabs-striped tabs-bottom tabs-background-royal">
+		<div class="tabs">
+			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'custom' }" ng-click="setNewsfeedType('custom')">
+				My Interests
+			</a>
+			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'all' }" ng-click="setNewsfeedType('all')">
+				All Events
+			</a>
+		</div>
+	</div>
+
+	<div class="tabs-striped tabs-top tabs-background-royal" >
+		<div class="tabs" style="">
+			<a class="bar-royal tab-item" style="color:white;" ng-class="{ active: filterByTime == 'past' }" ng-click="setNewsfeedTimeperiod('past')">
+				Past
+			</a>
+			<a class="bar-royal tab-item" style="color:white;" ng-class="{ active: filterByTime == 'thisweek' }" ng-click="setNewsfeedTimeperiod('thisweek')">
+				This Week
+			</a>
+			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterByTime == 'nextweek' }" ng-click="setNewsfeedTimeperiod('nextweek')">
+				Next Week
+			</a>
+			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterByTime == 'upcoming' }" ng-click="setNewsfeedTimeperiod('upcoming')">
+				Upcoming
+			</a>
+		</div>
+	</div>
+	<ion-content class="has-header has-subheader has-footer">
+	<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
-		<ion-list ng-show="filterBy =='custom'">
-			<ion-item ng-repeat="event in customFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left">
+		<ion-list>
+			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left slide-in-both-ways">
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
 				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
@@ -28,5 +46,13 @@
 			</ion-item>
 		</ion-list>
         <button class="button" ng-click="openLogin()">Open Login</button>
+		<div class="row" ng-if="filteredFeed.length < 1">
+			<div class="col">
+				<div class="text-center">
+					<h5 style="text-align: center; color: #9A9B9C;">Looks like there's nothing here :(</h5>
+					<h5 style="text-align: center; color: #9A9B9C;">Check back again soon, or <a ng-click="goToPrefPage()" style="color: #0645AD;">click here</a> to edit your preferences!</h5>
+				</div>
+			</div>
+		</div>
 	</ion-content>	
 </ion-view>

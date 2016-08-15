@@ -8,12 +8,15 @@
 		<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
 		<div class="button-bar"> 
 			<div></div>
-      		<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar"> Add to Calendar</i>
-      		<button class="button" ng-click="viewPage()" onclick="window.open('fb://facebook.com/inbox', '_system', 'location=no');"><i class="icon ion-social-facebook"> Facebook page</i>
+      		<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar"> Add to Calendar</i></button>
+      		<button class="button" ng-click="openSocialLink('fb')"><i class="icon ion-social-facebook"></i></button>
     	</div>
 		<div class="item">
-			<i class="icon ion-clock"> When: {{currEvent.timePublished}}</i>
+			<i class="icon ion-clock"> When: {{currEvent.startDate}}</i>
 		</div>
+		<div class="item">
+			<i class="icon ion-clock"> End: {{currEvent.endDate}}</i>
+		</div>		
 		<div class="item">
 			<i class="icon ion-android-pin"> Where: {{currEvent.location}}</i>
 		</div>

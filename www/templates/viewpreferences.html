@@ -1,0 +1,47 @@
+<ion-view>
+	<ion-nav-title>Preferences</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<button class="button" ng-click="openPreferenceModal()">
+			<i class="icon ion-plus-round" style="font-size: 25px;"></i>
+
+		</button>
+	</ion-nav-buttons>
+
+	<ion-content>
+		<div class="list">
+			<!--<div class="item item-divider">
+				Clubs Option 1
+			</div>
+
+			<a class="item item-avatar" href="#" ng-repeat="club in clubs track by $index" ng-if="!club.removed && club.selected">
+				<img src="thumbnails/{{club.logo}}">
+				<h2>{{club.name}}</h2>
+			</a>-->
+
+			<div class="item item-divider">
+				Clubs
+			</div>
+			<a class="item item-thumbnail-left" href="#" ng-repeat="club in clubs track by $index" ng-if="!club.removed && club.selected">
+				<img src="thumbnails/{{club.logo}}">
+				<h2>{{club.name}}</h2>
+				<p>Nine Inch Nails</p>
+			</a>
+
+			<div class="item item-divider">
+				Interests Option 1
+			</div>
+			<a class="item" href="#" ng-repeat="pref in prefOptions" ng-if="pref.selected">
+				{{pref.name}}
+				<label class="toggle toggle-relaxed" style="float: right;">
+					<input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected">
+					<i class="ion-heart" style="font-size: 30px;"></i>
+				</label>
+			</a>
+
+			<div class="item item-divider">
+				Interests Option 2
+			</div>
+			<ion-checkbox ng-repeat="pref in prefOptions" ng-if="pref.selected" ng-model="pref.selected">{{pref.name}}</ion-checkbox>
+		</div>
+	</ion-content>
+</ion-view>

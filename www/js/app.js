@@ -4,7 +4,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       // StatusBar.styleDefault();
-      StatusBar.style(1)
+      $cordovaStatusbar.style(1);
     }
   });
 })
@@ -16,6 +16,15 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'NavCtrl'
+  })
+  .state('app.viewpreferences', {
+    url: '/viewpreferences',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/viewpreferences.html',
+        controller: 'MainCtrl'
+      }
+    }
   })
   .state('app.interests', {
     url: '/interests',
