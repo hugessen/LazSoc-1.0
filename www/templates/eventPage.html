@@ -22,8 +22,14 @@
 		</div>
 		<div class="item item-text-wrap">
 			{{currEvent.desc}}
-            {{debug}}
             <br/><br/>
 		</div>  
+        <a ng-show="{{currEvent.video}}"> 
+        <div class="row"><div class="col">
+        <div class="video-container">
+            <iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        </div></div>
+        </a>
 	</ion-content>
 </ion-view>
