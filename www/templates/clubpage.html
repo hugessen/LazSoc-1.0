@@ -1,24 +1,27 @@
-<ion-view>
-	<ion-nav-title>{{currClub.name}}</ion-nav-title>
-	<ion-content>
-        <img ng-src="{{currClub.banner}}" style="width:100%"></img>
-        <div class="button-bar" style="padding-bottom:1px">
-            <button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
-            <button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
-		</div>
-        <div class="button-bar" style="padding-bottom:10px">
-            <a class="button button-calm"><i class="icon ion-social-facebook"></i> @{{currClub.slug}}</a>
-            <a class="button"><i class="icon ion-social-instagram-outline"></i> @{{currClub.slug}}</a>
-        </div>
-        <div style="border-top: 1px solid lightgray">
-			{{currClub.desc}}        
-		</div><br/>
-		<ion-list>
-			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.club.slug == currClub.slug" class="itembox item-thumbnail-left">
-					<img ng-src="{{event.thumbnail}}" class="imgbox">
-					<titleFont>{{event.title}}</titleFont></br>
-					<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
-			</ion-item>
-		</ion-list>
-	</ion-content>
-</ion-view>
+<ion-header-bar class="bar-royal">
+	<div class="buttons">
+		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
+	</div>
+	<h1 class="title">{{currClub.name}}</h1>
+</ion-header-bar>
+<ion-content>
+	<img ng-src="{{currClub.banner}}" style="width:100%"></img>
+	<div class="button-bar" style="padding-bottom:1px">
+		<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
+		<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
+	</div>
+	<div class="button-bar" style="padding-bottom:10px">
+		<a class="button button-calm"><i class="icon ion-social-facebook"></i> @{{currClub.slug}}</a>
+		<a class="button"><i class="icon ion-social-instagram-outline"></i> @{{currClub.slug}}</a>
+	</div>
+	<div style="border-top: 1px solid lightgray">
+		{{currClub.desc}}        
+	</div><br/>
+	<ion-list>
+		<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.club.slug == currClub.slug" class="itembox item-thumbnail-left">
+			<img ng-src="{{event.thumbnail}}" class="imgbox">
+			<titleFont>{{event.title}}</titleFont></br>
+			<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+		</ion-item>
+	</ion-list>
+</ion-content>

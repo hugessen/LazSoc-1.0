@@ -5,13 +5,18 @@
 		<button class="button button-clear" ng-click="preferencesClose()">Close</button>
 	</div>
 	<h1 class="title">Preference Type</h1>
-	<div class="buttons">
+	<!--<div class="buttons">
 		<button class="button button-clear" ng-click="savePrefs('all')">Save</button>
-	</div>
+	</div>-->
 </ion-header-bar>
 
 <ion-content>
 	<div class="list">
+		<a class="item item-icon-left item-icon-right" ng-click="preferencesChangePage('app.personalinfo')">
+			<i class="icon ion-person"></i>
+			Personal Information
+			<i class="icon ion-chevron-right"></i>
+		</a>
 		<a class="item item-icon-left item-icon-right" ng-click="preferencesChangePage('app.clubselector')">
 			<i class="icon ion-university"></i>
 			Clubs

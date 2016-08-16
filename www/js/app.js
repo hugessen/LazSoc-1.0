@@ -34,10 +34,44 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
       }
     }
   })
-  .state('app.clubpage', {
-    url: '/clubs/:clubId',
+  .state('app.initiallaunch_clubselector', {
     views: {
-      'menuContent': {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/initiallaunch/clubselector.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.initiallaunch_interests', {
+    views: {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/initiallaunch/interests.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.initiallaunch_personalinfo', {
+    views: {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/initiallaunch/personalinfo.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.personalinfo', {
+    views: {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/personalinformation.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.clubpage', {
+    params: {
+      'clubId' : null
+    },
+    views: {
+      'ionic-modal-nav@': {
         templateUrl: 'templates/clubpage.html',
         controller: 'MainCtrl'
       }
@@ -59,16 +93,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
         }
       }
     })
-    .state('app.launch', {
-      url: '/launch',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/launch.html',
-          controller:'MainCtrl'
-        }
-      }
-    })
-    .state('app.newsfeed', {
+  .state('app.newsfeed', {
       url: '/news',
       views: {
         'menuContent': {

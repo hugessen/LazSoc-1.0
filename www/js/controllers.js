@@ -1,88 +1,102 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils', 'IonicModalNav'])
-.controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {
+.controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
 }])
 
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
 /*
-* Login Modal
-* Checks if the user has registered. If not, prompts them for their name and student ID.
+* Initial Launch
+* Checks if the user has registered. If not, prompts them for their personal info, then gets them to 
+* The initial launch html pages are kept seperate ON PURPOSE. This allows for very east customization of those pages without having to jump through countless hoops.
 */
-  $scope.loginData = {
+  $scope.personalData = {
     isRegistered: false,
     firstName: '',
     lastName: '',
-    laurierID: ''
+    laurierID: '',
+    subscribed: false
   };
+  $scope.isInitialLaunch = false;
 
   function isEmptyObject(obj){
     return JSON.stringify(obj) == '{}' || obj == null;
   }
 
-  $scope.openLogin = function(){
-      $ionicModal.fromTemplateUrl("templates/launch.html", {
-          scope: $scope,
-          backdropClickToClose: false,
-          animation: 'slide-in-up'
-      })
-      .then(function(modal){
-          $scope.loginModal = modal;
-          $scope.loginModal.show();
-      })
+  $scope.openInitialLaunch = function(){
+    IonicModalNavService.show('app.initiallaunch_personalinfo');
   }
 
-  $scope.checkLoginData = function() {
-    if (isEmptyObject($localstorage.getObject('sbess-app-loginData'))) { 
-      $scope.openLogin();
-    } else {
-        $scope.loginData = $localstorage.getObject('sbess-app-loginData');
+  $scope.validatePersonalInfo = function(silently) {
+    if(silently == null) {
+      silently = false;
     }
-  }
-
-  $scope.checkLoginData();
-  
-  //The initial login modal
-  $scope.openLogin = function(){
-      $ionicModal.fromTemplateUrl("templates/launch.html", {
-          scope: $scope,
-          animation: 'slide-in-up'
-      })
-      .then(function(modal){
-          $scope.loginModal = modal;
-          $scope.loginModal.show();
-      })
-  }
-
-  $scope.closeLogin = function(){
-    if ($scope.loginData.firstName === '' || $scope.loginData.lastName === '' || $scope.loginData.laurierID === '') {
-        $ionicPopup.alert({title: 'Please enter all fields to continue',});
+    $scope.personalData.isRegistered = false;
+    if ($scope.personalData.firstName === '' || $scope.personalData.lastName === '' || $scope.personalData.laurierID === '') {
+      if (!silently) {
+        $ionicPopup.alert({
+          title: 'Please enter all fields to continue'
+        });
+      }
     } else {
-        var laurierID = $scope.loginData.laurierID;
-        isValidID = laurierID.length == 21 && laurierID.substring(8) === '@mylaurier.ca' && !isNaN(laurierID.substring(4,8));
-        if (isValidID){
-            $scope.loginData.isRegistered = true;
-            $localstorage.setObject('sbess-app-loginData', $scope.loginData);
-            $scope.loginModal.hide();
-            if(isEmptyObject('sbess-app-clubPrefs')){            
-                $state.go('app.clubselector');
-            }
+      var laurierID = $scope.personalData.laurierID;
+      isValidID = laurierID.length == 21 && laurierID.substring(8) === '@mylaurier.ca' && !isNaN(laurierID.substring(4,8));
+      if (isValidID){
+        $scope.personalData.isRegistered = true;
+      } else {
+        if(!silently) {
+          $ionicPopup.alert({
+            title: 'Please enter a valid MyLaurier E-Mail.'
+          });
         }
-        else{
-            $ionicPopup.alert({title: 'Please enter a valid MyLaurier E-Mail.'});
+      }
+    }
+    return $scope.personalData.isRegistered;
+  }
+
+  $scope.checkPersonalData = function(silently) {
+    if(silently == null) {
+      silently = false;
+    }
+    //$localstorage.setObject('sbess-app-personalData', {})
+    if (isEmptyObject($localstorage.getObject('sbess-app-personalData'))) { 
+      $scope.isInitialLaunch = true;
+      $scope.openInitialLaunch();
+    } else {
+        $scope.personalData = $localstorage.getObject('sbess-app-personalData');
+        var result = $scope.validatePersonalInfo(silently);
+        if(!result) {
+          $scope.isInitialLaunch = true;
+          $scope.openInitialLaunch();
         }
     }
   }
 
-  $scope.$on('$destroy', function() {
-    if($scope.loginModal) {
-      $scope.loginModal.remove();
-    } else if ($scope.selectpreferences) {
-      $scope.selectpreferences.remove();
-    }
-    if($scope.clubModal){
-        $scope.clubModal.remove();
-    }
-  });
 
+  $scope.checkPersonalData(true);
+
+  $scope.initialLaunchNextStep = function(){
+    var state = $ionicHistory.currentView();
+    var stateName = state.stateName;
+    if (stateName == 'app.initiallaunch_personalinfo') {
+      var result = $scope.validatePersonalInfo(false);
+      if(result) {
+        $scope.savePrefs('personalData', true);
+        console.log('Valid personal info, moving to club selector');
+        IonicModalNavService.go('app.initiallaunch_clubselector');
+      }
+    } else if (stateName == 'app.initiallaunch_clubselector') {
+      $scope.savePrefs('clubs', true);
+      console.log('Moving to interest selector');
+      IonicModalNavService.go('app.initiallaunch_interests');
+    } else if (stateName == 'app.initiallaunch_interests') {
+      $scope.savePrefs('categories', true);
+      console.log('Finished initial launch.');
+      IonicModalNavService.hide();
+    }
+  }
+
+$scope.initialLaunchGoBack = function(data) {
+  IonicModalNavService.goBack(data);
+}
 $scope.openPreferenceModal = function() {
   IonicModalNavService.show('app.selectpref');
 }
@@ -90,7 +104,28 @@ $scope.preferencesClose = function() {
   IonicModalNavService.hide();
   //IonicModalNavService.destroy();
 }
+$scope.preferencesSavePersonalData = function() {
+  var result = $scope.validatePersonalInfo();
+  if(result) {
+    $scope.savePrefs('personalData');
+  }
+}
 $scope.preferencesGoBack = function(data) {
+  var state = $ionicHistory.currentView();
+  var stateName = state.stateName;
+  if (stateName == 'app.selectpref') {
+    // app.selectpref should never occur as a statename because of the fact that it should call modal close, not back
+    // but if it does, just call the close function instead
+    $scope.preferencesClose();
+  } else if (stateName == 'app.personalinfo') {
+  } else if (stateName == 'app.clubpage') {
+  
+  } else if (stateName == 'app.interests') {
+
+  } else if (stateName == 'app.clubselector') {
+
+  }
+
   IonicModalNavService.goBack(data);
 }
 $scope.preferencesChangePage = function(type) {
@@ -111,10 +146,10 @@ $scope.preferencesChangePage = function(type) {
     $ionicHistory.clearCache();
   }
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
-  
+
   //The app accesses the club description pages through URL routing. We do that here
   $scope.navigateToClub = function(clubID){
-    $state.go('app.clubpage', { clubId: clubID });
+    IonicModalNavService.go('app.clubpage', { clubId: clubID });
   }  
  
   
@@ -373,7 +408,11 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
     if(silently == null) {
       silently = false;
     }
-    if (prefType == "clubs"){ // If we're on the club selector
+
+    if(prefType == "personalData") {
+      $localstorage.setObject('sbess-app-personalData', $scope.personalData);
+      console.log('Saving personal data');
+    } else if (prefType == "clubs"){ // If we're on the club selector
       $scope.saveClubPreferences();
       console.log("Saving clubs");
     } else if (prefType =="categories"){ //If we're on the category selector

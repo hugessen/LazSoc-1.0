@@ -71,7 +71,7 @@ clubNameFont{
 	color:black;
 }
 subheaderFont{
-    font-family:Calibri;
+	font-family:Calibri;
 	font-size:14px;
 	color:black;
 }
@@ -82,4 +82,9 @@ subheaderFont{
 @font-face{
 	font-family:Calluna;
 	src: url(fonts/CallunaSansRegular.otf);
+}
+.toggle.toggle-purple input:checked:before, 
+.toggle.toggle-purple input:checked + .track {
+	border-color: #330072 !important;
+	background-color: #330072 !important;
 }
