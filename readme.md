@@ -21,6 +21,7 @@
 - [ ] Find a better way of doing the modal vs non-modal pages other than having two seperate files. i.e. clubselector_modal.html vs clubselector.html
 - [ ] Seperate controllers, currently there's one HUGE controller and it's really inefficient since only parts of the code are used in certain places
 - [ ] Make interests unclickable on the view preferences page
+- [ ] Find a better way to reload preferences when they change rather than just disabling swipe to go back and disabling caching
 
 # Suggestions to consider
 
