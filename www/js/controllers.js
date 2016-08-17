@@ -266,15 +266,14 @@ $scope.leftNewsfeedSwipe = function() {
 $scope.openSocialLink = function(type, link) {
   if (type == 'fb') {
       window.open($scope.currClub.social.facebook, '_system');
-  }
-  if (type == 'linkedin'){
+  } else if (type == 'linkedin'){
       window.open($scope.currClub.social.linkedin, '_system');
-  }
-  if (type == 'twitter'){
+  } else if (type == 'twitter'){
       window.open($scope.currClub.social.twitter, '_system');
-  }
-  if (type == 'youtube'){
+  } else if (type == 'youtube'){
       window.open($scope.currClub.social.youtube, '_system');
+  } else if (type == 'snapchat') {
+    window.open("http://www.snapchat.com/add/" + $scope.currClub.social.snapchat, '_system');
   }
 }
 $scope.openFbEvent = function(){

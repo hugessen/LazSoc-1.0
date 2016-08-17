@@ -153,7 +153,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -173,7 +173,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -192,7 +192,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "Social Change"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -212,7 +212,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -232,7 +232,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Case Competitions"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -250,7 +250,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     "International"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -270,7 +270,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Journalism",
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -290,7 +290,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -311,7 +311,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -331,7 +331,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Networking"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -353,7 +353,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Economics"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
@@ -373,7 +373,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Marketing"
 				],
                 social: {
-                    facebook:"facebook.com/lma",
+                    facebook:"https://www.facebook.com/lauriermarketing",
                     linkedin:"",
                     twitter:"",
                     youtube:"",
