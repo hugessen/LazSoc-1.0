@@ -362,8 +362,8 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
 
   $scope.getPrefCount = function() {
     var result = 0;
-    for(var x = 0; x < $scope.prefOptions.count; x++) {
-      if (prefOptions[x].selected) {
+    for(var x = 0; x < $scope.prefOptions.length; x++) {
+      if ($scope.prefOptions[x].selected) {
         result += 1;
       }
     }
