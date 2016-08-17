@@ -600,7 +600,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 
 		if(isEmptyObject(clubevents) || !clubevents || (((new Date) - clubevents.load_time) >= stale_time)) {
 			// If nothing is stored in local storage OR the stored data is stale, then re-load from the api
-			console.log("API Call Made");
+			console.log("API Call Made for Events");
 			that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
 			return $http.get('https://lazsoc.ca/app_info.php').then(function(APIresult) {
 				// After the API call returns, then loop through the result and load in each club
@@ -619,7 +619,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		} else  {
 			// Data is stored locally and not stale, so return that
 			// The calls expect a callback, so return a 'fake' promise so that the getAllEvents.then will still work even though no API call is made
-			console.log("Local storage loaded");
+			console.log("Local storage loaded for Events");
 			return new Promise(function (resolve, reject) {
 					resolve(clubevents);
 				}

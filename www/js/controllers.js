@@ -168,6 +168,17 @@ $scope.preferencesChangePage = function(type) {
     //$ionicHistory.clearCache();
   }
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
+  $scope.getCurrClubEventCount = function () {
+    if($scope.currClub) {
+      var result = 0;
+      for(var x = 0; x < $scope.events.length; x++) {
+        if ($scope.events[x].club.slug == $scope.currClub.slug) {
+          result += 1;
+        }
+      }
+      $scope.currClubEventCount = result;
+    }
+  }
   $scope.getClubSubCount = function() {
     var result = 0;
     for(var x = 0; x < $scope.clubs.length; x++) {
@@ -197,7 +208,9 @@ $scope.filterByTime = "thisweek";
 $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
 $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
+      console.log("Got events");
         $scope.events = APIresult.data;
+        $scope.getCurrClubEventCount(); // Call this function to get curr club event count when events load
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
         $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
     }, function(error){
@@ -337,7 +350,8 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
     $state.go('app.event', { eventId: id });
   }
   WebAPI.getAllEvents().then(function(APIresult){
-       $scope.currEvent = APIresult.data[$stateParams.eventId];
+    console.log("Got events");
+    $scope.currEvent = APIresult.data[$stateParams.eventId];
   })
   //Adding events to the calendar
   $scope.addToCalendar = function() {
@@ -500,7 +514,8 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
     }
     $localstorage.setObject('sbess-app-clubPrefs', to_save);
     WebAPI.getAllEvents().then(function(APIresult){
-      $scope.events = APIresult.data;
+      console.log("Got events");
+        $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
         $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
       }, function(error){
