@@ -1,37 +1,34 @@
-<ion-header-bar class="bar-royal">
-	<div class="buttons">
-		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
-	</div>
-	<h1 class="title">{{currClub.name}}</h1>
-</ion-header-bar>
-<ion-content>
-	<img ng-src="{{currClub.banner}}" style="width:100%"></img>
-	<div style="padding-bottom:3px; padding-left:5px">
-		<button class="button" style="background-color: #3b5998" ng-show="currClub.social.facebook" ng-click="openSocialLink('fb')"><i class="icon ion-social-facebook" style="color:white"></i></button>
-		<button class="button" style="background-color: #007bb6" ng-show="currClub.social.linkedin" ng-click="openSocialLink('linkedin')"><i class="icon ion-social-linkedin" style="color:white"></i></button>
-		<button class="button" style="background-color: #00aced" ng-show="currClub.social.twitter" ng-click="openSocialLink('twitter')"><i class="icon ion-social-twitter" style="color:white"></i></button>
-		<button class="button" style="background-color: #bb0000" ng-show="currClub.social.youtube" ng-click="openSocialLink('youtube')"><i class="icon ion-social-youtube" style="color:white"></i></button>
-		<button class="button" style="background-color: #eeee00" ng-show="currClub.social.snapchat" ng-click="openSocialLink('fb')"><i class="icon ion-social-snapchat" style="color:white"></i></button>
-	</div>
-	<div class="button-bar" style="padding-bottom:1px">
-		<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
-		<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
-	</div>
-	<div style="border-top: 1px solid lightgray">
-		{{currClub.desc}}        
-	</div><br/>
-	<ion-list>
-		<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.club.slug == currClub.slug" class="itembox item-thumbnail-left">
-			<img ng-src="{{event.thumbnail}}" class="imgbox">
-			<titleFont>{{event.title}}</titleFont></br>
-			<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
-		</ion-item>
-	</ion-list>
-	<a> 
-		<div class="row"><div class="col">
-			<div class="video-container">
-				<iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
-			</div>
-		</div></div>
-	</a>
-</ion-content>
+<ion-view>
+	<ion-nav-title>{{currClub.name}}</ion-nav-title>
+	<ion-content>
+		<img ng-src="{{currClub.banner}}" style="width:100%"></img>
+		<div style="padding-bottom:3px; padding-left:5px">
+			<button class="button" style="background-color: #3b5998" ng-show="currClub.social.facebook" ng-click="openSocialLink('fb')"><i class="icon ion-social-facebook" style="color:white"></i></button>
+			<button class="button" style="background-color: #007bb6" ng-show="currClub.social.linkedin" ng-click="openSocialLink('linkedin')"><i class="icon ion-social-linkedin" style="color:white"></i></button>
+			<button class="button" style="background-color: #00aced" ng-show="currClub.social.twitter" ng-click="openSocialLink('twitter')"><i class="icon ion-social-twitter" style="color:white"></i></button>
+			<button class="button" style="background-color: #bb0000" ng-show="currClub.social.youtube" ng-click="openSocialLink('youtube')"><i class="icon ion-social-youtube" style="color:white"></i></button>
+			<button class="button" style="background-color: #eeee00" ng-show="currClub.social.snapchat" ng-click="openSocialLink('fb')"><i class="icon ion-social-snapchat" style="color:white"></i></button>
+		</div>
+		<div class="button-bar" style="padding-bottom:1px">
+			<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == false">Subscribe!</button>
+			<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-show="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
+		</div>
+		<div style="border-top: 1px solid lightgray">
+			{{currClub.desc}}        
+		</div><br/>
+		<ion-list>
+			<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-show="event.club.slug == currClub.slug" class="itembox item-thumbnail-left">
+				<img ng-src="{{event.thumbnail}}" class="imgbox">
+				<titleFont>{{event.title}}</titleFont></br>
+				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+			</ion-item>
+		</ion-list>
+		<a> 
+			<div class="row"><div class="col">
+				<div class="video-container">
+					<iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div></div>
+		</a>
+	</ion-content>
+</ion-view>

@@ -124,7 +124,7 @@ $scope.preferencesGoBack = function(data) {
     // but if it does, just call the close function instead
     $scope.preferencesClose();
   } else if (stateName == 'app.personalinfo') {
-  } else if (stateName == 'app.clubpage') {
+  } else if (stateName == 'app.clubpage_modal') {
   
   } else if (stateName == 'app.interests') {
 
@@ -154,10 +154,13 @@ $scope.preferencesChangePage = function(type) {
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
 
   //The app accesses the club description pages through URL routing. We do that here
-  $scope.navigateToClub = function(clubID){
-    IonicModalNavService.go('app.clubpage', { clubId: clubID });
+  $scope.navigateToClubModal = function(clubID){
+    IonicModalNavService.go('app.clubpage_modal', { clubId: clubID });
   }  
-   
+  $scope.navigateToClubPage = function(clubID) {
+    $state.go('app.clubpage', { clubId: clubID });
+  }
+
 /*
 * Newsfeed
 * Here we determine which events will populate our newsfeed based on the user's interests. 

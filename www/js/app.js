@@ -75,6 +75,15 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     }
   })
   .state('app.clubpage', {
+    url: '/clubs/:clubId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/clubpage.html',
+        controller: 'MainCtrl'
+      }
+    }
+  })
+  .state('app.clubpage_modal', {
     params: {
       'clubId' : null
     },
