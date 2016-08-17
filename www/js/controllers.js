@@ -100,8 +100,14 @@ $scope.initialLaunchGoBack = function(data) {
 $scope.openPreferenceModal = function() {
   IonicModalNavService.show('app.selectpref');
 }
+$scope.$on('refreshAll', function(ev, args){
+  $scope.reloadFeed();
+  $scope.prefOptions = WebAPI.getPrefOptions();
+
+});
 $scope.preferencesClose = function() {
   IonicModalNavService.hide();
+  $state.go('app.viewpreferences');
   //IonicModalNavService.destroy();
 }
 $scope.preferencesSavePersonalData = function() {
@@ -143,7 +149,7 @@ $scope.preferencesChangePage = function(type) {
         $scope.clubs[x].selected = ! $scope.clubs[x].selected; 
       }
     }
-    $ionicHistory.clearCache();
+    //$ionicHistory.clearCache();
   }
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
 
@@ -151,9 +157,7 @@ $scope.preferencesChangePage = function(type) {
   $scope.navigateToClub = function(clubID){
     IonicModalNavService.go('app.clubpage', { clubId: clubID });
   }  
- 
-  
-  
+   
 /*
 * Newsfeed
 * Here we determine which events will populate our newsfeed based on the user's interests. 
@@ -350,7 +354,7 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
         $scope.prefOptions[x].selected = ! $scope.prefOptions[x].selected; 
       }
     }
-    $ionicHistory.clearCache();
+    //$ionicHistory.clearCache();
   }
   $scope.debug = function(){
       $ionicPopup.alert({

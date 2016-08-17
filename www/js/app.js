@@ -1,4 +1,12 @@
 angular.module('sbess', ['ionic', 'sbess.controllers'])
+ .config(function(IonicModalNavServiceProvider) {
+        IonicModalNavServiceProvider.setModalOptions({
+             animation: "slide-in-up", //supports whatever Ionic supports
+             focusFirstInput: false,
+             backdropClickToClose: false,
+             hardwareBackButtonClose: false
+        });
+    })
 .run(function($ionicPlatform, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {
     if (window.StatusBar) {

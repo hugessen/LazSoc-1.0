@@ -508,11 +508,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			
 		];
 
-		if (!isEmptyObject(clubs) && !isEmptyObject(reconcileClubs)) { // Has local preferences saved, reconcile club data and API returned
+		if (!isEmptyObject(clubs) && !isEmptyObject(APIresult)) { // Has local preferences saved, reconcile club data and API returned
 			var reconciled = reconcileClubs(APIresult, clubs);
 			$localstorage.setObject('sbess-app-clubPrefs', reconciled);
 		    return reconciled;
-		} else if ( !isEmptyObject(reconcileClubs) ) { // No local storage but API returned
+		} else if ( !isEmptyObject(APIresult) ) { // No local storage but API returned
 			for(var x = 0; x < APIresult.length; x++) {
 				APIresult[x]["selected"] = false;
 			}
