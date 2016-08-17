@@ -100,11 +100,10 @@ $scope.initialLaunchGoBack = function(data) {
 $scope.openPreferenceModal = function() {
   IonicModalNavService.show('app.selectpref');
 }
-$scope.$on('refreshAll', function(ev, args){
+/*$scope.$on('refreshAll', function(ev, args){
   $scope.reloadFeed();
   $scope.prefOptions = WebAPI.getPrefOptions();
-
-});
+});*/
 $scope.preferencesClose = function() {
   IonicModalNavService.hide();
   $state.go('app.viewpreferences');
@@ -116,16 +115,33 @@ $scope.preferencesSavePersonalData = function() {
     $scope.savePrefs('personalData');
   }
 }
-$scope.preferencesGoBack = function(data) {
+
+IonicModalNavService.onBack(function(data) {
+  if(data.reload) {
+    try {
+      $scope.clubs = WebAPI.getAllClubs();
+      $scope.$apply();
+    } catch (err) {
+      console.log("Error caught in apply()");
+      console.log(err);
+    }    
+  }
+});
+
+$scope.preferencesGoBack = function() {
   var state = $ionicHistory.currentView();
   var stateName = state.stateName;
+  var data = null;
   if (stateName == 'app.selectpref') {
     // app.selectpref should never occur as a statename because of the fact that it should call modal close, not back
     // but if it does, just call the close function instead
     $scope.preferencesClose();
   } else if (stateName == 'app.personalinfo') {
+
   } else if (stateName == 'app.clubpage_modal') {
-  
+    data = {
+      reload: true
+    };
   } else if (stateName == 'app.interests') {
 
   } else if (stateName == 'app.clubselector') {
