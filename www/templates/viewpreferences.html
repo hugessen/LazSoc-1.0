@@ -20,6 +20,14 @@
                 </label>
                 <!--<p>Nine Inch Nails</p>-->
             </a>
+            <div class="row" ng-if="clubSubCount < 1">
+                <div class="col">
+                    <div class="text-center">
+                        <h5 style="text-align: center; color: #9A9B9C;">Looks like you're not subscribed to any clubs :(</h5>
+                        <h5 style="text-align: center; color: #9A9B9C;"><a ng-click="openPreferenceModal()" style="color: #0645AD;">Click here</a> to subscribe to some clubs!</h5>
+                    </div>
+                </div>
+            </div>
 
             <div class="item item-divider">
                 Interests
@@ -31,6 +39,15 @@
                     <i class="ion-heart" style="font-size: 30px;"></i>
                 </label>
             </a>
+            <div class="row" ng-if="prefCount < 1">
+                <div class="col">
+                    <div class="text-center">
+                        <h5 style="text-align: center; color: #9A9B9C;">Looks like you're not subscribed to any interests :(</h5>
+                        <h5 style="text-align: center; color: #9A9B9C;"><a ng-click="openPreferenceModal()" style="color: #0645AD;">Click here</a> to subscribe to some interests!</h5>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </ion-content>
 </ion-view>

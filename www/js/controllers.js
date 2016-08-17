@@ -152,6 +152,16 @@ $scope.preferencesChangePage = function(type) {
     //$ionicHistory.clearCache();
   }
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
+  $scope.getClubSubCount = function() {
+    var result = 0;
+    for(var x = 0; x < $scope.clubs.length; x++) {
+      if(! $scope.clubs[x].removed && $scope.clubs[x].selected) {
+        result += 1;
+      }
+    }
+    return result;
+  }
+  $scope.clubSubCount = $scope.getClubSubCount();
 
   //The app accesses the club description pages through URL routing. We do that here
   $scope.navigateToClubModal = function(clubID){
@@ -349,8 +359,18 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
 * Here we manage all the user's club and categorical preferences, save them in JSON, and use them to customize their feed
 */
   $scope.prefOptions = WebAPI.getPrefOptions(); //Returns an array of categorical preferences
-  
-  
+
+  $scope.getPrefCount = function() {
+    var result = 0;
+    for(var x = 0; x < $scope.prefOptions.count; x++) {
+      if (prefOptions[x].selected) {
+        result += 1;
+      }
+    }
+    return result;
+  }
+  $scope.prefCount = $scope.getPrefCount();
+
   $scope.togglePrefs = function(id){
       for(var x = 0; x < $scope.prefOptions.length; x++) {
       if($scope.prefOptions[x].id == id) {

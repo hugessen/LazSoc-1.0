@@ -89,7 +89,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     },
     views: {
       'ionic-modal-nav@': {
-        templateUrl: 'templates/clubpage.html',
+        templateUrl: 'templates/clubpage_modal.html',
         controller: 'MainCtrl'
       }
     }
