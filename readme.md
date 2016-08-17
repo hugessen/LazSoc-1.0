@@ -20,6 +20,7 @@
 - [ ] Make preference saving and prefernce modal saving more robust so that even if the users internet is hugely lagging then we still load their latest preferences
 - [ ] Find a better way of doing the modal vs non-modal pages other than having two seperate files. i.e. clubselector_modal.html vs clubselector.html
 - [ ] Seperate controllers, currently there's one HUGE controller and it's really inefficient since only parts of the code are used in certain places
+- [ ] Make interests unclickable on the view preferences page
 
 # Suggestions to consider
 
