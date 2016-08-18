@@ -167,7 +167,84 @@ $scope.preferencesChangePage = function(type) {
     }
     //$ionicHistory.clearCache();
   }
+        
   $scope.currClub = WebAPI.getClub($stateParams.clubId);
+  $scope.getCurrClubSocialLinkCount = function() {
+    console.log
+    if($scope.currClub) {
+      var result = 0;
+      var resultArr = [];
+      if($scope.currClub.social) {
+        if($scope.currClub.social.facebook) {
+          result += 1;
+          resultArr.push({
+            type: 'facebook',
+            link: $scope.currClub.social.facebook,
+            color: '#3b5998',
+            icon: 'ion-social-facebook'
+          });
+        }
+        if($scope.currClub.social.twitter) {
+          result += 1;
+          resultArr.push({
+            type: 'twitter',
+            link: $scope.currClub.social.twitter,
+            color: '#00aced',
+            icon: 'ion-social-twitter'
+          });
+
+        }
+        if($scope.currClub.social.instagram) {
+          result += 1;
+          resultArr.push({
+            type: 'instagram',
+            link: $scope.currClub.social.instagram,
+            color: '#c42da5',
+            icon: 'ion-social-instagram'
+          });
+
+        }
+        if($scope.currClub.social.youtube) {
+          result += 1;
+          resultArr.push({
+            type: 'youtube',
+            link: $scope.currClub.social.youtube,
+            color: '#bb0000',
+            icon: 'ion-social-youtube'
+          });
+        }
+        if($scope.currClub.social.snapchat) {
+          result += 1;
+          resultArr.push({
+            type: 'snapchat',
+            link: $scope.currClub.social.snapchat,
+            color: '#eeee00',
+            icon: 'ion-social-snapchat'
+          });
+        }
+        if($scope.currClub.social.linkedin) {
+          result += 1;
+          resultArr.push({
+            type: 'linkedin',
+            link: $scope.currClub.social.linkedin,
+            color: '#007bb6',
+            icon: 'ion-social-linkedin'
+          });
+        }
+      }
+      if ($scope.currClub.website) {
+        result += 1;
+        resultArr.push({
+          type: 'website',
+          link: $scope.currClub.website,
+          color: '#13db3d',
+          icon: 'ion-ios-world-outline'
+        });
+      }
+      $scope.currClubSocialLinks = resultArr;
+      $scope.currClubSocialCount = result;
+    }
+  }
   $scope.getCurrClubEventCount = function () {
     if($scope.currClub) {
       var result = 0;
@@ -211,6 +288,7 @@ $scope.reloadFeed = function() {
       console.log("Got events");
         $scope.events = APIresult.data;
         $scope.getCurrClubEventCount(); // Call this function to get curr club event count when events load
+        $scope.getCurrClubSocialLinkCount(); // Call this function to get social link count when events load to make the page more resnponsive
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
         $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
     }, function(error){
@@ -293,7 +371,7 @@ $scope.leftNewsfeedSwipe = function() {
 * The app utilizies social media to share events, clubs, etc as well as linking to partner social media handles. This gives the functionality to share items through various social media platforms. 
 */ 
 $scope.openSocialLink = function(type, link) {
-  if (type == 'fb') {
+  if (type == 'facebook') {
       window.open($scope.currClub.social.facebook, '_system');
   } else if (type == 'linkedin'){
       window.open($scope.currClub.social.linkedin, '_system');
@@ -303,6 +381,10 @@ $scope.openSocialLink = function(type, link) {
       window.open($scope.currClub.social.youtube, '_system');
   } else if (type == 'snapchat') {
     window.open("http://www.snapchat.com/add/" + $scope.currClub.social.snapchat, '_system');
+  } else if (type == 'instagram') {
+    window.open($scope.currClub.social.instagram, '_system');
+  } else if (type == 'website') {
+    window.open($scope.currClub.website, '_system');
   }
 }
 $scope.openFbEvent = function(){
