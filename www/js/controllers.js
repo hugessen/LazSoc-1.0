@@ -91,6 +91,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       $scope.savePrefs('categories', true);
       console.log('Finished initial launch.');
       IonicModalNavService.hide();
+      $state.go('app.newsfeed');
     }
   }
 

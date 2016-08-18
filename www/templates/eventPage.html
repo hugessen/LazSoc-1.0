@@ -7,9 +7,9 @@
 		</div>
 		<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
 		<div class="button-bar"> 
-      		<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar" style="color:black"> Add to Calendar</i></button>
-      		<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
-    	</div>
+			<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar" style="color:black"> Add to Calendar</i></button>
+			<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
+		</div>
 		<div class="item">
 			<i class="icon ion-clock"> When: {{currEvent.startDate}}</i>
 		</div>
@@ -21,14 +21,14 @@
 		</div>
 		<div class="item item-text-wrap">
 			{{currEvent.desc}}
-            <br/><br/>
+			<br/><br/>
 		</div>  
-        <a ng-show="{{currEvent.video}}"> 
-        <div class="row"><div class="col">
-        <div class="video-container">
-            <iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>
-        </div></div>
-        </a>
+		<a ng-show="{{currEvent.video}}"> 
+			<div class="row"><div class="col">
+				<div class="video-container">
+					<iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div></div>
+		</a>
 	</ion-content>
 </ion-view>

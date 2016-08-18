@@ -4,15 +4,12 @@
 		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
 	</div>
 	<h1 class="title">Select Interests</h1>
-	<div class="buttons">
-		<button class="button button-clear" ng-click="savePrefs('categories')">Save</button>
-	</div>
 </ion-header-bar>
 <ion-content>
 	<ul class="list">
 		<li class="item item-toggle" ng-repeat="pref in prefOptions">
 			{{pref.name}}
-			<label class="toggle toggle-relaxed"><input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected">
+			<label class="toggle toggle-purple"><input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected" ng-change="savePrefs('categories', true)">
 				<div class="track">
 					<div class="handle"></div>
 				</div>

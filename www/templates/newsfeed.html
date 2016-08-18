@@ -27,14 +27,14 @@
 		</div>
 	</div>
 	<ion-content class="has-header has-subheader has-footer">
-	<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
+		<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
 		<ion-list>
-			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left slide-in-both-ways">
+			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left" >
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
 				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
-				<subheaderFont ng-show="event.notes != ''">Based on your interest in: <b>{{event.notes}}</b></subheaderFont>
+				<subheaderFont ng-if="filterBy == 'custom'">Based on your interest in: <b>{{event.notes}}</b></subheaderFont>
 			</ion-item>
 		</ion-list>
 
@@ -48,3 +48,14 @@
 		</div>
 	</ion-content>	
 </ion-view>
+		<!--<div class="list">
+			<a class="item item-thumbnail-left lazsoc_preference_container" ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})">
+				<img src="{{event.thumbnail}}">
+				<span class="lazsoc_preference_text">
+					<h2>{{event.title}}</h2>
+					<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+					<subheaderFont ng-if="filterBy == 'custom'">Based on your interest in: <b>{{event.notes}}</b></subheaderFont>
+				</span>
+				
+			</a>
+		</div>-->

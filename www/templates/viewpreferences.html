@@ -12,10 +12,10 @@
             <div class="item item-divider">
                 Clubs
             </div>
-            <a class="item item-thumbnail-left" ng-click="navigateToClubPage(club.id)" ng-repeat="club in clubs track by $index" ng-if="!club.removed && club.selected">
+            <a class="item item-thumbnail-left lazsoc_preference_container" ng-click="navigateToClubPage(club.id)" ng-repeat="club in clubs track by $index" ng-if="!club.removed && club.selected">
                 <img src="thumbnails/{{club.logo}}">
-                <h2>{{club.name}}</h2>
-                <label class="toggle toggle-relaxed" style="float: right;">
+                <h2 class="lazsoc_preference_text">{{club.name}}</h2>
+                <label class="toggle toggle-relaxed lazsoc_preference_icon">
                     <i class="ion-heart" style="font-size: 30px;"></i>
                 </label>
                 <!--<p>Nine Inch Nails</p>-->
@@ -32,9 +32,9 @@
             <div class="item item-divider">
                 Interests
             </div>
-            <a class="item" href="#" ng-repeat="pref in prefOptions" ng-if="pref.selected">
-                {{pref.name}}
-                <label class="toggle toggle-relaxed" style="float: right;">
+            <a class="item lazsoc_interests lazsoc_preference_container" ng-repeat="pref in prefOptions" ng-if="pref.selected">
+                <span class="lazsoc_preference_text">{{pref.name}}</span>
+                <label class="toggle toggle-relaxed lazsoc_preference_icon">
                     <!--<input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected">-->
                     <i class="ion-heart" style="font-size: 30px;"></i>
                 </label>

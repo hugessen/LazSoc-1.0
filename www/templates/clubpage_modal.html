@@ -1,50 +1,53 @@
-<ion-header-bar class="bar-royal">
-	<div class="buttons">
-		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
-	</div>
-	<h1 class="title">{{currClub.name}}</h1>
-</ion-header-bar>
-<ion-content>
-	<img ng-src="{{currClub.banner}}" style="width:100%"></img>
-	<div class="list">
-		<div class="button-bar" style="padding-bottom:1px">
-			<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == false">Subscribe!</button>
-			<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
+<ion-view can-swipe-back="false">
+	<ion-header-bar class="bar-royal">
+		<div class="buttons">
+			<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
 		</div>
+		<h1 class="title">{{currClub.shortname}}</h1>
+	</ion-header-bar>
+	<ion-content>
+		<img ng-src="{{currClub.banner}}" style="width:100%"></img>
+		<div class="list">
+			<div class="button-bar" style="padding-bottom:1px">
+				<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == false">Subscribe!</button>
+				<!-- ng-if="!clubSelectionStatus" -->
+				<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
+				<!-- ng-if="clubSelectionStatus" -->
+			</div>
 
-		<div class="item item-divider">
-			Description
-		</div>
-		<div class="item item-text-wrap">
-			{{currClub.desc}}
-		</div>
+			<div class="item item-divider">
+				Description
+			</div>
+			<div class="item item-text-wrap">
+				{{currClub.desc}}
+			</div>
 
-		<div class="item item-divider">
-			Upcoming Events
-		</div>
-		<div class="item-text-wrap" ng-if="currClubEventCount >= 1">
-			<ion-list class="club-page-events">
-				<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-if="event.club.slug == currClub.slug" class="itembox item-thumbnail-left"> <!-- class=club-page-events -->
-					<img ng-src="{{event.thumbnail}}" class="imgbox">
-					<titleFont>{{event.title}}</titleFont></br>
-					<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
-				</ion-item>
-			</ion-list>
+			<div class="item item-divider">
+				Upcoming Events
+			</div>
+			<div class="item-text-wrap" ng-if="currClubEventCount >= 1">
+				<ion-list class="club-page-events">
+					<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-if="event.club.slug == currClub.slug" class="itembox item-thumbnail-left"> <!-- class=club-page-events -->
+						<img ng-src="{{event.thumbnail}}" class="imgbox">
+						<titleFont>{{event.title}}</titleFont></br>
+						<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+					</ion-item>
+				</ion-list>
 
-		</div>
+			</div>
 
-		<div class="row" ng-if="currClubEventCount < 1">
-			<div class="col">
-				<div class="text-center">
-					<h5 style="text-align: center; color: #9A9B9C;">Looks like {{currClub.name}} doesn't currently have any upcoming events :(</h5>
-					<h5 style="text-align: center; color: #9A9B9C;">Check back soon, new events are added almost daily!</h5>
+			<div class="row" ng-if="currClubEventCount < 1">
+				<div class="col">
+					<div class="text-center">
+						<h5 style="text-align: center; color: #9A9B9C;">Looks like {{currClub.name}} doesn't currently have any upcoming events :(</h5>
+						<h5 style="text-align: center; color: #9A9B9C;">Check back soon, new events are added almost daily!</h5>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="item item-divider">
-			Connect with {{currClub.name}}
-		</div>
+			<div class="item item-divider">
+				Connect with {{currClub.name}}
+			</div>
 		<!-- 
 				Because CSS sucks, use JS to implement loner control 
 				This way, we'll have a split as follows:
@@ -55,41 +58,41 @@
 				3 links in one line
 				2 links in one line
 				1 link in a line
-		-->
+			-->
 
-		<!-- This covers the 4/3 and 4/2 split-->
-		<div class="item item-text-wrap" style="text-align:center; border-bottom: none;" ng-if="currClubSocialCount == 7 || currClubSocialCount == 6"> 
-			<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px;" ng-click="openSocialLink('{{link.type}}')" ng-if="$index <= 3">
-				<i class="icon {{link.icon}}" style="color:white"></i>
-			</button>
-		</div>
-		<div class="item item-text-wrap" style="text-align:center; border-top: none; padding-top: 0px;" ng-if="currClubSocialCount == 7 || currClubSocialCount == 6"> 
-			<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index > 3"><i class="icon {{link.icon}}" style="color:white"></i></button>
-		</div>
+			<!-- This covers the 4/3 and 4/2 split-->
+			<div class="item item-text-wrap" style="text-align:center; border-bottom: none;" ng-if="currClubSocialCount == 7 || currClubSocialCount == 6"> 
+				<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px;" ng-click="openSocialLink('{{link.type}}')" ng-if="$index <= 3">
+					<i class="icon {{link.icon}}" style="color:white"></i>
+				</button>
+			</div>
+			<div class="item item-text-wrap" style="text-align:center; border-top: none; padding-top: 0px;" ng-if="currClubSocialCount == 7 || currClubSocialCount == 6"> 
+				<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index > 3"><i class="icon {{link.icon}}" style="color:white"></i></button>
+			</div>
 
-		<!-- This covers the 3/2-->
-		<div class="item item-text-wrap" style="text-align:center; border-bottom: none;" ng-if="currClubSocialCount == 5"> 
-			<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index <= 2"><i class="icon {{link.icon}}" style="color:white"></i></button>
-		</div>
-		<div class="item item-text-wrap" style="text-align:center; border-top: none; padding-top: 0px;" ng-if="currClubSocialCount == 5"> 
-			<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index > 2"><i class="icon {{link.icon}}" style="color:white"></i></button>
-		</div>
+			<!-- This covers the 3/2-->
+			<div class="item item-text-wrap" style="text-align:center; border-bottom: none;" ng-if="currClubSocialCount == 5"> 
+				<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index <= 2"><i class="icon {{link.icon}}" style="color:white"></i></button>
+			</div>
+			<div class="item item-text-wrap" style="text-align:center; border-top: none; padding-top: 0px;" ng-if="currClubSocialCount == 5"> 
+				<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')" ng-if="$index > 2"><i class="icon {{link.icon}}" style="color:white"></i></button>
+			</div>
 
-		<!-- This covers all the cases where there's only one line -->
-		<div class="item item-text-wrap" style="text-align:center;" ng-if="currClubSocialCount < 5 && currClubSocialCount > 0"> 
-			<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')"><i class="icon {{link.icon}}" style="color:white"></i></button>
-		</div>
+			<!-- This covers all the cases where there's only one line -->
+			<div class="item item-text-wrap" style="text-align:center;" ng-if="currClubSocialCount < 5 && currClubSocialCount > 0"> 
+				<button class="button" ng-repeat="link in currClubSocialLinks" style="background-color: {{link.color}}; margin-right: 10px" ng-click="openSocialLink('{{link.type}}')"><i class="icon {{link.icon}}" style="color:white"></i></button>
+			</div>
 
-		<!-- Should not happen -->
-		<div class="row" ng-if="currClubSocialCount == 0">
-			<div class="col">
-				<div class="text-center">
-					<h5 style="text-align: center; color: #9A9B9C;">That's weird! {{currClub.name}} doesn't have any social links on file with us. Reach out to us at <a href="mailto:ask@lazsoc.ca">ask@lazsoc.ca</a> or through any of our social media about this, and we'll get it fixed right away!</h5>
+			<!-- Should not happen -->
+			<div class="row" ng-if="currClubSocialCount == 0">
+				<div class="col">
+					<div class="text-center">
+						<h5 style="text-align: center; color: #9A9B9C;">That's weird! {{currClub.name}} doesn't have any social links on file with us. Reach out to us at <a href="mailto:ask@lazsoc.ca">ask@lazsoc.ca</a> or through any of our social media about this, and we'll get it fixed right away!</h5>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</ion-content>
+	</ion-content>
 		<!--<a> 
 			<div class="row"><div class="col">
 				<div class="video-container">
@@ -98,3 +101,4 @@
 			</div></div>
 		</a>-->
 
+	</ion-view>

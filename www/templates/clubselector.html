@@ -4,15 +4,12 @@
 		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
 	</div>
 	<h1 class="title">Select Clubs</h1>
-	<div class="buttons">
-		<button class="button button-clear" ng-click="savePrefs('clubs')">Save</button>
-	</div>
 </ion-header-bar>
 <ion-content>
 	<flexbox> 
 		<div class="selectionbox" ng-repeat="club in clubs track by $index" ng-if="!club.removed"> <!-- Do not show clubs that are removed -->
 			<infobox ng-click="navigateToClubModal(club.id)"><img src="thumbnails/info-icon.png"></img></infobox>
-			<div ng-click="toggle(club.id)">	
+			<div ng-click="toggle(club.id); savePrefs('clubs', true);">	
 				<img src="thumbnails/{{club.logo}}" style="width:100%" ng-class="{ 'checked-clubs-page': club.selected , 'unchecked-clubs-page': ! club.selected}"></img>
 			</div>
 		</div>

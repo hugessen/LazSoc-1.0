@@ -3,9 +3,6 @@
 		<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
 	</div>
 	<h1 class="title">Personal Information</h1>
-	<div class="buttons">
-		<button class="button button-clear" ng-click="preferencesSavePersonalData()">Save</button>
-	</div>
 </ion-header-bar>
 <ion-content>
 	<div>
@@ -15,20 +12,20 @@
 		<div class="list">
 			<label class="item item-input">
 				<span class="input-label">First Name</span>
-				<input type="text" placeholder="" ng-model="personalData.firstName">
+				<input type="text" placeholder="" ng-model="personalData.firstName" ng-change="savePrefs('personalData', true)">
 			</label>
 			<label class="item item-input">
 				<span class="input-label">Last Name</span>
-				<input type="text" placeholder="" ng-model="personalData.lastName">
+				<input type="text" placeholder="" ng-model="personalData.lastName" ng-change="savePrefs('personalData', true)">
 			</label>
 			<label class="item item-input">
 				<span class="input-label">MyLaurier Email</span>
-				<input type="text" placeholder="abcd1234@mylaurier.ca" ng-model="personalData.laurierID">
+				<input type="text" placeholder="abcd1234@mylaurier.ca" ng-model="personalData.laurierID" ng-change="savePrefs('personalData', true)">
 			</label>
 			<label class="item item-input">
 				<span class="input-label">Wanna hear from us?</span>
 				<label class="toggle toggle-purple">
-					<input type="checkbox" ng-model="personalData.subscribed">
+					<input type="checkbox" ng-model="personalData.subscribed" ng-change="savePrefs('personalData', true)">
 					<div class="track">
 						<div class="handle"></div>
 					</div>

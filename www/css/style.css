@@ -103,3 +103,22 @@ height: 100%;
 	border-color: #330072 !important;
 	background-color: #330072 !important;
 }
+.lazsoc_interests {
+	pointer-events: none; 
+	cursor: default;
+}
+.lazsoc_preference_container, .lazsoc_interest_name {
+	display: flex;
+	align-items: center;
+}
+.lazsoc_preference_text {
+	flex: 50%;
+}
+.lazsoc_preference_icon {
+	flex: 50%;
+	text-align: right;
+}
+.lazsoc_preference_text, .lazsoc_preference_container {
+	word-wrap: break-word !important; 
+	white-space: initial !important;
+}
