@@ -125,3 +125,8 @@ height: 100%;
 .lazsoc_heart {
 	color: #fdb415;
 }
+.lazsoc_banner {
+	width:100%; 
+	padding:0px; 
+	display: block;
+}

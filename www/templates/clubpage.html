@@ -1,9 +1,9 @@
 <ion-view can-swipe-back="false">
 	<ion-nav-title>{{currClub.shortname}}</ion-nav-title>
 	<ion-content>
-		<img ng-src="{{currClub.banner}}" style="width:100%"></img>
-		<div class="list">
-			<div class="button-bar" style="padding-bottom:1px">
+		<img class="lazsoc_banner" ng-src="{{currClub.banner}}"></img>
+		<div class="list" style="padding-top: 0px;">
+			<div class="button-bar">
 				<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == false">Subscribe!</button>
 				<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
 			</div>

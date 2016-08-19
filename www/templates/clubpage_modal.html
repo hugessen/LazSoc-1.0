@@ -6,8 +6,8 @@
 		<h1 class="title">{{currClub.shortname}}</h1>
 	</ion-header-bar>
 	<ion-content>
-		<img ng-src="{{currClub.banner}}" style="width:100%"></img>
-		<div class="list">
+		<img class="lazsoc_banner" ng-src="{{currClub.banner}}"></img>
+		<div class="list" style="padding-top: 0px;">
 			<div class="button-bar" style="padding-bottom:1px">
 				<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == false">Subscribe!</button>
 				<!-- ng-if="!clubSelectionStatus" -->
