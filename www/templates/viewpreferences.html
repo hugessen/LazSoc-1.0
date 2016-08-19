@@ -1,7 +1,7 @@
-<ion-view cache-view="false">
+<ion-view cache-view="false" can-swipe-back="false">
     <ion-nav-title>Preferences</ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="openPreferenceModal()">
+        <button class="button" ng-click="openPreferenceModal()" style="border: none;">
             <i class="icon ion-gear-a" style=""></i> Edit
         </button>
     </ion-nav-buttons>
@@ -15,7 +15,7 @@
                 <img src="thumbnails/{{club.logo}}">
                 <h2 class="lazsoc_preference_text">{{club.name}}</h2>
                 <label class="toggle toggle-relaxed lazsoc_preference_icon">
-                    <i class="ion-heart" style="font-size: 30px;"></i>
+                    <i class="ion-heart lazsoc_heart" style="font-size: 30px;"></i>
                 </label>
                 <!--<p>Nine Inch Nails</p>-->
             </a>
@@ -35,7 +35,7 @@
                 <span class="lazsoc_preference_text">{{pref.name}}</span>
                 <label class="toggle toggle-relaxed lazsoc_preference_icon">
                     <!--<input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected">-->
-                    <i class="ion-heart" style="font-size: 30px;"></i>
+                    <i class="ion-heart lazsoc_heart" style="font-size: 30px;"></i>
                 </label>
             </a>
             <div class="row" ng-if="prefCount < 1">

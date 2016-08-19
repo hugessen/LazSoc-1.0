@@ -98,10 +98,10 @@ height: 100%;
 	font-family:Calluna;
 	src: url(fonts/CallunaSansRegular.otf);
 }
-.toggle.toggle-purple input:checked:before, 
-.toggle.toggle-purple input:checked + .track {
-	border-color: #330072 !important;
-	background-color: #330072 !important;
+.toggle.toggle-gold input:checked:before, 
+.toggle.toggle-gold input:checked + .track {
+	border-color: #fdb415 !important;
+	background-color: #fdb415 !important;
 }
 .lazsoc_interests, .lazsoc_event_page {
 	pointer-events: none; 
@@ -121,4 +121,7 @@ height: 100%;
 .lazsoc_preference_text, .lazsoc_preference_container, .lazsoc_event_date, .lazsoc_event_location {
 	word-wrap: break-word !important; 
 	white-space: initial !important;
+}
+.lazsoc_heart {
+	color: #fdb415;
 }

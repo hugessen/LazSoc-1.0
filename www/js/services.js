@@ -353,7 +353,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			},
 			{
 				id: 11,
-				name: "LIFA",
+				name: "Laurier Investment & Finance Association",
 				shortname: "LIFA",
 				slug: "lifa",
 				desc: "Laurier Investment & Finance Association’s (LIFA) mission is to develop, educate and inspire students into exploring the different roles within the finance industry. Our commitment to the Laurier community is to offer valuable opportunities, including unique and instructive events for students to interact, network and learn from today’s industry leaders.",

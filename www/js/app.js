@@ -119,6 +119,15 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
         }
       }
     })
+  .state('app.discountcard', {
+      url: '/discountcard',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/discountcard.html',
+          controller: 'MainCtrl'
+        }
+      }
+    })
   .state('app.event', {
     url: '/news/:eventId',
     views: {

@@ -1,25 +1,23 @@
 <ion-view can-swipe-back="false">
 	<ion-nav-title></ion-nav-title>
 	<ion-content>
-		<div>
-			<img ng-src="{{clubs[currEvent.clubRef].banner}}" style="width:100%; padding:0px" ng-hide="clubs[currEvent.clubRef].banner == ''">
-			<img src="banners/header-laurier.jpg" style="width:100%; padding:0px" ng-show="clubs[currEvent.clubRef].banner == ''">
-		</div>
+		<img ng-src="{{clubs[currEvent.clubRef].banner}}" style="width:100%; padding:0px" ng-if="clubs[currEvent.clubRef].banner != ''">
+		<img src="banners/header-laurier.jpg" style="width:100%; padding:0px" ng-if="clubs[currEvent.clubRef].banner == ''">
 
 		
 		<div class="list">
 			<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
 
 			<div class="button-bar"> 
-				<button class="button" ng-click="addToCalendar()"><i class="icon ion-android-calendar" style="color:black;"> Add to Calendar</i></button>
+				<button class="button" ng-click="addToCalendar()" style="color:black;">Add to <i class="icon ion-android-calendar"></i></button>
 				<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
 			</div>
 
-			<a class="item lazsoc_event_date lazsoc_event_page" href="#">
+			<a class="item lazsoc_event_date lazsoc_event_page" style="color:black;">
 				<i class="icon ion-ios-clock-outline"></i> {{currEvent.stringifiedCurrEventDate}}
 			</a>
 
-			<a class="item lazsoc_event_location lazsoc_event_page" href="#">
+			<a class="item lazsoc_event_location lazsoc_event_page" style="color:black;">
 				<i class="icon ion-android-pin"></i> {{currEvent.location}}
 			</a>
 
