@@ -5,30 +5,42 @@
 			<img ng-src="{{clubs[currEvent.clubRef].banner}}" style="width:100%; padding:0px" ng-hide="clubs[currEvent.clubRef].banner == ''">
 			<img src="banners/header-laurier.jpg" style="width:100%; padding:0px" ng-show="clubs[currEvent.clubRef].banner == ''">
 		</div>
-		<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
-		<div class="button-bar"> 
-			<button class="button" ng-click="addToCalendar()"><i class="icon ion-calendar" style="color:black"> Add to Calendar</i></button>
-			<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
+
+		
+		<div class="list">
+			<div class="item item-divider"><b><center><font size="+1">{{currEvent.title}}</font></center></b></div>
+
+			<div class="button-bar"> 
+				<button class="button" ng-click="addToCalendar()"><i class="icon ion-android-calendar" style="color:black;"> Add to Calendar</i></button>
+				<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
+			</div>
+
+			<a class="item lazsoc_event_date lazsoc_event_page" href="#">
+				<i class="icon ion-ios-clock-outline"></i> {{currEvent.stringifiedCurrEventDate}}
+			</a>
+
+			<a class="item lazsoc_event_location lazsoc_event_page" href="#">
+				<i class="icon ion-android-pin"></i> {{currEvent.location}}
+			</a>
+
+			<div class="item item-divider">
+				Details
+			</div>
+
+			<a class="item lazsoc_event_date lazsoc_event_page" href="#">
+				{{currEvent.desc}}
+			</a>
+
 		</div>
-		<div class="item">
-			<i class="icon ion-clock"> When: {{currEvent.startDate}}</i>
-		</div>
-		<div class="item">
-			<i class="icon ion-clock"> End: {{currEvent.endDate}}</i>
-		</div>		
-		<div class="item">
-			<i class="icon ion-android-pin"> Where: {{currEvent.location}}</i>
-		</div>
-		<div class="item item-text-wrap">
-			{{currEvent.desc}}
-			<br/><br/>
-		</div>  
-		<a ng-show="{{currEvent.video}}"> 
+
+		
+
+	</ion-content>
+</ion-view>
+		<!--<a ng-show="{{currEvent.video}}"> 
 			<div class="row"><div class="col">
 				<div class="video-container">
 					<iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div></div>
-		</a>
-	</ion-content>
-</ion-view>
+		</a>-->

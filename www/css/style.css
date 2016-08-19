@@ -103,7 +103,7 @@ height: 100%;
 	border-color: #330072 !important;
 	background-color: #330072 !important;
 }
-.lazsoc_interests {
+.lazsoc_interests, .lazsoc_event_page {
 	pointer-events: none; 
 	cursor: default;
 }
@@ -118,7 +118,7 @@ height: 100%;
 	flex: 50%;
 	text-align: right;
 }
-.lazsoc_preference_text, .lazsoc_preference_container {
+.lazsoc_preference_text, .lazsoc_preference_container, .lazsoc_event_date, .lazsoc_event_location {
 	word-wrap: break-word !important; 
 	white-space: initial !important;
 }

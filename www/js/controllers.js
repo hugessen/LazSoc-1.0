@@ -1,7 +1,6 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils', 'IonicModalNav'])
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
 }])
-
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
 /*
 * Initial Launch
@@ -429,12 +428,49 @@ $scope.oldOpenSocialLink = function(httplink, applink, iOSScheme, androidScheme)
 * Events
 * App accesses events through URL routing. Gives functionality to add events and their info to calendar through Cordova
 */
+$scope.stringifyTime = function(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+$scope.stringifyCurrEventDate = function () {
+  var m_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var d_names = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  var startDate = new Date($scope.currEvent.startDate);
+  var endDate = new Date($scope.currEvent.endDate);
+  var result = "";
+  // Check date, month and year manually to see if the end and start date is the same
+  // If it is then we can easily say the event date is: 01/0/2016 9pm-12pm
+  if(startDate.getDate() == endDate.getDate()
+    && startDate.getMonth() == endDate.getMonth()
+    && startDate.getFullYear() == endDate.getFullYear()) {
+    result += d_names[startDate.getDay()] + ", " + m_names[startDate.getMonth()] + " " + startDate.getDate() + ", " + startDate.getFullYear();
+    result += " at " + $scope.stringifyTime(startDate) + " - " + $scope.stringifyTime(endDate);
+  } else {
+    // Start date day and end date day are different, so go 01/01/2016 9pm to 01/02/2016 9pm
+    result += d_names[startDate.getDay()] + ", " + m_names[startDate.getMonth()] + " " + startDate.getDate() + ", " + startDate.getFullYear();
+    result += " at " + $scope.stringifyTime(startDate) + " - ";
+    result += d_names[endDate.getDay()] + ", " + m_names[endDate.getMonth()] + " " + endDate.getDate() + ", " + endDate.getFullYear();
+    result += " at " + $scope.stringifyTime(endDate);
+
+  }
+  return result;
+}
   $scope.loadEvent = function(id){
     $state.go('app.event', { eventId: id });
   }
   WebAPI.getAllEvents().then(function(APIresult){
     console.log("Got events");
     $scope.currEvent = APIresult.data[$stateParams.eventId];
+    if($scope.currEvent) {
+      $scope.currEvent.stringifiedCurrEventDate = $scope.stringifyCurrEventDate();
+    }
   })
   //Adding events to the calendar
   $scope.addToCalendar = function() {
