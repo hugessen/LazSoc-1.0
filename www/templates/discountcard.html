@@ -6,9 +6,50 @@
 		</div>
 
 		<div class="list">
+			<div class="item discount_program_desc">
+				The Lazaridis Students' Society is proud to introduce and present the LazSoc Discount Program presented in partnership with Quick Sandwiches. All students with the official Discount Program sticker attached to the back of their Laurier OneCard are eligible to receive discounts from the partners listed below. For more information please contact the LazSoc VP of Corporate Relations at <a href="mailto:vpcorporate@lazsoc.ca">vpcorporate@lazsoc.ca</a>.
+			</div>
+
 			<div class="item item-divider">
 				Our Sponsors
 			</div>
+			<div class="list row">
+				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 2">
+					<img class="full-image" src="http://placehold.it/300x150">
+					<p>{{sponsor.name}}</p>
+					<p>{{sponsor.discount}}</p>
+				</div>
+			</div>
+			<div class="list row">
+				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 4 && $index > 1">
+					<img class="full-image" src="http://placehold.it/300x150">
+					<p>{{sponsor.name}}</p>
+					<p>{{sponsor.discount}}</p>
+				</div>
+			</div>
+			<div class="list row">
+				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 6 && $index > 3">
+					<img class="full-image" src="http://placehold.it/300x150">
+					<p>{{sponsor.name}}</p>
+					<p>{{sponsor.discount}}</p>
+				</div>
+			</div>
+			<div class="list row">
+				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 8 && $index > 5">
+					<img class="full-image" src="http://placehold.it/300x150">
+					<p>{{sponsor.name}}</p>
+					<p>{{sponsor.discount}}</p>
+				</div>
+			</div>
+			<div class="list row">
+				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 10 && $index > 7">
+					<img class="full-image" src="http://placehold.it/300x150">
+					<p>{{sponsor.name}}</p>
+					<p>{{sponsor.discount}}</p>
+				</div>
+			</div>
+
+			{{sponsors}}
 
 		</div>
 	</ion-content>

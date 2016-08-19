@@ -1,4 +1,60 @@
 angular.module('sbess.services',['ionic','sbess.utils'])
+.service('DiscountAPI', ['$http', function($http) {
+	this.getSponsors = function() {
+		return [
+		{
+			name: "Quick Sandwiches",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Shoeless Joes",
+			logo: "http://placehold.it/150x150",
+			discount: "-25% off Food with the Purchase of a Drink"
+		},
+		{
+			name: "Noon Moment",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Huther Hotel",
+			logo: "http://placehold.it/150x150",
+			discount: "TBD"
+		},
+		{
+			name: "Capri Salon",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Wordsworth Books",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Caliburger",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Menchies",
+			logo: "http://placehold.it/150x150",
+			discount: "-10%"
+		},
+		{
+			name: "Holy Guacamole",
+			logo: "http://placehold.it/150x150",
+			discount: "Free Upgrade to a Large Burrito"
+		},
+		{
+			name: "Staples",
+			logo: "http://placehold.it/150x150",
+			discount: "-20% Off Copy and Print Services"
+		}
+		];
+	}
+}])
 .service('WebAPI',['$localstorage','$http', '$ionicPopup',function($localstorage,$http, $ionicPopup){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');

@@ -1,6 +1,9 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils', 'IonicModalNav'])
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
 }])
+.controller('DiscountCtrl', ['$scope', '$location', 'DiscountAPI', function($scope, $location, DiscountAPI) {
+  $scope.sponsors = DiscountAPI.getSponsors();
+}])
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
 /*
 * Initial Launch

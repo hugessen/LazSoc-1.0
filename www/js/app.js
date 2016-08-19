@@ -124,7 +124,7 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/discountcard.html',
-          controller: 'MainCtrl'
+          controller: 'DiscountCtrl'
         }
       }
     })
