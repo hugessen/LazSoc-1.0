@@ -137,10 +137,10 @@ height: 100%;
 	text-align: center;
 	color: black !important;
 }
-.discount_desc {
-
-}
 .lazsoc_discount_header {
 	font-size: 14.5px !important;
 	font-weight: 700 !important;
+}
+.lazsoc_newsfeed {
+	padding-top: 16px;
 }

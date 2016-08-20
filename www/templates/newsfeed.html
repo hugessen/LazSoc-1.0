@@ -13,16 +13,16 @@
 	<div class="tabs-striped tabs-top tabs-background-royal" >
 		<div class="tabs" style="">
 			<a class="bar-royal tab-item" style="color:white;" ng-class="{ active: filterByTime == 'past' }" ng-click="setNewsfeedTimeperiod('past')">
-				Past
+				&nbsp;&nbsp;&nbsp;Past
 			</a>
 			<a class="bar-royal tab-item" style="color:white;" ng-class="{ active: filterByTime == 'thisweek' }" ng-click="setNewsfeedTimeperiod('thisweek')">
-				This Week
+				This Week&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</a>
 			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterByTime == 'nextweek' }" ng-click="setNewsfeedTimeperiod('nextweek')">
-				Next Week
+				Next Week&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</a>
 			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterByTime == 'upcoming' }" ng-click="setNewsfeedTimeperiod('upcoming')">
-				Upcoming
+				Upcoming&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</a>
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 		<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
 		<ion-list>
-			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left" >
+			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left lazsoc_newsfeed" >
 				<img ng-src="{{event.thumbnail}}" class="imgbox">
 				<titleFont>{{event.title}}</titleFont></br>
 				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
