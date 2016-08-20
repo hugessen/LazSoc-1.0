@@ -1,6 +1,6 @@
 <ion-view view-title="Discount Program">
 
-	<ion-content class="has-header">
+	<ion-content class="has-header" class="discount_page">
 		<div>
 			<img src="thumbnails/DiscountCard.png" style="width: 40%; margin-left: auto; margin-right: auto; display: block;"></img>
 		</div>
@@ -14,42 +14,40 @@
 				Our Sponsors
 			</div>
 			<div class="list row">
-				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 2">
+				<div class="item col lazsoc_discount_card" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 2">
+					<h2 class="lazsoc_discount_sponsor_text lazsoc_discount_header">{{sponsor.name}}</h2>
 					<img class="full-image" src="http://placehold.it/300x150">
-					<p>{{sponsor.name}}</p>
-					<p>{{sponsor.discount}}</p>
+					<p class="lazsoc_discount_sponsor_text discount_desc">{{sponsor.discount}}</p>
 				</div>
 			</div>
 			<div class="list row">
-				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 4 && $index > 1">
+				<div class="item col lazsoc_discount_card" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 4 && $index > 1">
+					<h3 class="lazsoc_discount_sponsor_text lazsoc_discount_header">{{sponsor.name}}</h3>
 					<img class="full-image" src="http://placehold.it/300x150">
-					<p>{{sponsor.name}}</p>
-					<p>{{sponsor.discount}}</p>
+					<p class="lazsoc_discount_sponsor_text discount_desc">{{sponsor.discount}}</p>
 				</div>
 			</div>
 			<div class="list row">
-				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 6 && $index > 3">
+				<div class="item col lazsoc_discount_card" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 6 && $index > 3">
+					<h3 class="lazsoc_discount_sponsor_text lazsoc_discount_header">{{sponsor.name}}</h3>					
 					<img class="full-image" src="http://placehold.it/300x150">
-					<p>{{sponsor.name}}</p>
-					<p>{{sponsor.discount}}</p>
+					<p class="lazsoc_discount_sponsor_text discount_desc">{{sponsor.discount}}</p>
 				</div>
 			</div>
 			<div class="list row">
-				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 8 && $index > 5">
+				<div class="item col lazsoc_discount_card" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 8 && $index > 5">
+					<h3 class="lazsoc_discount_sponsor_text lazsoc_discount_header">{{sponsor.name}}</h3>					
 					<img class="full-image" src="http://placehold.it/300x150">
-					<p>{{sponsor.name}}</p>
-					<p>{{sponsor.discount}}</p>
+					<p class="lazsoc_discount_sponsor_text discount_desc">{{sponsor.discount}}</p>
 				</div>
 			</div>
 			<div class="list row">
-				<div class="item col" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 10 && $index > 7">
+				<div class="item col lazsoc_discount_card" ng-repeat="sponsor in sponsors track by $index" ng-if="$index < 10 && $index > 7">
+					<h3 class="lazsoc_discount_sponsor_text lazsoc_discount_header">{{sponsor.name}}</h3>					
 					<img class="full-image" src="http://placehold.it/300x150">
-					<p>{{sponsor.name}}</p>
-					<p>{{sponsor.discount}}</p>
+					<p class="lazsoc_discount_sponsor_text discount_desc">{{sponsor.discount}}</p>
 				</div>
 			</div>
-
-			{{sponsors}}
 
 		</div>
 	</ion-content>

@@ -5,7 +5,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Quick Sandwiches",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Shoeless Joes",
@@ -15,7 +15,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Noon Moment",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Huther Hotel",
@@ -25,22 +25,22 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Capri Salon",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Wordsworth Books",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Caliburger",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Menchies",
 			logo: "http://placehold.it/150x150",
-			discount: "-10%"
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Holy Guacamole",

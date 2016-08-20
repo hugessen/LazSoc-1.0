@@ -118,7 +118,7 @@ height: 100%;
 	flex: 50%;
 	text-align: right;
 }
-.lazsoc_preference_text, .lazsoc_preference_container, .lazsoc_event_date, .lazsoc_event_location, .discount_program_desc {
+.lazsoc_preference_text, .lazsoc_preference_container, .lazsoc_event_date, .lazsoc_event_location, .discount_program_desc, .lazsoc_discount_sponsor_text {
 	word-wrap: break-word !important; 
 	white-space: initial !important;
 }
@@ -129,4 +129,18 @@ height: 100%;
 	width:100%; 
 	padding:0px; 
 	display: block;
+}
+.lazsoc_discount_card {
+	border: none;
+}
+.lazsoc_discount_sponsor_text {
+	text-align: center;
+	color: black !important;
+}
+.discount_desc {
+
+}
+.lazsoc_discount_header {
+	font-size: 14.5px !important;
+	font-weight: 700 !important;
 }
