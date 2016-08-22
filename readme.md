@@ -19,6 +19,7 @@
 - [ ] Find a better way of doing the modal vs non-modal pages other than having two seperate files. i.e. clubselector_modal.html vs clubselector.html
 - [ ] Seperate controllers, currently there's one HUGE controller and it's really inefficient since only parts of the code are used in certain places
 - [x] Make interests unclickable on the view preferences page
+- [ ] Remove appavailability since it's not being used
 
 # Suggestions to consider
 
@@ -32,34 +33,30 @@
 - Find a better way to reload preferences when they change rather than just disabling swipe to go back and disabling caching
 
 # Notes
-Currently, iOS will only be allowed to open twitter/facebook app. To allow more, *platforms/ios/LazSoc/LazSoc-Info.plist* needs to be updated to include the new URLs. More info [here](http://stackoverflow.com/questions/30987986/ios-9-not-opening-instagram-app-with-url-scheme) and [here](https://github.com/ohh2ahh/AppAvailability/issues/22). Current entry is:
 
-    <key>LSApplicationQueriesSchemes</key>
-	<array>
-	    <string>fb</string>
-	    <string>twitter</string>
-	</array>
+| ngCordova Plugin                   | in Ionic State? | Link |
+|:----------------------------------:|:---------------:|:----:|
+| cordova-plugin-calendar            | Yes             | [cordovaCalendar](http://ngcordova.com/docs/plugins/calendar/) |
+| cordova-plugin-network-information | Yes             | [cordovaNetwork](http://ngcordova.com/docs/plugins/network/) |
+| cordova-plugin-whitelist           | Yes             | [cordovaWhiteList](http://docs.ionic.io/docs/cordova-whitelist) |
+| cordova-plugin-inappbrowser        | Yes             | [cordovaInAppBrowser](http://ngcordova.com/docs/plugins/inAppBrowser/) |
+| cordova-plugin-appavailability     | Yes             | [cordovaAppAvailability](https://github.com/ohh2ahh/AppAvailability) |
 
-
-ngCordova Plugins:
-
-- [cordovaNetwork](http://ngcordova.com/docs/plugins/network/)
-- [cordovaCalendar](http://ngcordova.com/docs/plugins/calendar/)
-- [cordovaWhiteList](http://docs.ionic.io/docs/cordova-whitelist)
-- [cordovaInAppBrowser](http://ngcordova.com/docs/plugins/inAppBrowser/)
-- [cordovaAppAvailability](https://github.com/ohh2ahh/AppAvailability)
-
-So run:
+To add new plugin:
 
     cordova plugin add cordova-plugin-calendar
-    cordova plugin add cordova-plugin-network-information
-    cordova plugin add cordova-plugin-whitelist
-    cordova plugin add cordova-plugin-inappbrowser
-    cordova plugin add cordova-plugin-appavailability
     cordova prepare
 
+To add new plugin to state:
 
-Keystore Password: np}&zz'h5a5[HcT-
+    ionic state reset
+    cordova plugin add PLUGINNAME
+    cordova prepare
+    ionic state save
+
+Keystore Password: 
+
+    np}&zz'h5a5[HcT-
 
 Release building commands:
 
@@ -67,3 +64,13 @@ Release building commands:
     keytool -genkey -v -keystore lazsoc-release-key.keystore -alias lazsoc -keyalg RSA -keysize 2048 -validity 10000
     jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lazsoc-release-key.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk lazsoc
     /usr/local/opt/android-sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk LazSoc.apk
+
+## App Query Schemes
+
+iOS needs plist permissions to be able to open fb:// or twitter:// URLs. To allow more, *platforms/ios/LazSoc/LazSoc-Info.plist* needs to be updated to include the new URLs. More info [here](http://stackoverflow.com/questions/30987986/ios-9-not-opening-instagram-app-with-url-scheme) and [here](https://github.com/ohh2ahh/AppAvailability/issues/22). Current entry is:
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fb</string>
+        <string>twitter</string>
+    </array>
