@@ -10,7 +10,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Shoeless Joes",
 			logo: "thumbnails/discount_program/Shoeless_Joes_Logo.png",
-			discount: "-25% off Food with the Purchase of a Drink"
+			discount: "-25% Food with the Purchase of a Drink"
 		},
 		{
 			name: "Noon Moment",
@@ -50,7 +50,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Staples",
 			logo: "thumbnails/discount_program/Staples_Logo.png",
-			discount: "-20% Off Copy and Print Services"
+			discount: "-20% Copy and Print Services"
 		}
 		];
 	}
