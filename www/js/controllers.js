@@ -3,6 +3,26 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 }])
 .controller('DiscountCtrl', ['$scope', '$location', 'DiscountAPI', function($scope, $location, DiscountAPI) {
   $scope.sponsors = DiscountAPI.getSponsors();
+  // This function goes through the sponsors and outputs a 2d array where each sub-array is the specificed length
+  // This is so that we can easily output them into rows of 2 on the discount page
+  $scope.sponsorstoRows = function(size) {
+    var result = [];
+    for(var x = 0; x < $scope.sponsors.length; x += size) {
+      result.push($scope.sponsors.slice(x, x + size));
+    }
+    // Every row MUST be full, if it is not then add in spacing to make sure they're all the same size
+    for(var x = 0; x < result.length; x++) {
+      while(result[x].length % size != 0) {
+        result[x].push({
+          name: "",
+          logo: "",
+          discount: ""
+        });
+      }
+    }
+    return result;
+  }
+  $scope.sponsorsRows = $scope.sponsorstoRows(2);
 }])
 .controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
 /*

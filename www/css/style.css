@@ -144,3 +144,16 @@ height: 100%;
 .lazsoc_newsfeed {
 	padding-top: 16px;
 }
+.lazsoc_tabs {
+	overflow: hidden !important;
+	text-overflow: clip !important;
+}
+img.imgbox.lazsoc_event_img {
+	position: absolute; 
+	top: 0; 
+	bottom: 0 ; 
+	margin: auto ; 
+	width: auto ;
+    height: auto ;
+
+}
