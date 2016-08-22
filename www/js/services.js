@@ -4,52 +4,52 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		return [
 		{
 			name: "Quick Sandwiches",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Quick_Sandwiches_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
 			name: "Shoeless Joes",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Shoeless_Joes_Logo.png",
 			discount: "-25% off Food with the Purchase of a Drink"
 		},
 		{
 			name: "Noon Moment",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Noon_Moment_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
-			name: "Huther Hotel",
-			logo: "http://placehold.it/150x150",
+			name: "Huether Hotel",
+			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
 			discount: "TBD"
 		},
 		{
 			name: "Capri Salon",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
 			name: "Wordsworth Books",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Words_Worth_Books_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
 			name: "Caliburger",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Caliburger_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
 			name: "Menchies",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Menchies_Logo.png",
 			discount: "-10% Storewide"
 		},
 		{
 			name: "Holy Guacamole",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Holy_Guacamole_Logo.png",
 			discount: "Free Upgrade to a Large Burrito"
 		},
 		{
 			name: "Staples",
-			logo: "http://placehold.it/150x150",
+			logo: "thumbnails/discount_program/Staples_Logo.png",
 			discount: "-20% Off Copy and Print Services"
 		}
 		];
