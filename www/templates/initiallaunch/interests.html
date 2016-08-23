@@ -1,21 +1,23 @@
-<ion-header-bar class="bar-royal">
-	<div class="buttons">
-		<button class="button button-clear" ng-click="initialLaunchGoBack()">Back</button>
-	</div>
-	<h1 class="title">Select Interests</h1>
-	<div class="buttons">
-		<button class="button button-clear" ng-click="initialLaunchNextStep()">Finish</button>
-	</div>
-</ion-header-bar>
-<ion-content>
-	<ul class="list">
-		<li class="item item-toggle" ng-repeat="pref in prefOptions">
-			{{pref.name}}
-			<label class="toggle toggle-gold"><input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected" ng-change="savePrefs('categories', true)">
-				<div class="track">
-					<div class="handle"></div>
-				</div>
-			</label>
-		</li>
-	</ul>	
-</ion-content>
+<ion-view can-swipe-back="false">
+	<ion-header-bar class="bar-royal">
+		<div class="buttons">
+			<button class="button button-clear" ng-click="initialLaunchGoBack()">Back</button>
+		</div>
+		<h1 class="title">Select Interests</h1>
+		<div class="buttons">
+			<button class="button button-clear" ng-click="initialLaunchNextStep()">Finish</button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<ul class="list">
+			<li class="item item-toggle" ng-repeat="pref in prefOptions">
+				{{pref.name}}
+				<label class="toggle toggle-gold"><input type="checkbox" ng-checked="pref.selected" ng-model="pref.selected" ng-change="savePrefs('categories', true)">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</li>
+		</ul>	
+	</ion-content>
+</ion-view>
