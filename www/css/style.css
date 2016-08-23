@@ -157,3 +157,22 @@ img.imgbox.lazsoc_event_img {
     height: auto ;
 
 }
+.tabs-top.tabs-striped .tab-item.active.lazsoc_tabs {
+	border-color: white;
+	border-width: 0px 0px 0px 0px !important;
+}
+.tabs-top.tabs-striped .tab-item.active.lazsoc_tabs p {
+	border-width:0px 0px 0px 0px;
+	color: #F2A900;
+/*	height: 100%;
+	border: solid #F2A900;
+	border-width:0px 0px 5px 0px;
+*/
+}
+.tabs-striped .tab-item.active {
+	border-color: #F2A900;
+	border-width: 5px 0px 0px 0px;
+}
+.preferences_confirm .popup .popup-body {
+	padding-top: 0px;
+}

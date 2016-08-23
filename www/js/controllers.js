@@ -98,22 +98,79 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   $scope.initialLaunchNextStep = function(){
     var state = $ionicHistory.currentView();
     var stateName = state.stateName;
+
+    var confirm_required = false;
+    var is_valid = false;
+    $scope.state_go = '';
+
     if (stateName == 'app.initiallaunch_personalinfo') {
       var result = $scope.validatePersonalInfo(false);
+      $scope.state_go = 'app.initiallaunch_clubselector';
       if(result) {
         $scope.savePrefs('personalData', true);
         console.log('Valid personal info, moving to club selector');
-        IonicModalNavService.go('app.initiallaunch_clubselector');
+        is_valid = true;
       }
     } else if (stateName == 'app.initiallaunch_clubselector') {
       $scope.savePrefs('clubs', true);
-      console.log('Moving to interest selector');
-      IonicModalNavService.go('app.initiallaunch_interests');
+      $scope.state_go = 'app.initiallaunch_interests';
+      if($scope.getClubSubCount() < 1) {
+        confirm_required = true;
+        is_valid = false;
+        confirm_title = "No clubs followed";
+        confirm_message = "You haven't follow any clubs. Are you sure you want to leave this page?";
+      } else {
+        console.log('Moving to interest selector');
+        is_valid = true;
+      }
     } else if (stateName == 'app.initiallaunch_interests') {
       $scope.savePrefs('categories', true);
-      console.log('Finished initial launch.');
-      IonicModalNavService.hide();
-      $state.go('app.newsfeed');
+      $scope.state_go = 'app.hide';
+      if($scope.getPrefCount() < 1) {
+        confirm_required = true;
+        is_valid = false;
+        confirm_title = "No preferences selected";
+        confirm_message = "You haven't selected any preferences. Are you sure you want to leave this page?";
+      } else {
+        console.log('Finished initial launch.');
+        is_valid = true;
+      }
+    }
+    
+    if(confirm_required) {
+      var alertPopup = $ionicPopup.show({
+       title: confirm_title,
+       template: confirm_message,
+       scope: $scope,
+       cssClass: 'preferences_confirm',
+       buttons: [
+        { 
+          text: 'Go Forward',
+          type: 'button-assertive',
+          onTap: function(e) {
+            console.log($scope.state_go);
+            console.log(e);
+            if($scope.state_go == 'app.hide') {
+              IonicModalNavService.hide();
+              $state.go('app.newsfeed');
+            } else {
+              IonicModalNavService.go($scope.state_go);
+            }
+          }
+        },
+        {
+          text: 'Stay Here',
+          type: 'button-balanced'
+        }
+      ]
+      });
+    } else if(is_valid) {
+      if($scope.state_go == 'app.hide') {
+        IonicModalNavService.hide();
+        $state.go('app.newsfeed');
+      } else {
+        IonicModalNavService.go($scope.state_go);
+      }
     }
   }
 
@@ -123,14 +180,10 @@ $scope.initialLaunchGoBack = function(data) {
 $scope.openPreferenceModal = function() {
   IonicModalNavService.show('app.selectpref');
 }
-/*$scope.$on('refreshAll', function(ev, args){
-  $scope.reloadFeed();
-  $scope.prefOptions = WebAPI.getPrefOptions();
-});*/
+
 $scope.preferencesClose = function() {
   IonicModalNavService.hide();
   $state.go('app.viewpreferences');
-  //IonicModalNavService.destroy();
 }
 $scope.preferencesSavePersonalData = function() {
   var result = $scope.validatePersonalInfo();
@@ -155,23 +208,59 @@ $scope.preferencesGoBack = function() {
   var state = $ionicHistory.currentView();
   var stateName = state.stateName;
   var data = null;
+  var confirm_required = false;
+  var is_valid = true;
+  var confirm_title = "";
+  var confirm_message = "";
   if (stateName == 'app.selectpref') {
     // app.selectpref should never occur as a statename because of the fact that it should call modal close, not back
     // but if it does, just call the close function instead
     $scope.preferencesClose();
   } else if (stateName == 'app.personalinfo') {
-
+    is_valid = $scope.validatePersonalInfo();
   } else if (stateName == 'app.clubpage_modal') {
     data = {
       reload: true
     };
   } else if (stateName == 'app.interests') {
-
+    if($scope.getPrefCount() < 1) {
+      confirm_required = true;
+      is_valid = false;
+      confirm_title = "No preferences selected";
+      confirm_message = "You haven't selected any preferences. Are you sure you want to leave this page?";
+    }
   } else if (stateName == 'app.clubselector') {
-
+    if($scope.getClubSubCount() < 1) {
+      confirm_required = true;
+      is_valid = false;
+      confirm_title = "No clubs followed";
+      confirm_message = "You haven't follow any clubs. Are you sure you want to leave this page?";
+    }
   }
 
-  IonicModalNavService.goBack(data);
+  if(confirm_required) {
+    var alertPopup = $ionicPopup.show({
+     title: confirm_title,
+     template: confirm_message,
+     scope: $scope,
+     cssClass: 'preferences_confirm',
+     buttons: [
+      { 
+        text: 'Go Back',
+        type: 'button-assertive',
+        onTap: function(e) {
+          IonicModalNavService.goBack(data);
+        }
+      },
+      {
+        text: 'Stay Here',
+        type: 'button-balanced'
+      }
+    ]
+    });
+  } else if(is_valid) {
+    IonicModalNavService.goBack(data);
+  }
 }
 $scope.preferencesChangePage = function(type) {
   IonicModalNavService.go(type);
