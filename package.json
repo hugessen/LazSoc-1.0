@@ -28,7 +28,8 @@
     "cordova-plugin-compat",
     "cordova-plugin-network-information",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-appavailability"
+    "cordova-plugin-appavailability",
+    "cordova-plugin-queries-schemes"
   ],
   "cordovaPlatforms": [
     "ios",
