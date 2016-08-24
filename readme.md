@@ -9,12 +9,12 @@
 - [x] Fix spacing on the newsfeed so that the last event is not hidden by the tabs
 - [x] Fix social media buttons on event pages
 - [x] Fix social media follow buttons on club pages
-- [ ] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
+- [x] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
 - [x] Ensure if no banner specified for event then no banner is displayed
-- [ ] Discount card page
+- [x] Discount card page
 - [ ] Make LazSoc subscription mandatory
 - [ ] Cut off date for 'past' tab, i.e. show only the past 2 weeks (Do this on the API side)
-- [ ] Add in checks to make sure that if they're in the preferences selector or initial launch tab, we notify them when they do stuff like leave the page when they change stuff and didn't save, or if they don't select anything, etc.
+- [x] Add in checks to make sure that if they're in the preferences selector or initial launch tab, we notify them when they do stuff like leave the page when they change stuff and didn't save, or if they don't select anything, etc.
 - [ ] Make preference saving and prefernce modal saving more robust so that even if the users internet is hugely lagging then we still load their latest preferences
 - [ ] Find a better way of doing the modal vs non-modal pages other than having two seperate files. i.e. clubselector_modal.html vs clubselector.html
 - [ ] Seperate controllers, currently there's one HUGE controller and it's really inefficient since only parts of the code are used in certain places
