@@ -647,7 +647,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 social: {
                     facebook:"https://www.facebook.com/LazSoc",
                     twitter:"https://twitter.com/LazSoc",
-                    instagram: "https://www.instagram.com/Laz.Soc/",
+                    instagram: "https://www.instagram.com/LazSoc/",
                     linkedin: "https://www.linkedin.com/company/lazaridis-students%27-society?trk=biz-companies-cym",
                     youtube: "https://www.youtube.com/user/LazSoc",
                     snapchat: "lazsoc"
