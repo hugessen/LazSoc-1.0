@@ -161,13 +161,9 @@ img.imgbox.lazsoc_event_img {
 	border-color: white;
 	border-width: 0px 0px 0px 0px !important;
 }
-.tabs-top.tabs-striped .tab-item.active.lazsoc_tabs p {
+.active.lazsoc_tabs span {
 	border-width:0px 0px 0px 0px;
 	color: #F2A900;
-/*	height: 100%;
-	border: solid #F2A900;
-	border-width:0px 0px 5px 0px;
-*/
 }
 .tabs-striped .tab-item.active {
 	border-color: #F2A900;
@@ -175,4 +171,29 @@ img.imgbox.lazsoc_event_img {
 }
 .preferences_confirm .popup .popup-body {
 	padding-top: 0px;
+}
+.lazsoc_tabs {
+	font-size: 4vw;
+	text-align: center; 
+	color: #9A9B9C;
+}
+@media (min-width: 350px) {
+	.lazsoc_tabs {
+		font-size: 14px; 
+	}
+}
+.lazsoc_tab_bot {
+	color: #9A9B9C;
+}
+.lazsoc_tab_bot.active {
+	color: white;
+}
+.lazsoc_tab {
+	display: inline-block; 
+	list-style: none; 
+	padding-right: 1em; 
+	padding-left: 1em;
+}
+.lazsoc_tab.active {
+	color: #F2A900;
 }

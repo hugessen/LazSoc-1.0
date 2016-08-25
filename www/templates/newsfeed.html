@@ -1,31 +1,34 @@
 <ion-view view-title="Newsfeed" cache-view="false">
 	<div class="tabs-striped tabs-bottom tabs-background-royal">
 		<div class="tabs">
-			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'custom' }" ng-click="setNewsfeedType('custom')">
+			<a class="bar-royal tab-item lazsoc_tab_bot" ng-class="{ active: filterBy == 'custom' }" ng-click="setNewsfeedType('custom')">
 				My Interests
 			</a>
-			<a class="bar-royal tab-item" style="color:white" ng-class="{ active: filterBy == 'all' }" ng-click="setNewsfeedType('all')">
+			<a class="bar-royal tab-item lazsoc_tab_bot" ng-class="{ active: filterBy == 'all' }" ng-click="setNewsfeedType('all')">
 				All Events
 			</a>
 		</div>
 	</div>
 
-	<div class="tabs-striped tabs-top tabs-background-royal" >
-		<div class="tabs" style="">
-			<a class="bar-royal tab-item lazsoc_tabs" style="color:white;" ng-class="{ active: filterByTime == 'past' }" ng-click="setNewsfeedTimeperiod('past')">
-				<p class="lazsoc_tabs_text" style="position: relative; left: 5%;">Past</p>
-			</a>
-			<a class="bar-royal tab-item lazsoc_tabs" style="color:white;" ng-class="{ active: filterByTime == 'thisweek' }" ng-click="setNewsfeedTimeperiod('thisweek')">
-				<p class="lazsoc_tabs_text" style="position: relative; right: 15%;">This Week</p>
-			</a>
-			<a class="bar-royal tab-item lazsoc_tabs" style="color:white" ng-class="{ active: filterByTime == 'nextweek' }" ng-click="setNewsfeedTimeperiod('nextweek')">
-				<p class="lazsoc_tabs_text" style="position: relative; right: 15%;">Next Week</p>
-			</a>
-			<a class="bar-royal tab-item lazsoc_tabs" style="color:white" ng-class="{ active: filterByTime == 'upcoming' }" ng-click="setNewsfeedTimeperiod('upcoming')">
-				<p class="lazsoc_tabs_text" style="position: relative; right: 15%;">Upcoming</p>
-			</a>
+	<div class="tabs-striped tabs-top tabs-background-royal" style="margin: 0 auto;">
+		<div class="tabs row lazsoc_tabs">
+			<span style="display: inline-flex;">
+				<a class="lazsoc_tab" style="" ng-class="{ active: filterByTime == 'past' }" ng-click="setNewsfeedTimeperiod('past')">
+					Past
+				</a>
+				<a class="lazsoc_tab" ng-class="{ active: filterByTime == 'thisweek' }" ng-click="setNewsfeedTimeperiod('thisweek')">
+					This Week
+				</a>
+				<a class="lazsoc_tab" ng-class="{ active: filterByTime == 'nextweek' }" ng-click="setNewsfeedTimeperiod('nextweek')">
+					Next Week
+				</a>
+				<a class="lazsoc_tab" ng-class="{ active: filterByTime == 'upcoming' }" ng-click="setNewsfeedTimeperiod('upcoming')">
+					Upcoming
+				</a>
+			</span>		
 		</div>
 	</div>
+
 	<ion-content class="has-header has-subheader has-footer">
 		<!-- <ion-content class="has-header has-subheader has-footer" on-swipe-right="rightNewsfeedSwipe()" on-swipe-left="leftNewsfeedSwipe()">-->
 		<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher> 
