@@ -20,6 +20,10 @@
 - [ ] Seperate controllers, currently there's one HUGE controller and it's really inefficient since only parts of the code are used in certain places
 - [x] Make interests unclickable on the view preferences page
 - [ ] Remove appavailability since it's not being used
+- [ ] Feedback section
+- [ ] Ionic analytics
+- [ ] Ionic deploy
+- [ ] Save what tab they were on in the newsfeed when they go to a different event or page
 
 # Suggestions to consider
 

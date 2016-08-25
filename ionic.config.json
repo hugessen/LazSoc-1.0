@@ -1,6 +1,6 @@
 {
-  "name": "SBESS",
-  "app_id": "cc0a40af",
+  "name": "LazSoc",
+  "app_id": "71d59aee",
   "gulpStartupTasks": [
     "sass",
     "watch"
