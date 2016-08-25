@@ -397,6 +397,13 @@ $scope.filterByTime = EventPageBack.filterByTime;
 $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
 $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
+      if(!APIresult) {
+        $ionicPopup.alert({
+          title:"Oh snap!",
+          template: "For some reason we couldn't get your custom newsfeed, please check your internet connection and try again."
+        });
+        return;
+      }
       console.log("Got events");
         $scope.events = APIresult.data;
         $scope.getCurrClubEventCount(); // Call this function to get curr club event count when events load
