@@ -112,6 +112,10 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     })
   .state('app.newsfeed', {
       url: '/news',
+      params: {
+        filterByTime: 'thisweek',
+        filterBy: 'custom'
+      },
       views: {
         'menuContent': {
           templateUrl: 'templates/newsfeed.html',
@@ -130,6 +134,10 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
     })
   .state('app.event', {
     url: '/news/:eventId',
+    params: {
+      filterByTime: 'thisweek',
+      filterBy: 'custom'
+    },    
     views: {
       'menuContent': {
         templateUrl: 'templates/eventPage.html',

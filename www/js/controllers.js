@@ -24,7 +24,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
   }
   $scope.sponsorsRows = $scope.sponsorstoRows(2);
 }])
-.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService) {
+.controller('MainCtrl', ['$scope', '$location','$stateParams','WebAPI', '$ionicModal', '$timeout','$cordovaCalendar','$ionicPopup','$localstorage','$http','ConnectivityMonitor', '$ionicPlatform', '$ionicHistory', '$state','$ionicScrollDelegate', '$ionicSideMenuDelegate', 'IonicModalNavService', 'EventPageBack', function($scope, $location, $stateParams, WebAPI, $ionicModal, $timeout,$cordovaCalendar,$ionicPopup,$localstorage,$http,ConnectivityMonitor, $ionicPlatform, $ionicHistory, $state, $ionicScrollDelegate, $ionicSideMenuDelegate, IonicModalNavService, EventPageBack) {
 /*
 * Initial Launch
 * Checks if the user has registered. If not, prompts them for their personal info, then gets them to 
@@ -392,8 +392,8 @@ $scope.preferencesChangePage = function(type) {
 * Here we determine which events will populate our newsfeed based on the user's interests. 
 * Allows the user to refresh by pulling down
 */
-$scope.filterBy = "custom";
-$scope.filterByTime = "thisweek";
+$scope.filterBy = EventPageBack.filterBy;
+$scope.filterByTime = EventPageBack.filterByTime;
 $scope.connectionNotifier = false; // So that the 'no network connection' popup only appears once
 $scope.reloadFeed = function() {
     WebAPI.getAllEvents().then(function(APIresult){
@@ -437,24 +437,26 @@ $scope.reloadFeed = function() {
   $scope.setNewsfeedType = function(tabData) {
     $ionicScrollDelegate.scrollTop();
     $scope.filterBy = tabData;
+    EventPageBack.filterBy = tabData;
     $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
   }
   $scope.setNewsfeedTimeperiod = function (timeperiod) {
     $ionicScrollDelegate.scrollTop();
     $scope.filterByTime = timeperiod;
+    EventPageBack.filterByTime = timeperiod;
     $scope.filteredFeed = $scope.applyFilters($scope.customFeed);
   }
 
 $scope.rightNewsfeedSwipe = function() {
-  if($scope.filterByTime == 'past') {
+  if(EventPageBack.filterByTime == 'past') {
 
-  } else if ($scope.filterByTime == 'thisweek') {
+  } else if (EventPageBack.filterByTime == 'thisweek') {
     $scope.setNewsfeedTimeperiod('past');
     $ionicSideMenuDelegate.canDragContent(true);
-  } else if ($scope.filterByTime == 'nextweek') {
+  } else if (EventPageBack.filterByTime == 'nextweek') {
     $scope.setNewsfeedTimeperiod('thisweek');
     $ionicSideMenuDelegate.canDragContent(false);
-  } else if ($scope.filterByTime == 'upcoming') {
+  } else if (EventPageBack.filterByTime == 'upcoming') {
     $scope.setNewsfeedTimeperiod('nextweek');
     $ionicSideMenuDelegate.canDragContent(false);
   }
@@ -462,16 +464,16 @@ $scope.rightNewsfeedSwipe = function() {
 }
 
 $scope.leftNewsfeedSwipe = function() {
-  if($scope.filterByTime == 'past') {
+  if(EventPageBack.filterByTime == 'past') {
     $scope.setNewsfeedTimeperiod('thisweek');
     $ionicSideMenuDelegate.canDragContent(false);
-  } else if ($scope.filterByTime == 'thisweek') {
+  } else if (EventPageBack.filterByTime == 'thisweek') {
     $scope.setNewsfeedTimeperiod('nextweek');
     $ionicSideMenuDelegate.canDragContent(false);
-  } else if ($scope.filterByTime == 'nextweek') {
+  } else if (EventPageBack.filterByTime == 'nextweek') {
     $scope.setNewsfeedTimeperiod('upcoming');
     $ionicSideMenuDelegate.canDragContent(false);
-  } else if ($scope.filterByTime == 'upcoming') {
+  } else if (EventPageBack.filterByTime == 'upcoming') {
 
   }
 
@@ -575,7 +577,7 @@ $scope.stringifyCurrEventDate = function () {
   return result;
 }
   $scope.loadEvent = function(id){
-    $state.go('app.event', { eventId: id });
+    $state.go('app.event', { eventId: id, filterBy: EventPageBack.filterBy, filterByTime: EventPageBack.filterByTime });
   }
   WebAPI.getAllEvents().then(function(APIresult){
     console.log("Got events");
@@ -652,13 +654,13 @@ $scope.stringifyCurrEventDate = function () {
   $scope.applyFilters = function(newsfeed) {
     var source = [];
     var result = [];
-    if($scope.filterBy == 'custom') {
+    if(EventPageBack.filterBy == 'custom') {
       source = $scope.customFeed;
     } else { // All
       source = $scope.events;
     }
     var curr = new Date();
-    if ($scope.filterByTime == 'thisweek') {
+    if (EventPageBack.filterByTime == 'thisweek') {
       var today = new Date(curr.setDate(curr.getDate() - curr.getDay()));
       var one_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
       for(var x = 0; x < source.length; x++) {
@@ -667,7 +669,7 @@ $scope.stringifyCurrEventDate = function () {
           result.push(source[x]);
         }
       }
-    } else if ($scope.filterByTime == 'nextweek') {
+    } else if (EventPageBack.filterByTime == 'nextweek') {
       var one_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
       var two_weeks = new Date(curr.setDate(curr.getDate() - curr.getDay() + 7));
       for(var x = 0; x < source.length; x++) {
@@ -676,7 +678,7 @@ $scope.stringifyCurrEventDate = function () {
           result.push(source[x]);
         }
       }
-    } else if ($scope.filterByTime == 'past') {
+    } else if (EventPageBack.filterByTime == 'past') {
       var today = new Date(curr.setDate(curr.getDate() - curr.getDay()));
       console.log(today);
       for(var x = 0; x < source.length; x++) {

@@ -1,4 +1,8 @@
 angular.module('sbess.services',['ionic','sbess.utils'])
+.service('EventPageBack', ['$http', function($http) {
+	this.filterBy = 'custom';
+	this.filterByTime = 'thisweek';
+}])
 .service('DiscountAPI', ['$http', function($http) {
 	this.getSponsors = function() {
 		return [
