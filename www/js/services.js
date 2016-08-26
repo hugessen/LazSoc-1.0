@@ -21,15 +21,15 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			logo: "thumbnails/discount_program/Noon_Moment_Logo.png",
 			discount: "-10% Storewide"
 		},
-		{
+		/*{
 			name: "Huether Hotel",
 			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
 			discount: "TBD"
-		},
+		},*/
 		{
 			name: "Capri Salon",
 			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
-			discount: "-10% Storewide"
+			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
 		},
 		{
 			name: "Wordsworth Books",
@@ -55,6 +55,26 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			name: "Staples",
 			logo: "thumbnails/discount_program/Staples_Logo.png",
 			discount: "-20% Copy and Print Services"
+		},
+		{
+			name: "The Truth Beauty Company",
+			logo: "thumbnails/discount_program/TTBC_Logo.png",
+			discount: "-10% Discount at Waterloo and Guelph Locations"
+		},
+		{
+			name: "KW Pilates",
+			logo: "thumbnails/discount_program/KW_Pilates_Logo.png",
+			discount: "-10% Discount off Regular Priced Classes"
+		},
+		{
+			name: "Harmony by Earthwinds",
+			logo: "thumbnails/discount_program/Harmony_Logo.png",
+			discount: "-10% off Regular Priced Items In-Store"
+		},
+		{
+			name: "Sweet Dreams Teashop",
+			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
+			discount: "-10% Off"
 		}
 		];
 	}
