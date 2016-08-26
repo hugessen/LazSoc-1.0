@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.lazsoc.app" version="0.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>LazSoc</name>
-  <description>&#xD;
-&#xD;
-        The Lazaridis Students’ Society (LazSoc) app contains all the information you need for all club events, including features such as export to calendar.&#xD;
-&#xD;
+  <description>&#xD;&#xD;
+&#xD;&#xD;
+        The Lazaridis Students’ Society (LazSoc) app contains all the information you need for all club events, including features such as export to calendar.&#xD;&#xD;
+&#xD;&#xD;
     </description>
-  <author email="techteam@lazsoc.ca" href="http://lazsoc.ca/">&#xD;
-&#xD;
-      LazSoc Technology Development Team&#xD;
-&#xD;
+  <author email="techteam@lazsoc.ca" href="http://lazsoc.ca/">&#xD;&#xD;
+&#xD;&#xD;
+      LazSoc Technology Development Team&#xD;&#xD;
+&#xD;&#xD;
     </author>
   <content src="index.html"/>
   <access origin="*"/>

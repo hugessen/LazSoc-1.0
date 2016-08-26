@@ -17,19 +17,29 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			discount: "-25% Food with the Purchase of a Drink"
 		},
 		{
+			name: "Caliburger",
+			logo: "thumbnails/discount_program/Caliburger_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Holy Guacamole",
+			logo: "thumbnails/discount_program/Holy_Guacamole_Logo.png",
+			discount: "Free Upgrade to a Large Burrito"
+		},			
+		{
 			name: "Noon Moment",
 			logo: "thumbnails/discount_program/Noon_Moment_Logo.png",
 			discount: "-10% Storewide"
 		},
-		/*{
-			name: "Huether Hotel",
-			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
-			discount: "TBD"
-		},*/
 		{
-			name: "Capri Salon",
-			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
-			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
+			name: "Sweet Dreams Teashop",
+			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
+			discount: "-10% Off"
+		},		
+		{
+			name: "Menchies",
+			logo: "thumbnails/discount_program/Menchies_Logo.png",
+			discount: "-10% Storewide"
 		},
 		{
 			name: "Wordsworth Books",
@@ -37,34 +47,9 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			discount: "-10% Storewide"
 		},
 		{
-			name: "Caliburger",
-			logo: "thumbnails/discount_program/Caliburger_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Menchies",
-			logo: "thumbnails/discount_program/Menchies_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Holy Guacamole",
-			logo: "thumbnails/discount_program/Holy_Guacamole_Logo.png",
-			discount: "Free Upgrade to a Large Burrito"
-		},
-		{
 			name: "Staples",
 			logo: "thumbnails/discount_program/Staples_Logo.png",
 			discount: "-20% Copy and Print Services"
-		},
-		{
-			name: "The Truth Beauty Company",
-			logo: "thumbnails/discount_program/TTBC_Logo.png",
-			discount: "-10% Discount at Waterloo and Guelph Locations"
-		},
-		{
-			name: "KW Pilates",
-			logo: "thumbnails/discount_program/KW_Pilates_Logo.png",
-			discount: "-10% Discount off Regular Priced Classes"
 		},
 		{
 			name: "Harmony by Earthwinds",
@@ -72,10 +57,25 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			discount: "-10% off Regular Priced Items In-Store"
 		},
 		{
-			name: "Sweet Dreams Teashop",
-			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
-			discount: "-10% Off"
+			name: "KW Pilates",
+			logo: "thumbnails/discount_program/KW_Pilates_Logo.png",
+			discount: "-10% Discount off Regular Priced Classes"
+		},
+		{
+			name: "The Truth Beauty Company",
+			logo: "thumbnails/discount_program/TTBC_Logo.png",
+			discount: "-10% Discount at Waterloo and Guelph Locations"
+		},
+		{
+			name: "Capri Salon",
+			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
+			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
 		}
+		/*{
+			name: "Huether Hotel",
+			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
+			discount: "TBD"
+		},*/
 		];
 	}
 }])
@@ -291,7 +291,6 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				slug: "deca",
 				desc: "DECA Laurier is a student-run organization that provides students with the essential skills needed to survive and excel in the corporate world. These skills are enhanced in the field of marketing, entrepreneurship, finance and business management through the use of business simulations and case studies. Each year, competitions are held regionally, provincially and internationally to further challenge and engage our members beyond what they think they are capable of, pushing them to exceed expectations and limits. DECA Laurier strives to create a bridge between the knowledge acquired at school and the practical skills needed at the work place. It is an experience that provides a platform for students to learn, compete and succeed in today’s vastly changing environment.",
 				logo: "Deca.png",
-				website: "http://www.decawlu.ca",
                 banner:"banners/DECABanner.png",
 				tags: [
                     "Public Speaking",
@@ -371,7 +370,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				name: "Laurier Economics Club",
 				shortname: "LEC",
 				slug: "lec",
-				desc: "he Laurier Economics Club (LEC) is Laurier’s only economics-focused club on campus. Our goal is to provide resources to students who are interested in the field of economics. Through our speaker engagements, mock midterm sessions, and our annual conference, we expose our members to a diverse range of economic knowledge and experience. We strive to enhance each member’s academic journey while providing them with tools to help them realize their full potential and value in a degree/minor in economics.",
+				desc: "The Laurier Economics Club (LEC) is Laurier’s only economics-focused club on campus. Our goal is to provide resources to students who are interested in the field of economics. Through our speaker engagements, mock midterm sessions, and our annual conference, we expose our members to a diverse range of economic knowledge and experience. We strive to enhance each member’s academic journey while providing them with tools to help them realize their full potential and value in a degree/minor in economics.",
 				logo: "LEC.png",
 				website: "http://lauriereconomics.club",
                 banner:"banners/LECBanner.png",
@@ -468,7 +467,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                 "Marketing"
 				],
                 social: {
-                    facebook:"https://www.facebook.com/LaurierSales/?fref=ts",
+                    facebook:"https://www.facebook.com/LaurierSales/",
                     linkedin:"https://www.linkedin.com/company/laurier-sales-association",
                     twitter:"https://twitter.com/lauriersales",
                     instagram:"https://www.instagram.com/lauriersalesassociation/"
@@ -486,7 +485,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				"Case Competitions"
 				],
                 social: {
-                    facebook:"https://www.facebook.com/JDCCLaurier/?fref=ts",
+                    facebook:"https://www.facebook.com/JDCCLaurier/",
                     linkedin:"https://www.linkedin.com/company/laurier-sales-association",
                     twitter:"https://twitter.com/jdcclaurier",
                     instagram:"https://www.instagram.com/jdcclaurier/"
