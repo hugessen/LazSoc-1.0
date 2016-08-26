@@ -123,6 +123,15 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
         }
       }
     })
+  .state('app.feedback', {
+      url: '/feedback',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/feedback.html',
+          controller: 'FeedbackCtrl'
+        }
+      }
+    })
   .state('app.discountcard', {
       url: '/discountcard',
       views: {

@@ -1,6 +1,8 @@
 angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess.utils', 'IonicModalNav'])
 .controller('NavCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
 }])
+.controller('FeedbackCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
+}])
 .controller('DiscountCtrl', ['$scope', '$location', 'DiscountAPI', function($scope, $location, DiscountAPI) {
   $scope.sponsors = DiscountAPI.getSponsors();
   // This function goes through the sponsors and outputs a 2d array where each sub-array is the specificed length
