@@ -487,6 +487,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				slug: "jdcc",
 				desc: "JDC Central is a team-based, academic case study competition that will attract more than 500 of the brightest students in Eastern Canada to participate in the most prestigious event of its kind. JDC competitors participate in rigorous academic case simulations, a debate competition, athletic, social, and spirit events throughout a fast-paced and competitive weekend. JDC Laurier’s pride, dedication, and wealth of superior talent has resulted in seven straight championships in seven years of competition.",
 				logo: "JDCC.png",
+                banner:"banners/JDCCBanner.png",
 				tags: [
 				"Public Speaking",
 				"Case Competitions"
