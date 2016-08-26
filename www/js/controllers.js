@@ -275,7 +275,9 @@ $scope.preferencesChangePage = function(type) {
   $scope.clubs = WebAPI.getAllClubs();
   $scope.toggle = function(id){
     for(var x = 0; x < $scope.clubs.length; x++) {
-      if($scope.clubs[x].id == id) {
+      if($scope.clubs[x].slug == 'lazsoc') { // Make sure LazSoc cannot be unselected
+        $scope.clubs[x].selected = true;
+      } else if($scope.clubs[x].id == id) {
         $scope.clubs[x].selected = ! $scope.clubs[x].selected; 
       }
     }

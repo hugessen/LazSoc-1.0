@@ -12,7 +12,7 @@
 - [x] Establish standard for "Place" for each event, i.e. if it has room number it should say "P1005, Peters" for each event
 - [x] Ensure if no banner specified for event then no banner is displayed
 - [x] Discount card page
-- [ ] Make LazSoc subscription mandatory
+- [x] Make LazSoc subscription mandatory
 - [ ] Cut off date for 'past' tab, i.e. show only the past 2 weeks (Do this on the API side)
 - [x] Add in checks to make sure that if they're in the preferences selector or initial launch tab, we notify them when they do stuff like leave the page when they change stuff and didn't save, or if they don't select anything, etc.
 - [ ] Make preference saving and prefernce modal saving more robust so that even if the users internet is hugely lagging then we still load their latest preferences
@@ -24,6 +24,7 @@
 - [ ] Ionic analytics
 - [ ] Ionic deploy
 - [x] Save what tab they were on in the newsfeed when they go to a different event or page
+- [ ] Add in JDCC Header
 
 # Suggestions to consider
 

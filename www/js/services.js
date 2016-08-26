@@ -193,6 +193,13 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				localClubs[x]["selected"] = selected;
 			}
 		}
+		for(var x = 0; x < localClubs.length; x++) {
+			if(!localClubs[x].hasOwnProperty("selected")) {
+				localClubs[x]['selected'] = false;
+			} else if (localClubs[x]['slug'] == 'lazsoc') {
+				localClubs[x]['selected'] = true;
+			}
+		}
 		return localClubs;
 	}
 
@@ -685,7 +692,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		    return reconciled;
 		} else if ( !isEmptyObject(APIresult) ) { // No local storage but API returned
 			for(var x = 0; x < APIresult.length; x++) {
-				APIresult[x]["selected"] = false;
+				if(APIresult[x]['slug'] == 'lazsoc') {
+					APIresult[x]["selected"] = true;
+				} else {
+					APIresult[x]["selected"] = false;					
+				}
 			}
 			$localstorage.setObject('sbess-app-clubPrefs', APIresult);
 			return APIresult;
@@ -694,6 +705,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				title:"Oh snap!",
 				template: "For some reason we couldn't get the latest list of clubs, please verify your internet connection and try again. We've loaded a previously saved list of clubs for now."
 			});
+			for(var x = 0; x < clubs.length; x++) { // Make sure lazsoc is selected anytime preferences are loaded
+				if(clubs[x]['slug'] == 'lazsoc') {
+					clubs[x]["selected"] = true;
+				}
+			}			
 			return clubs;
 		} else { // No API result and no local preferences
 			$ionicPopup.alert({

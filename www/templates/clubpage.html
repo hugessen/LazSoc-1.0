@@ -3,7 +3,7 @@
 	<ion-content>
 		<img class="lazsoc_banner" ng-src="{{currClub.banner}}"></img>
 		<div class="list" style="padding-top: 0px;">
-			<div class="button-bar">
+			<div class="button-bar" ng-if="currClub.slug != 'lazsoc'">
 				<button class="button button-positive" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == false">Subscribe!</button>
 				<button class="button button-balanced" ng-click="toggle(currClub.id); savePrefs('clubs', true);" ng-if="clubs[currClub.id]['selected'] == true"><i class="icon ion-checkmark"></i> Subscribed</button>
 			</div>
