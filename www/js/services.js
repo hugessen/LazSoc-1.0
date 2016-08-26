@@ -34,7 +34,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		{
 			name: "Sweet Dreams Teashop",
 			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
-			discount: "-10% Off"
+			discount: "-10% Storewide"
 		},		
 		{
 			name: "Menchies",
