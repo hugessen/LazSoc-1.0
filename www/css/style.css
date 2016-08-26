@@ -193,6 +193,7 @@ img.imgbox.lazsoc_event_img {
 	list-style: none; 
 	padding-right: 1em; 
 	padding-left: 1em;
+	white-space: nowrap;
 }
 .lazsoc_tab.active {
 	color: #F2A900;
