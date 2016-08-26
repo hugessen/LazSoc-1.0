@@ -376,7 +376,9 @@ $scope.preferencesChangePage = function(type) {
     var result = 0;
     for(var x = 0; x < $scope.clubs.length; x++) {
       if(! $scope.clubs[x].removed && $scope.clubs[x].selected) {
-        result += 1;
+        if($scope.clubs[x].slug != 'lazsoc') {
+          result += 1;
+        }
       }
     }
     return result;
@@ -587,8 +589,14 @@ $scope.stringifyCurrEventDate = function () {
   }
   return result;
 }
-  $scope.loadEvent = function(id){
-    $state.go('app.event', { eventId: id, filterBy: EventPageBack.filterBy, filterByTime: EventPageBack.filterByTime });
+  $scope.loadEvent = function(id, type){
+    console.log(type);
+    if(type == null) {
+      $state.go('app.event', { eventId: id, filterBy: EventPageBack.filterBy, filterByTime: EventPageBack.filterByTime });
+    } else {
+      IonicModalNavService.go('app.eventpage_modal', { eventId: id, filterBy: EventPageBack.filterBy, filterByTime: EventPageBack.filterByTime });
+    }
+    
   }
   WebAPI.getAllEvents().then(function(APIresult){
     console.log("Got events");

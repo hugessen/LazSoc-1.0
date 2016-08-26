@@ -1,7 +1,7 @@
 <ion-view can-swipe-back="false">
 	<ion-header-bar class="bar-royal">
 		<div class="buttons">
-			<button class="button button-clear" ng-click="preferencesGoBack()">Back</button>
+			<button class="button button-clear" ng-click="preferencesGoBack()"><i class="icon ion-ios-arrow-back"></i> Back</button>
 		</div>
 		<h1 class="title">{{currClub.shortname}}</h1>
 	</ion-header-bar>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="item-text-wrap" ng-if="currClubEventCount >= 1">
 				<ion-list class="club-page-events">
-					<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-if="event.club.slug == currClub.slug" class="itembox item-thumbnail-left lazsoc_newsfeed"> <!-- class=club-page-events -->
+					<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}}, 'modal')" ng-if="event.club.slug == currClub.slug" class="itembox item-thumbnail-left lazsoc_newsfeed"> <!-- class=club-page-events -->
 						<img ng-src="{{event.thumbnail}}" class="imgbox lazsoc_event_img">
 						<titleFont>{{event.title}}</titleFont></br>
 						<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>

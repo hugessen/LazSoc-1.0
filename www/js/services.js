@@ -679,7 +679,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
                     twitter:"https://twitter.com/LazSoc",
                     instagram: "https://www.instagram.com/LazSoc/",
                     linkedin: "https://www.linkedin.com/company/lazaridis-students%27-society?trk=biz-companies-cym",
-                    youtube: "https://www.youtube.com/user/LazSoc",
+                    youtube: "https://www.youtube.com/channel/UC2aZ9l1l4oef2Amf_9IvtUg",
                     snapchat: "lazsoc"
                 }
 			}

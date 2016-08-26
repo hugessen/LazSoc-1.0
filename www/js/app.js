@@ -1,12 +1,12 @@
 angular.module('sbess', ['ionic', 'sbess.controllers'])
- .config(function(IonicModalNavServiceProvider) {
-        IonicModalNavServiceProvider.setModalOptions({
+.config(function(IonicModalNavServiceProvider) {
+  IonicModalNavServiceProvider.setModalOptions({
              animation: "slide-in-up", //supports whatever Ionic supports
              focusFirstInput: false,
              backdropClickToClose: false,
              hardwareBackButtonClose: false
-        });
-    })
+           });
+})
 .run(function($ionicPlatform, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {
     if (window.StatusBar) {
@@ -96,51 +96,62 @@ angular.module('sbess', ['ionic', 'sbess.controllers'])
   })
   .state('app.selectpref', {
     views: {
-        'ionic-modal-nav@': {
-          templateUrl: 'templates/selectpreferences.html',
-          controller:'MainCtrl'
-        }
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/selectpreferences.html',
+        controller:'MainCtrl'
+      }
     }
   })
   .state('app.clubselector', {
-      views: {
-        'ionic-modal-nav@': {
-          templateUrl: 'templates/clubselector.html',
-          controller:'MainCtrl'
-        }
+    views: {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/clubselector.html',
+        controller:'MainCtrl'
       }
-    })
+    }
+  })
+  .state('app.eventpage_modal', {
+    params: {
+      eventId: null
+    },
+    views: {
+      'ionic-modal-nav@': {
+        templateUrl: 'templates/eventPage_modal.html',
+        controller:'MainCtrl'
+      }
+    }
+  })
   .state('app.newsfeed', {
-      url: '/news',
-      params: {
-        filterByTime: 'thisweek',
-        filterBy: 'custom'
-      },
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/newsfeed.html',
-          controller: 'MainCtrl'
-        }
+    url: '/news',
+    params: {
+      filterByTime: 'thisweek',
+      filterBy: 'custom'
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/newsfeed.html',
+        controller: 'MainCtrl'
       }
-    })
+    }
+  })
   .state('app.feedback', {
-      url: '/feedback',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/feedback.html',
-          controller: 'FeedbackCtrl'
-        }
+    url: '/feedback',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/feedback.html',
+        controller: 'FeedbackCtrl'
       }
-    })
+    }
+  })
   .state('app.discountcard', {
-      url: '/discountcard',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/discountcard.html',
-          controller: 'DiscountCtrl'
-        }
+    url: '/discountcard',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/discountcard.html',
+        controller: 'DiscountCtrl'
       }
-    })
+    }
+  })
   .state('app.event', {
     url: '/news/:eventId',
     params: {

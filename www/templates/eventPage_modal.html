@@ -1,6 +1,9 @@
-<!-- Remember to update templates/eventPage_modal.html when this is changed -->
 <ion-view can-swipe-back="false">
-	<ion-nav-title></ion-nav-title>
+	<ion-header-bar class="bar-royal">
+		<div class="buttons">
+			<button class="button button-clear" ng-click="preferencesGoBack()"><i class="icon ion-ios-arrow-back"></i> Back</button>
+		</div>
+	</ion-header-bar>
 	<ion-content>
 		<img class="lazsoc_banner" ng-src="{{clubs[currEvent.clubRef].banner}}" ng-if="clubs[currEvent.clubRef].banner != ''">
 		<img class="lazsoc_banner" src="banners/header-laurier.jpg" ng-if="clubs[currEvent.clubRef].banner == ''">
