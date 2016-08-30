@@ -24,7 +24,8 @@
 - [ ] Ionic analytics
 - [ ] Ionic deploy
 - [x] Save what tab they were on in the newsfeed when they go to a different event or page
-- [ ] Add in JDCC Header
+- [x] Add in JDCC Header
+- [ ] Deal with recurring events
 
 # Suggestions to consider
 
