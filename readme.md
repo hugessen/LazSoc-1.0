@@ -26,6 +26,7 @@
 - [x] Save what tab they were on in the newsfeed when they go to a different event or page
 - [x] Add in JDCC Header
 - [ ] Deal with recurring events
+- [ ] Make the dates on newsfeed into format like August 1, 2015
 
 # Suggestions to consider
 
