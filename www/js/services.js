@@ -70,12 +70,12 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			name: "Capri Salon",
 			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
 			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
-		}
-		/*{
+		},
+		{
 			name: "Huether Hotel",
 			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
-			discount: "TBD"
-		},*/
+			discount: "-10% Storewide"
+		}
 		];
 	}
 }])
