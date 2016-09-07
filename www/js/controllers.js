@@ -81,6 +81,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       silently = false;
     }
     //$localstorage.setObject('sbess-app-personalData', {})
+    //$localstorage.setObject('sbess-app-clubPrefs', {});
     if (isEmptyObject($localstorage.getObject('sbess-app-personalData'))) { 
       $scope.isInitialLaunch = true;
       $scope.openInitialLaunch();

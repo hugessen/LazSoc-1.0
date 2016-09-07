@@ -85,43 +85,67 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		var apiResult = [
 		{
 			id:0,
-			name:"Accounting"
+			name:"Accounting & Finance"
 		},
 		{
 			id:1,
-			name:"Economics"
+			name:"Competitions"
 		},
 		{
 			id:2,
-			name:"Finance"
+			name:"Consulting"
 		},
 		{
 			id:3,
-			name:"Management"
+			name:"Debate"
 		},
 		{
 			id:4,
-			name:"Exam Review"
+			name:"E-Business"
 		},
 		{
 			id:5,
-			name:"Information Technology"
+			name:"Economics"
 		},
 		{
 			id:6,
-			name:"Networking"
+			name:"Entrepreneurship"
 		},
 		{
 			id:7,
-			name:"First-year"
+			name:"First Year"
 		},
 		{
 			id:8,
-			name:"International Business"
+			name:"International"
 		},
 		{
 			id:9,
-			name:"Advertising"
+			name:"Journalism & Media"
+		},
+		{
+			id:11,
+			name:"Leadership"
+		},
+		{
+			id:12,
+			name:"Marketing"
+		},
+		{
+			id:13,
+			name:"Public Speaking & Communication"
+		},
+		{
+			id:14,
+			name:"Sales"
+		},
+		{
+			id:15,
+			name:"Social Change & Philanthropy"
+		},
+		{
+			id:15,
+			name:"Sports Management"
 		}
         ];
 
@@ -155,14 +179,14 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 					userPrefs.push( { id: apiResult[x]["id"], name : apiResult[x]["name"] } );
 				}
 			}
-			return userPrefs;
+			return userPrefs.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
 		} else if (isEmptyObject(apiResult)) {
 			alert("Could not get API Response");
 		} else {
 			for(var x = 0; x < apiResult.length; x++) {
 				apiResult[x]["selected"] = false;
 			}
-			return apiResult;
+			return apiResult.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} );
 		}
 	}
 	
@@ -690,7 +714,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		if (!isEmptyObject(clubs) && !isEmptyObject(APIresult)) { // Has local preferences saved, reconcile club data and API returned
 			var reconciled = reconcileClubs(APIresult, clubs);
 			$localstorage.setObject('sbess-app-clubPrefs', reconciled);
-		    return reconciled;
+		    return reconciled; 
 		} else if ( !isEmptyObject(APIresult) ) { // No local storage but API returned
 			for(var x = 0; x < APIresult.length; x++) {
 				if(APIresult[x]['slug'] == 'lazsoc') {
@@ -700,7 +724,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				}
 			}
 			$localstorage.setObject('sbess-app-clubPrefs', APIresult);
-			return APIresult;
+			return APIresult; 
 		} else if ( !isEmptyObject(clubs) ) { // No API result but has local preferneces saved
 			$ionicPopup.alert({
 				title:"Oh snap!",
@@ -710,8 +734,8 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 				if(clubs[x]['slug'] == 'lazsoc') {
 					clubs[x]["selected"] = true;
 				}
-			}			
-			return clubs;
+			}
+			return clubs; 
 		} else { // No API result and no local preferences
 			$ionicPopup.alert({
 				title:"Oh snap!",
