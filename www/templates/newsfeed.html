@@ -36,7 +36,7 @@
 			<ion-item ng-repeat="event in filteredFeed" ng-click="loadEvent({{event.id}})" class="itembox item-thumbnail-left lazsoc_newsfeed" >
 				<img ng-src="{{event.thumbnail}}" class="imgbox lazsoc_event_img">
 				<titleFont>{{event.title}}</titleFont></br>
-				<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont><br/>
+				<subheaderFont>{{event.subheader}}<br ng-show="{{event.subheader}}"/>{{event.startDate}}</subheaderFont><br/>
 				<subheaderFont ng-if="filterBy == 'custom'">Based on your interest in: <b>{{event.notes}}</b></subheaderFont>
 			</ion-item>
 		</ion-list>
