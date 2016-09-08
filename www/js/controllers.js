@@ -708,7 +708,7 @@ $scope.stringifyCurrEventDate = function () {
         }
       }
     } else { // Upcoming
-      var two_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 14));
+      var two_week = new Date(curr.setDate(curr.getDate() - curr.getDay() + 30));
       for(var x = 0; x < source.length; x++) {
         var event_start_time = new Date(source[x].startDate);
         if(event_start_time > two_weeks ) {
