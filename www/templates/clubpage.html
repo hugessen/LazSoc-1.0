@@ -23,7 +23,7 @@
 					<ion-item ng-repeat="event in events" ng-click="loadEvent({{event.id}})" ng-if="event.club.slug == currClub.slug" class="itembox item-thumbnail-left lazsoc_newsfeed"> <!-- class=club-page-events -->
 						<img ng-src="{{event.thumbnail}}" class="imgbox lazsoc_event_img">
 						<titleFont>{{event.title}}</titleFont></br>
-						<subheaderFont>{{event.subheader}}<br/>{{event.startDate}}</subheaderFont>
+						<subheaderFont>{{event.subheader}}<br ng-if="event.subheader"/>{{event.startDate}}</subheaderFont>
 					</ion-item>
 				</ion-list>
 
