@@ -83,71 +83,91 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
 		var apiResult = [
-		{
-			id:0,
-			name:"Accounting & Finance"
-		},
-		{
-			id:1,
-			name:"Competitions"
-		},
-		{
-			id:2,
-			name:"Consulting"
-		},
-		{
-			id:3,
-			name:"Debate"
-		},
-		{
-			id:4,
-			name:"E-Business"
-		},
-		{
-			id:5,
-			name:"Economics"
-		},
-		{
-			id:6,
-			name:"Entrepreneurship"
-		},
-		{
-			id:7,
-			name:"First Year"
-		},
-		{
-			id:8,
-			name:"International"
-		},
-		{
-			id:9,
-			name:"Journalism & Media"
-		},
-		{
-			id:11,
-			name:"Leadership"
-		},
-		{
-			id:12,
-			name:"Marketing"
-		},
-		{
-			id:13,
-			name:"Public Speaking & Communication"
-		},
-		{
-			id:14,
-			name:"Sales"
-		},
-		{
-			id:15,
-			name:"Social Change & Philanthropy"
-		},
-		{
-			id:15,
-			name:"Sports Management"
-		}
-        ];
+    {
+        id:0,
+        name:"Accounting"
+    },
+    {
+        id:1,
+        name:"Finance"
+    },
+    {
+        id:2,
+        name:"Competitions"
+    },
+    {
+        id:3,
+        name:"Exam Review"
+    },
+    {
+        id:4,
+        name:"Debate"
+    },
+    {
+        id:5,
+        name:"Networking"
+    },
+    {
+        id:6,
+        name:"Academic Help"
+    },
+    {
+        id:7,
+        name:"E-Business"
+    },
+    {
+        id:8,
+        name:"Economics"
+    },
+    {
+        id:9,
+        name:"Entrepreneurship"
+    },
+    {
+        id:10,
+        name:"First Year"
+    },
+    {
+        id:11,
+        name:"International"
+    },
+    {
+        id:12,
+        name:"Journalism and Media"
+    },
+    {
+        id:13,
+        name:"Leadership"
+    },
+    {
+        id:14,
+        name:"Marketing"
+    },
+    {
+        id:15,
+        name:"Public Speaking"
+    },
+    {
+        id:16,
+        name:"Sales"
+    },
+    {
+        id:17,
+        name:"Philanthropy"
+    },
+            {
+        id:18,
+        name:"Sports Management"
+    },
+    {
+        id:19,
+        name:"Consulting"
+    },
+    {
+        id:20,
+        name:"Social"
+    }
+];
 
 		if (!isEmptyObject(userPrefs) && !isEmptyObject(apiResult)){ //If we have saved data and the API is responsive
 			while (userPrefs.length > apiResult.length) { // Do not remove in the for loop
