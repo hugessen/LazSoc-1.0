@@ -133,7 +133,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
     },
     {
         id:12,
-        name:"Journalism and Media"
+        name:"Journalism & Media"
     },
     {
         id:13,
@@ -145,7 +145,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
     },
     {
         id:15,
-        name:"Public Speaking"
+        name:"Public Speaking & Communication"
     },
     {
         id:16,
