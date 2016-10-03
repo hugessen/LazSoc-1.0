@@ -13,7 +13,7 @@
 
 			<div class="button-bar"> 
 				<button class="button" ng-click="addToCalendar()" style="color:black;">Add to <i class="icon ion-android-calendar"></i></button>
-				<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998"><i class="icon ion-social-facebook" style="color:white"></i></button>
+				<button class="button" ng-click="openFbEvent('fb')" style="background-color:#3b5998" ng-if="currEvent.facebookEvent"><i class="icon ion-social-facebook" style="color:white"></i></button>
 			</div>
 
 			<a class="item lazsoc_event_date lazsoc_event_page" style="color:black;">
@@ -35,10 +35,3 @@
 		</div>
 	</ion-content>
 </ion-view>
-		<!--<a ng-show="{{currEvent.video}}"> 
-			<div class="row"><div class="col">
-				<div class="video-container">
-					<iframe src="http://www.youtube.com/embed/Bis4tRacqXg?rel=0" frameborder="0" allowfullscreen></iframe>
-				</div>
-			</div></div>
-		</a>-->

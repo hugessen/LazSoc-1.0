@@ -62,7 +62,7 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
       }
     } else {
       var laurierID = $scope.personalData.laurierID;
-      isValidID = laurierID.length == 21 && laurierID.substring(8) === '@mylaurier.ca' && !isNaN(laurierID.substring(4,8));
+      isValidID = laurierID.includes('@');
       if (isValidID){
         $scope.personalData.isRegistered = true;
       } else {
@@ -412,7 +412,6 @@ $scope.reloadFeed = function() {
         });
         return;
       }
-      console.log("Got events");
         $scope.events = APIresult.data;
         $scope.getCurrClubEventCount(); // Call this function to get curr club event count when events load
         $scope.getCurrClubSocialLinkCount(); // Call this function to get social link count when events load to make the page more resnponsive
@@ -567,6 +566,10 @@ $scope.stringifyTime = function(date) {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
+$scope.toDateObj = function(date) {
+  var date_obj = new Date(date);
+  return date_obj;
+}
 $scope.stringifyCurrEventDate = function () {
   var m_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var d_names = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -717,6 +720,13 @@ $scope.stringifyCurrEventDate = function () {
         }
       }
     }
+
+    result.sort(function(a, b) {
+      a = new Date(a.startDate);
+      b = new Date(b.startDate);
+      return a<b ? -1 : a>b ? 1 : 0;
+    });
+
     return result;
   }
 
@@ -768,7 +778,6 @@ $scope.stringifyCurrEventDate = function () {
     }
     $localstorage.setObject('sbess-app-clubPrefs', to_save);
     WebAPI.getAllEvents().then(function(APIresult){
-      console.log("Got events");
         $scope.events = APIresult.data;
         $scope.customFeed = WebAPI.getCustomFeed(APIresult.data); //A big, long function that determines which events to show
         $scope.filteredFeed = $scope.applyFilters($scope.customFeed);

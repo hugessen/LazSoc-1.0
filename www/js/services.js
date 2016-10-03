@@ -826,6 +826,23 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 		} return customFeed;
 	}
 
+  /*
+  * Gives all the dates of the upcoming weekdays given a start date
+  * Input must be a Date object i.e. new Date()
+  */
+  function getWeekDates(event_start_date) {
+    var day_milliseconds = 24*60 * 60*1000;
+    var dates = [];
+    var current_date = event_start_date;
+    var monday = new Date(current_date.getTime()-(current_date.getDay()-1)*day_milliseconds);
+    var sunday = new Date(monday.getTime()+6*day_milliseconds);
+    dates.push(monday);
+    for(var i = 1; i < 6; i++){
+        dates.push(new Date(monday.getTime()+i*day_milliseconds));
+    }
+    dates.push(sunday);
+    return dates;
+  }
     this.getAllEvents = function(){
 		var clubevents = $localstorage.getObject('sbess-club-events');
 		var stale_time = 5 * 60 * 1000; // 5 minutes stale time
