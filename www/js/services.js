@@ -843,6 +843,22 @@ angular.module('sbess.services',['ionic','sbess.utils'])
     dates.push(sunday);
     return dates;
   }
+
+	var two_week_ago = new Date();
+	two_week_ago.setDate(two_week_ago.getDate() - 14);
+	var two_weeks_ahead = new Date();
+	two_weeks_ahead.setDate(two_weeks_ahead.getDate() + 14);
+	var rule = new RRule({
+		freq: RRule.WEEKLY,
+		interval: 5,
+		byweekday: [RRule.MO, RRule.FR],
+		dtstart: new Date(2012, 1, 1, 10, 30),
+		until: new Date(2020, 12, 31)
+	});
+	console.log(rule);
+	console.log(rule.between(two_week_ago, two_weeks_ahead));
+	console.log(rule.toText());
+
     this.getAllEvents = function(){
 		var clubevents = $localstorage.getObject('sbess-club-events');
 		var stale_time = 5 * 60 * 1000; // 5 minutes stale time
@@ -852,9 +868,15 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			console.log("API Call Made for Events");
 			that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
 			return $http.get('https://lazsoc.ca/app_info.php').then(function(APIresult) {
+				console.log(APIresult);
 				// After the API call returns, then loop through the result and load in each club
 				for(var i = 0; i < APIresult.data.length; i++) {
 					APIresult.data[i].club = that.getClub(APIresult.data[i].clubRef);
+					if(APIresult.data[i].hasOwnProperty('is_recurring') && APIresult.data[i].is_recurring)  {
+
+					} else {
+						APIresult.data[i] = APIresult.data[i];
+					}
 				}
 				APIresult.load_time = new Date().getTime();
 				$localstorage.setObject('sbess-club-events', APIresult);
@@ -870,6 +892,7 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			// The calls expect a callback, so return a 'fake' promise so that the getAllEvents.then will still work even though no API call is made
 			console.log("Local storage loaded for Events");
 			return new Promise(function (resolve, reject) {
+					console.log(clubevents);
 					resolve(clubevents);
 				}
 			);

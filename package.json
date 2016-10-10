@@ -8,7 +8,8 @@
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.4",
-    "ionic-modal-nav": "^1.0.5"
+    "ionic-modal-nav": "^1.0.5",
+    "rrule": "^2.1.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
