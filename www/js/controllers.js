@@ -4,7 +4,12 @@ angular.module('sbess.controllers', ['ionic','sbess.services','ngCordova','sbess
 .controller('FeedbackCtrl', ['$scope', '$location','$stateParams', function($scope, $location, $stateParams) {  
 }])
 .controller('DiscountCtrl', ['$scope', '$location', 'DiscountAPI', function($scope, $location, DiscountAPI) {
-  $scope.sponsors = DiscountAPI.getSponsors();
+  $scope.sponsors = [];
+  DiscountAPI.getSponsors().then(function(APIresult){
+    $scope.sponsors = APIresult;
+    $scope.sponsorsRows = $scope.sponsorstoRows(2);
+  });
+
   // This function goes through the sponsors and outputs a 2d array where each sub-array is the specificed length
   // This is so that we can easily output them into rows of 2 on the discount page
   $scope.sponsorstoRows = function(size) {

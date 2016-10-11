@@ -3,83 +3,42 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 	this.filterBy = 'custom';
 	this.filterByTime = 'thisweek';
 }])
-.service('DiscountAPI', ['$http', function($http) {
+.service('DiscountAPI', ['$http', '$localstorage', '$ionicPopup', function($http, $localstorage, $ionicPopup) {
+	function isEmptyObject(obj){
+		return JSON.stringify(obj) == '{}' || obj == null;
+	}
+
 	this.getSponsors = function() {
-		return [
-		{
-			name: "Quick Sandwiches",
-			logo: "thumbnails/discount_program/Quick_Sandwiches_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Shoeless Joes",
-			logo: "thumbnails/discount_program/Shoeless_Joes_Logo.png",
-			discount: "-25% Food with the Purchase of a Drink"
-		},
-		{
-			name: "Caliburger",
-			logo: "thumbnails/discount_program/Caliburger_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Holy Guacamole",
-			logo: "thumbnails/discount_program/Holy_Guacamole_Logo.png",
-			discount: "Free Upgrade to a Large Burrito"
-		},			
-		{
-			name: "Noon Moment",
-			logo: "thumbnails/discount_program/Noon_Moment_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Sweet Dreams Teashop",
-			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
-			discount: "-10% Storewide"
-		},		
-		{
-			name: "Menchies",
-			logo: "thumbnails/discount_program/Menchies_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Wordsworth Books",
-			logo: "thumbnails/discount_program/Words_Worth_Books_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Staples",
-			logo: "thumbnails/discount_program/Staples_Logo.png",
-			discount: "-20% Copy and Print Services"
-		},
-		{
-			name: "Harmony by Earthwinds",
-			logo: "thumbnails/discount_program/Harmony_Logo.png",
-			discount: "-10% off Regular Priced Items In-Store"
-		},
-		{
-			name: "KW Pilates",
-			logo: "thumbnails/discount_program/KW_Pilates_Logo.png",
-			discount: "-10% Discount off Regular Priced Classes"
-		},
-		{
-			name: "The Truth Beauty Company",
-			logo: "thumbnails/discount_program/TTBC_Logo.png",
-			discount: "-10% Discount at Waterloo and Guelph Locations"
-		},
-		{
-			name: "Capri Salon",
-			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
-			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
-		},
-		{
-			name: "Huether Hotel",
-			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
-			discount: "-10% Storewide"
+		var discount_partners = $localstorage.getObject('sbess-discount-partners');
+		var stale_time = 1440 * 60 * 1000; // 1440 minutes stale time, aka 1 day
+
+		if(isEmptyObject(discount_partners) || !discount_partners || (((new Date) - discount_partners.load_time) >= stale_time)) {
+			// If nothing is stored in local storage OR the stored data is stale, then re-load from the api
+			console.log("API Call Made for Discount Partners");
+			that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
+			return $http.get('https://moria.lazsoc.ca/api/discount_partners.json').then(function(APIresult) {
+				APIresult.load_time = new Date().getTime();
+				$localstorage.setObject('sbess-discount-partners', APIresult);
+				return APIresult.data;
+			}, function (APIresult) {
+				$ionicPopup.alert({
+					title:"Oh snap!",
+					template: "For some reason we couldn't get the latest list of events, please verify your internet connection and try again."
+				});
+			});
+		} else  {
+			// Data is stored locally and not stale, so return that
+			// The calls expect a callback, so return a 'fake' promise so that the getAllEvents.then will still work even though no API call is made
+			console.log("Local storage loaded for Discount Programs");
+			that = this;
+			return new Promise(function (resolve, reject) {
+					resolve(discount_partners.data);
+				}
+			);
 		}
-		];
 	}
 }])
-.service('WebAPI',['$localstorage','$http', '$ionicPopup',function($localstorage,$http, $ionicPopup){
+.service('WebAPI',['$localstorage','$http', '$ionicPopup',function($localstorage, $http, $ionicPopup){
 	this.getPrefOptions = function(){
 		var userPrefs = $localstorage.getObject('sbess-app-prefs');
 		var apiResult = [
@@ -844,20 +803,64 @@ angular.module('sbess.services',['ionic','sbess.utils'])
     return dates;
   }
 
-	var two_week_ago = new Date();
-	two_week_ago.setDate(two_week_ago.getDate() - 14);
-	var two_weeks_ahead = new Date();
-	two_weeks_ahead.setDate(two_weeks_ahead.getDate() + 14);
+  this.get_by_week_day = function(event) {
+  	 by_week_day = []
+  	if (event.recurring_event.monday) {
+  		by_week_day.push(RRule.MO);
+  	}
+  	if (event.recurring_event.tuesday) {
+  		by_week_day.push(RRule.TU);
+  	}
+  	if (event.recurring_event.wednesday) {
+  		by_week_day.push(RRule.WE);
+  	}
+  	if (event.recurring_event.thursday) {
+  		by_week_day.push(RRule.TH);
+  	}
+  	if (event.recurring_event.friday) {
+  		by_week_day.push(RRule.FR);
+  	}
+  	if (event.recurring_event.saturday) {
+  		by_week_day.push(RRule.SA);
+  	}
+  	if (event.recurring_event.sunday) {
+  		by_week_day.push(RRule.SU);
+  	}
+  	return by_week_day;
+  }
+  this.recurring_event_dates = function(event) {
+  	console.log(event.recurring_event);
+  	var now = new Date();
+  	var by_week_day = this.get_by_week_day(event);
+  	var past = new Date();
+	past.setDate(past.getDate() - 14);
+	var ahead = new Date();
+	ahead.setDate(ahead.getDate() + 30);
 	var rule = new RRule({
 		freq: RRule.WEEKLY,
-		interval: 5,
-		byweekday: [RRule.MO, RRule.FR],
-		dtstart: new Date(2012, 1, 1, 10, 30),
-		until: new Date(2020, 12, 31)
+		interval: event.recurring_event.repeat_every,
+		byweekday: by_week_day,
+		dtstart: new Date(event.startDate),
+		until: new Date(event.recurring_event.ends_on)
 	});
-	console.log(rule);
-	console.log(rule.between(two_week_ago, two_weeks_ahead));
-	console.log(rule.toText());
+	occurances = rule.between(past, ahead);
+	if(occurances.length == 1) {
+		// Just one occurance, so just return it
+		return occurances[0];
+	} else if (occurances.length > 1) {
+		for(var i = 0; i < occurances.length; i++) {
+			curr = new Date(occurances[i]);
+			if(curr >= now) {
+				// First occurance that's now or in the future, so return it
+				return curr;
+			}
+		}
+		// If we're here, then everything is in the past, so return the last one
+		return occurances[occurances.length - 1];
+	} 
+	// Otherwise, this means that no occurances happened 2 weeks ago, and will not be happening in 30 days, so dont say anything
+	return -1;
+  }
 
     this.getAllEvents = function(){
 		var clubevents = $localstorage.getObject('sbess-club-events');
@@ -868,14 +871,11 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			console.log("API Call Made for Events");
 			that = this; // Need to do this to call any this.function within the callback, i.e. to call this.getClub in the callback, you need to set this then you go that.getClub
 			return $http.get('https://lazsoc.ca/app_info.php').then(function(APIresult) {
-				console.log(APIresult);
 				// After the API call returns, then loop through the result and load in each club
 				for(var i = 0; i < APIresult.data.length; i++) {
 					APIresult.data[i].club = that.getClub(APIresult.data[i].clubRef);
 					if(APIresult.data[i].hasOwnProperty('is_recurring') && APIresult.data[i].is_recurring)  {
-
-					} else {
-						APIresult.data[i] = APIresult.data[i];
+						//event = that.recurring_event_dates(APIresult.data[i]);
 					}
 				}
 				APIresult.load_time = new Date().getTime();
@@ -891,8 +891,15 @@ angular.module('sbess.services',['ionic','sbess.utils'])
 			// Data is stored locally and not stale, so return that
 			// The calls expect a callback, so return a 'fake' promise so that the getAllEvents.then will still work even though no API call is made
 			console.log("Local storage loaded for Events");
+			that = this;
 			return new Promise(function (resolve, reject) {
-					console.log(clubevents);
+				/*
+					for(var i = 0; i < clubevents.data.length; i++) {
+						if(clubevents.data[i].hasOwnProperty('is_recurring') && clubevents.data[i].is_recurring)  {
+							event = that.recurring_event_dates(clubevents.data[i]);
+							console.log(event);
+						}
+					}*/
 					resolve(clubevents);
 				}
 			);
